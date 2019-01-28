@@ -2,8 +2,6 @@ package com.company.HUD;
 
 import com.company.CaveExplorer;
 import com.company.GameValues;
-import com.company.ImageBank;
-import com.company.Items.Drills.CopperDrill;
 import com.company.Items.Item;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -60,14 +58,6 @@ public class ItemPane extends StackPane {
         setOnMouseEntered(e->select());
         setOnMouseExited(e->unSelect());
 
-
-        // todo temp
-        setOnMouseDragged(e->{
-            if(e.isPrimaryButtonDown()){ // <- !!!!!!!!!!!!!!!
-                CaveExplorer.getPlayerCharacter().getInventory().putItemInSlot(new CopperDrill(), col,row);
-                buildItemView();
-            }
-        });
 
 
     }

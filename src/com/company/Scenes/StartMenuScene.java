@@ -4,7 +4,7 @@ import com.company.CaveExplorer;
 import com.company.GameStates_GameSavingAndLoading.GameSaverAndLoader;
 import com.company.GameValues;
 import com.company.ImageBank;
-import com.company.KeyInputHandler;
+import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
@@ -38,6 +38,49 @@ public class StartMenuScene extends StackPane {
         logo.setTranslateY(-GameValues.getWindowSideLength()/20*8);
 
     }
+
+
+
+    private AnimationTimer logoAnimation = new AnimationTimer() {
+
+        private int rotateTimer = 0;
+        private int scaleTimer = 0;
+
+        @Override
+        public void handle(long now) {
+
+            // rotation
+            if(rotateTimer < 100){
+                logo.setRotate(rotateTimer*0.02);
+            } else if(rotateTimer < 300){
+                logo.setRotate((200 - rotateTimer)*0.02);
+            } else {
+                logo.setRotate((-400 + rotateTimer)*0.02);
+            }
+
+            rotateTimer++;
+
+            if(rotateTimer >= 400){
+                rotateTimer = 0;
+            }
+
+            // x-scaling
+
+            if(scaleTimer < 70){
+                logo.setScaleX(1 + scaleTimer*0.001);
+            } else if(scaleTimer < 210){
+                logo.setScaleX(1.14 - scaleTimer*0.001);
+            } else {
+                logo.setScaleX(0.72 + scaleTimer*0.001);
+            }
+
+            scaleTimer++;
+
+            if(scaleTimer >= 280){
+                scaleTimer = 0;
+            }
+        }
+    };
 
 
     // Initial menu
@@ -286,6 +329,10 @@ public class StartMenuScene extends StackPane {
         returnButton_2.setOnAction(e->{
             goBackToMainMenu();
         });
+
+
+
+        logoAnimation.start();
 
 
     }
