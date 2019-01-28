@@ -117,17 +117,23 @@ public final class CaveExplorer extends Application {
         mainStage.setResizable(false);
 
         startMenuScene.goBackToMainMenu();
+        startMenuScene.launchAnimation();
 
         KeyInputHandler.stop();
         MouseInputHandler.stop();
         Renderer.stop();
     }
     public static void showGame(){
+
+        startMenuScene.freezeAnimation();
+
         mainStage.setScene(gameScene);
         mainStage.setResizable(true);
+
         keyInputHandler = new KeyInputHandler(mainStage);
         mouseInputHandler = new MouseInputHandler(mainStage);
         renderer = new Renderer();
+
         KeyInputHandler.start();
         MouseInputHandler.start();
         Renderer.start();
@@ -181,6 +187,8 @@ public final class CaveExplorer extends Application {
         primaryStage.show();
         primaryStage.setResizable(false);
 
+        // launches main menu logo animation
+        startMenuScene.launchAnimation();
 
         // Dynamic Window Scaling, always on
         stageResizeListener = new StageResizeListener(primaryStage);

@@ -39,8 +39,6 @@ public class StartMenuScene extends StackPane {
 
     }
 
-
-
     private AnimationTimer logoAnimation = new AnimationTimer() {
 
         private int rotateTimer = 0;
@@ -81,6 +79,12 @@ public class StartMenuScene extends StackPane {
             }
         }
     };
+    public void launchAnimation(){
+        logoAnimation.start();
+    }
+    public void freezeAnimation(){
+        logoAnimation.stop();
+    }
 
 
     // Initial menu
@@ -329,11 +333,6 @@ public class StartMenuScene extends StackPane {
         returnButton_2.setOnAction(e->{
             goBackToMainMenu();
         });
-
-
-
-        logoAnimation.start();
-
 
     }
 }
