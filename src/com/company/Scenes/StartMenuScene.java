@@ -3,6 +3,7 @@ package com.company.Scenes;
 import com.company.CaveExplorer;
 import com.company.GameStates_GameSavingAndLoading.GameSaverAndLoader;
 import com.company.GameValues;
+import com.company.HUD.AppNodes.CE_Button;
 import com.company.ImageBank;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
@@ -89,10 +90,10 @@ public class StartMenuScene extends StackPane {
 
     // Initial menu
     private static VBox initialMenu = new VBox(10);
-    private static Button newGameButton = new Button("NEW GAME");
-    private static Button loadGameButton = new Button("LOAD GAME");
-    private static Button optionsButton = new Button("OPTIONS");
-    private static Button aboutButton = new Button("ABOUT");
+    private static CE_Button newGameButton = new CE_Button("NEW GAME");
+    private static CE_Button loadGameButton = new CE_Button("LOAD GAME");
+    private static CE_Button optionsButton = new CE_Button("OPTIONS");
+    private static CE_Button aboutButton = new CE_Button("ABOUT");
 
     private static void buildInitialMenu(){
         initialMenu.setMaxSize(250,280);
@@ -101,22 +102,6 @@ public class StartMenuScene extends StackPane {
         initialMenu.setAlignment(Pos.CENTER);
         initialMenu.getChildren().addAll(newGameButton, loadGameButton, optionsButton, aboutButton);
         initialMenu.setTranslateY(GameValues.getWindowSideLength()/20);
-
-        newGameButton.setBackground(new Background(new BackgroundFill(GameValues.GUI_FULL_BLUE, new CornerRadii(10), null)));
-        newGameButton.setPrefSize(200,50);
-        newGameButton.setStyle(BTN_STYLE);
-
-        loadGameButton.setBackground(new Background(new BackgroundFill(GameValues.GUI_FULL_BLUE, new CornerRadii(10), null)));
-        loadGameButton.setPrefSize(200,50);
-        loadGameButton.setStyle(BTN_STYLE);
-
-        optionsButton.setBackground(new Background(new BackgroundFill(GameValues.GUI_FULL_BLUE, new CornerRadii(10), null)));
-        optionsButton.setPrefSize(200,50);
-        optionsButton.setStyle(BTN_STYLE);
-
-        aboutButton.setBackground(new Background(new BackgroundFill(GameValues.GUI_FULL_BLUE, new CornerRadii(10), null)));
-        aboutButton.setPrefSize(200,50);
-        aboutButton.setStyle(BTN_STYLE);
     }
 
 
@@ -131,8 +116,8 @@ public class StartMenuScene extends StackPane {
     private static Slider terrainAmountSlider = new Slider(0,100,10);
     private static Text genStructuresLabel = new Text("Generated structures quantity");
     private static Slider generatedStructuresAmountSlider = new Slider(0,100,10);
-    private static Button startGameButton = new Button("START");
-    private static Button returnButton = new Button("RETURN");
+    private static CE_Button startGameButton = new CE_Button("START");
+    private static CE_Button returnButton = new CE_Button("RETURN");
 
     private static void buildNewGameOptionsMenu(){
         newGameOptionMenu.setMaxSize(400,420);
@@ -192,22 +177,14 @@ public class StartMenuScene extends StackPane {
         generatedStructuresAmountSlider.setShowTickLabels(true);
         generatedStructuresAmountSlider.setSnapToTicks(true);
 
-        startGameButton.setBackground(new Background(new BackgroundFill(GameValues.GUI_FULL_BLUE, new CornerRadii(10), null)));
-        startGameButton.setPrefSize(200,50);
-        startGameButton.setStyle(BTN_STYLE);
-
-        returnButton.setBackground(new Background(new BackgroundFill(GameValues.GUI_FULL_BLUE, new CornerRadii(10), null)));
-        returnButton.setPrefSize(200,50);
-        returnButton.setStyle(BTN_STYLE);
-
     }
 
 
     // Load Game Menu
     private static VBox loadGameMenu = new VBox(10);
     private static Text loadGameTitle = new Text("LOAD GAME");
-    private static Button[] gameStateButtons = new Button[4];
-    private static Button returnButton_2 = new Button("RETURN");
+    private static CE_Button[] gameStateButtons = new CE_Button[4];
+    private static CE_Button returnButton_2 = new CE_Button("RETURN");
 
 
     private static void buildLoadGameMenu(){
@@ -221,15 +198,8 @@ public class StartMenuScene extends StackPane {
         loadGameTitle.setStyle(BTN_STYLE);
 
         for(int i = 0; i < gameStateButtons.length; i++){
-            gameStateButtons[i] = new Button();
-            gameStateButtons[i].setBackground(new Background(new BackgroundFill(GameValues.GUI_FULL_BLUE, new CornerRadii(10), null)));
-            gameStateButtons[i].setPrefSize(200,50);
-            gameStateButtons[i].setStyle(BTN_STYLE);
+            gameStateButtons[i] = new CE_Button();
         }
-
-        returnButton_2.setBackground(new Background(new BackgroundFill(GameValues.GUI_FULL_BLUE, new CornerRadii(10), null)));
-        returnButton_2.setPrefSize(200,50);
-        returnButton_2.setStyle(BTN_STYLE);
 
         loadGameMenu.getChildren().add(loadGameTitle);
         loadGameMenu.getChildren().addAll(gameStateButtons);
@@ -253,23 +223,6 @@ public class StartMenuScene extends StackPane {
                 // clears if save deleted
                 gameStateButtons[i].setOnAction(null);
             }
-        }
-    }
-
-
-    // style methods
-    private void setButtonHoverEffect(Button...buttons){
-        for(Button b : buttons){
-            b.setOnMouseEntered(e->{
-                b.setBackground(new Background(new BackgroundFill(GameValues.GUI_FLASH_BLUE, new CornerRadii(10), null)));
-                b.setScaleX(1.05);
-                b.setScaleY(1.05);
-            });
-            b.setOnMouseExited(e->{
-                b.setBackground(new Background(new BackgroundFill(GameValues.GUI_FULL_BLUE, new CornerRadii(10), null)));
-                b.setScaleX(1.0);
-                b.setScaleY(1.0);
-            });
         }
     }
 
@@ -307,9 +260,6 @@ public class StartMenuScene extends StackPane {
         buildLoadGameMenu();
 
         getChildren().addAll(background,logo,initialMenu);
-
-        setButtonHoverEffect(newGameButton, loadGameButton, optionsButton, aboutButton, returnButton, startGameButton, returnButton_2);
-        setButtonHoverEffect(gameStateButtons);
 
         // on actions, main menu
         newGameButton.setOnAction(e->{
