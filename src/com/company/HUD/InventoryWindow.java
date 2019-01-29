@@ -127,5 +127,8 @@ public class InventoryWindow extends Pane {
         setBackground(new Background(new BackgroundFill(GameValues.GUI_MAIN_BLUE, new CornerRadii(10),null)));
 
 
+
+
+
     }
 }
