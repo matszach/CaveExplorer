@@ -189,14 +189,49 @@ abstract public class Agent extends ImageView {
         int x = roundTileX();
         int y = roundTileY();
         switch (getDirFacing()){
-            case LEFT: x--; break;
-            case LEFT_UP: x--; y--;  break;
-            case UP: y--; break;
-            case RIGHT_UP: x++; y--;  break;
-            case RIGHT: x++; break;
-            case RIGHT_DOWN: x++; y++;  break;
-            case DOWN: y++; break;
-            case LEFT_DOWN: x--; y++;  break;
+            case LEFT:
+                x--;
+                break;
+            case LEFT_UP:
+                // prevents diagonal mining "through walls" -> a tile directly above
+                // will be mined before the diagonal one
+                if(!MainGameScene.getBoard().getTiles()[x][y-1].isMovementBlocking() ||
+                   !MainGameScene.getBoard().getTiles()[x-1][y].isMovementBlocking()){
+                    // if at least one tile (either up or left) is free to walk through -> then the diagonal tile will be mined
+                    x--;
+                }
+                y--;
+                break;
+            case UP:
+                y--;
+                break;
+            case RIGHT_UP:
+                if(!MainGameScene.getBoard().getTiles()[x][y-1].isMovementBlocking() ||
+                   !MainGameScene.getBoard().getTiles()[x+1][y].isMovementBlocking()){
+                    y--;
+                }
+                x++;
+                break;
+            case RIGHT:
+                x++;
+                break;
+            case RIGHT_DOWN:
+                if(!MainGameScene.getBoard().getTiles()[x][y+1].isMovementBlocking() ||
+                   !MainGameScene.getBoard().getTiles()[x+1][y].isMovementBlocking()){
+                    x++;
+                }
+                y++;
+                break;
+            case DOWN:
+                y++;
+                break;
+            case LEFT_DOWN:
+                if(!MainGameScene.getBoard().getTiles()[x][y+1].isMovementBlocking() ||
+                   !MainGameScene.getBoard().getTiles()[x-1][y].isMovementBlocking()){
+                    y++;
+                }
+                x--;
+                break;
         }
         if(x >= 0 && x <= MainGameScene.getBoard().getTiles().length-1 &&
            y >= 0 && y <= MainGameScene.getBoard().getTiles().length-1 &&

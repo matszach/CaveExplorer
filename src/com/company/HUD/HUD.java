@@ -5,11 +5,11 @@ import javafx.scene.layout.*;
 
 public class HUD extends Pane {
 
-    private static ActionChoiceBox actionChoicePane = new ActionChoiceBox();
+    private static ActionBar actionBar = new ActionBar();
     private static CoordinateDisplay coordinateDisplay = new CoordinateDisplay();
 
     public HUD(){
-        getChildren().addAll(actionChoicePane, coordinateDisplay);
+        getChildren().addAll(actionBar, coordinateDisplay);
     }
 
 }

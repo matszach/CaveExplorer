@@ -1,10 +1,7 @@
 package com.company;
 
 import com.company.Agent.Agent;
-import com.company.Agent.PlayerCharacter.PlayerInventory;
-import com.company.CaveExplorer;
-import com.company.HUD.ActionChoiceBox;
-import com.company.HUD.ActionOptionPane;
+import com.company.HUD.ActionBar;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -121,9 +118,9 @@ public final class MouseInputHandler {
         primaryStage.getScene().setOnScroll(e->{
             if(!KeyInputHandler.blockInputEvents()){
                 if(e.getDeltaY() > 0){
-                    ActionChoiceBox.moveSelectionDown();
+                    ActionBar.moveSelectionDown();
                 } else {
-                    ActionChoiceBox.moveSelectionUp();
+                    ActionBar.moveSelectionUp();
                 }
             }
         });

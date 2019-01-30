@@ -1,21 +1,26 @@
 package com.company.HUD.DragAndDropHandler;
 
-import com.company.Agent.PlayerCharacter.PlayerCharacter;
 import com.company.CaveExplorer;
 import com.company.Items.Item;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Rectangle;
 
 import java.awt.*;
-
-import static javafx.scene.paint.Color.BLUE;
 
 
 public class InventoryDragAndDropHandler {
 
     // instance
     private static InventoryDragAndDropHandler i = new InventoryDragAndDropHandler();
+
+    // the inventory window is open -> drag and drop is active
+    private static boolean active;
+    public static void setActive(boolean active) {
+        InventoryDragAndDropHandler.active = active;
+    }
+    public static boolean isActive() {
+        return active;
+    }
 
     // selected item (item dragged from)
     private static int selectedItemRow;
@@ -28,9 +33,10 @@ public class InventoryDragAndDropHandler {
     private static boolean targetedItemPresent;
 
 
+
     // sets the location of the selected item
     public static void readySelectedItem(int row, int col, ImageView imageViewToImitate){
-        if(CaveExplorer.getPlayerCharacter().getInventory().getItemsInInventory()[col][row] != null){
+        if(isActive() && CaveExplorer.getPlayerCharacter().getInventory().getItemsInInventory()[col][row] != null){
             selectedItemRow = row;
             selectedItemCol = col;
             selectedItemPresent = true;
@@ -64,7 +70,6 @@ public class InventoryDragAndDropHandler {
         }
         haltAnimation();
     }
-
 
 
     // Drag Animation

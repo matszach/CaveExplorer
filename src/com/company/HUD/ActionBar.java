@@ -6,13 +6,13 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 
-public class ActionChoiceBox extends HBox {
+public class ActionBar extends HBox {
 
-    private static ActionOptionPane[] actionOptionPanes = new ActionOptionPane[8];
+    private static ActionBarItemPane[] actionOptionPanes = new ActionBarItemPane[8];
 
-    private static ActionOptionPane[] buildActonPanes() {
+    private static ActionBarItemPane[] buildActonPanes() {
         for (int i = 0; i < actionOptionPanes.length; i++) {
-            actionOptionPanes[i] = new ActionOptionPane();
+            actionOptionPanes[i] = new ActionBarItemPane(i, 5);
         }
         return actionOptionPanes;
     }
@@ -42,7 +42,7 @@ public class ActionChoiceBox extends HBox {
 
 
 
-    public ActionChoiceBox(){
+    public ActionBar(){
         relocate(145,550);
         setPrefSize(320,40);
         setBackground(new Background(new BackgroundFill(GameValues.GUI_MAIN_BLUE, new CornerRadii(10),null)));

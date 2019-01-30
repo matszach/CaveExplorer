@@ -3,6 +3,7 @@ package com.company;
 import com.company.Agent.Agent;
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
 import com.company.GameStates_GameSavingAndLoading.GameState;
+import com.company.HUD.DragAndDropHandler.InventoryDragAndDropHandler;
 import com.company.HUD.SaveWindow;
 import com.company.Scenes.MainGameScene;
 import com.company.Scenes.StartMenuScene;
@@ -77,10 +78,12 @@ public final class CaveExplorer extends Application {
     // Window invokers <- those will be moved TODO
     public static void openInventory(){
         mainGameScene.getChildren().add(MainGameScene.getInventoryWindow());
+        InventoryDragAndDropHandler.setActive(true);
         MainGameScene.getBoard().setEffect(new GaussianBlur());
     }
     public static void closeInventory(){
         mainGameScene.getChildren().remove(MainGameScene.getInventoryWindow());
+        InventoryDragAndDropHandler.setActive(false);
         MainGameScene.getBoard().setEffect(null);
     }
     public static void openPauseWindow(){

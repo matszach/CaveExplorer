@@ -7,7 +7,7 @@ import com.company.Resources.Resource;
 public class PlayerInventory {
 
     // Items
-    private Item[][] itemsInInventory = new Item[10][5];
+    private Item[][] itemsInInventory = new Item[10][6];
     public Item[][] getItemsInInventory() {
         return itemsInInventory;
     }
