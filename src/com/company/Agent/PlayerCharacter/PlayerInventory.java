@@ -7,7 +7,7 @@ import com.company.Resources.Resource;
 public class PlayerInventory {
 
     // Items
-    private Item[][] itemsInInventory = new Item[10][6];
+    private Item[][] itemsInInventory = new Item[10][6]; // 2 "slots" are left unused (5,8), (5,9)
     public Item[][] getItemsInInventory() {
         return itemsInInventory;
     }
@@ -52,6 +52,7 @@ public class PlayerInventory {
         putItemInSlot(new CopperDrill(), 0,0);
         putItemInSlot(new CopperDrill(), 1,0);
         putItemInSlot(new CopperDrill(), 0,3);
+        putItemInSlot(new CopperDrill(), 0,5);
 
     }
 }

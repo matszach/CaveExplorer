@@ -2,16 +2,18 @@ package com.company;
 
 import com.company.Agent.Agent;
 import com.company.HUD.ActionBar;
+import com.company.Items.IUsable;
+import com.company.Items.Item;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public final class MouseInputHandler {
 
-    // player is drilling
-    private static boolean drilling;
-    private static int drillingPhase = 0;
-    private static final int DRILL_PHASES[] = new int[]{2,4,6,8};
+    // player is useItem
+    private static boolean useItem;
+    private static int usePhase = 0;
+    private static final int MAX_USE_PHASE = 8;
 
     private static void rotatePlayer(MouseEvent e){
         double xDirection = e.getSceneX() - CaveExplorer.getMainGameScene().getWidth()/2;
@@ -57,24 +59,18 @@ public final class MouseInputHandler {
         @Override
         public void handle(long now) {
 
-            if (drilling){
-                if(drillingPhase <= DRILL_PHASES[0]){
-                    CaveExplorer.getPlayerCharacter().buildDrillingAppearance(0);
-                    drillingPhase++;
-                } else if(drillingPhase <= DRILL_PHASES[1]){
-                    CaveExplorer.getPlayerCharacter().buildDrillingAppearance(1);
-                    drillingPhase++;
-                } else if(drillingPhase <= DRILL_PHASES[2]) {
-                    CaveExplorer.getPlayerCharacter().buildDrillingAppearance(2);
-                    drillingPhase++;
-                } else if(drillingPhase <= DRILL_PHASES[3]){
-                    CaveExplorer.getPlayerCharacter().buildDrillingAppearance(1);
-                    drillingPhase++;
-                    if(drillingPhase > DRILL_PHASES[3]){
-                        drillingPhase = 0;
-                        CaveExplorer.getPlayerCharacter().damageTile();
+            if (useItem){
+
+                // is active item is usable -> runs it through is usage animation (if any)
+                Item activeItem = CaveExplorer.getPlayerCharacter().getInventory().getItemsInInventory()[ActionBar.getSelectedPaneNum()][5];
+                if(activeItem instanceof IUsable){
+                    ((IUsable) activeItem).usage(CaveExplorer.getPlayerCharacter(), usePhase);
+                    usePhase++;
+                    if(usePhase > ((IUsable) activeItem).getUsageRotationLimit()){
+                        usePhase=0;
                     }
                 }
+
             } else {
                 CaveExplorer.getPlayerCharacter().buildDefaultAppearance();
             }
@@ -90,19 +86,19 @@ public final class MouseInputHandler {
     }
 
     public static void reset(){
-        drilling = false;
+        useItem = false;
     }
 
     public MouseInputHandler(Stage primaryStage){
 
         primaryStage.getScene().setOnMousePressed(e->{
             if(!KeyInputHandler.blockInputEvents()) {
-                drilling = true;
+                useItem = true;
             }
         });
         primaryStage.getScene().setOnMouseReleased(e->{
             if(!KeyInputHandler.blockInputEvents()){
-                drilling = false;
+                useItem = false;
             }
         });
         primaryStage.getScene().setOnMouseMoved(e->{

@@ -185,13 +185,11 @@ abstract public class Agent extends ImageView {
 
     // Actions
     // Agent damages the tile in front of it
-    public void damageTile(){
+    public void damageTile(double dmg){
         int x = roundTileX();
         int y = roundTileY();
         switch (getDirFacing()){
-            case LEFT:
-                x--;
-                break;
+            case LEFT: x--; break;
             case LEFT_UP:
                 // prevents diagonal mining "through walls" -> a tile directly above
                 // will be mined before the diagonal one
@@ -202,9 +200,7 @@ abstract public class Agent extends ImageView {
                 }
                 y--;
                 break;
-            case UP:
-                y--;
-                break;
+            case UP: y--; break;
             case RIGHT_UP:
                 if(!MainGameScene.getBoard().getTiles()[x][y-1].isMovementBlocking() ||
                    !MainGameScene.getBoard().getTiles()[x+1][y].isMovementBlocking()){
@@ -212,9 +208,7 @@ abstract public class Agent extends ImageView {
                 }
                 x++;
                 break;
-            case RIGHT:
-                x++;
-                break;
+            case RIGHT: x++; break;
             case RIGHT_DOWN:
                 if(!MainGameScene.getBoard().getTiles()[x][y+1].isMovementBlocking() ||
                    !MainGameScene.getBoard().getTiles()[x+1][y].isMovementBlocking()){
@@ -222,9 +216,7 @@ abstract public class Agent extends ImageView {
                 }
                 y++;
                 break;
-            case DOWN:
-                y++;
-                break;
+            case DOWN: y++; break;
             case LEFT_DOWN:
                 if(!MainGameScene.getBoard().getTiles()[x][y+1].isMovementBlocking() ||
                    !MainGameScene.getBoard().getTiles()[x-1][y].isMovementBlocking()){
@@ -237,7 +229,7 @@ abstract public class Agent extends ImageView {
            y >= 0 && y <= MainGameScene.getBoard().getTiles().length-1 &&
             MainGameScene.getBoard().getTiles()[x][y] != null ){
             // damages the tile, which, upon reaching 0> durability, will crumble
-            MainGameScene.getBoard().getTiles()[x][y].takeDamage(0.5); // todo 0.4 is a temp value and will depend on player inventory etc
+            MainGameScene.getBoard().getTiles()[x][y].takeDamage(dmg); // todo 0.4 is a temp value and will depend on player inventory etc
         }
     }
 

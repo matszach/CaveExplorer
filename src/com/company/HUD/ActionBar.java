@@ -19,6 +19,10 @@ public class ActionBar extends HBox {
 
 
     private static int selectedPaneNum;
+    public static int getSelectedPaneNum() {
+        return selectedPaneNum;
+    }
+
     public static void moveSelectionUp(){
         actionOptionPanes[selectedPaneNum].unSelect();
         if(selectedPaneNum >= actionOptionPanes.length-1){
