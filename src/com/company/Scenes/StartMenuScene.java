@@ -9,8 +9,10 @@ import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.io.File;
@@ -36,7 +38,8 @@ public class StartMenuScene extends StackPane {
     private static void  buildLogo(){
         logo.setFitHeight(60);
         logo.setPreserveRatio(true);
-        logo.setTranslateY(-GameValues.getWindowSideLength()/20*8);
+        logo.setTranslateY(-GameValues.getWindowSideLength()/20*7);
+        logo.setEffect(new DropShadow(50,0,0, GameValues.GUI_MAIN_BLUE));
 
     }
 

@@ -42,6 +42,7 @@ ItemPane extends StackPane {
     // shown item's imageView
     private ImageView itemImageView = new ImageView();
 
+
     public void select(){
         setBackground(new Background(new BackgroundFill(GameValues.GUI_FULL_BLUE, new CornerRadii(10), new Insets(5,5,5,5))));
         setScaleX(1.05);
@@ -71,55 +72,34 @@ ItemPane extends StackPane {
         setOnMousePressed(e->{
             setMouseTransparent(true);
             e.setDragDetect(true);
-
-            InventoryDragAndDropHandler.readySelectedItem(row,col);
-
-            System.out.println("mouse pressed at (" + row + "," + col + ")");
+            InventoryDragAndDropHandler.readySelectedItem(row,col,itemImageView);
         });
 
         setOnMouseReleased(e->{
             setMouseTransparent(false);
-
             InventoryDragAndDropHandler.swapIfReady();
             InventoryDragAndDropHandler.unreadySelectedItem();
             buildItemView();
-
-            System.out.println("mouse released at (" + row + "," + col + ")");
         });
 
         setOnMouseDragged(e->{
             e.setDragDetect(false);
-
-            // System.out.println("mouse dragged at (" + row + "," + col + ")");
         });
 
         setOnDragDetected(e-> {
             startFullDrag();
-
-            System.out.println("drag detected at (" + row + "," + col + ")");
         });
 
         // Mouse event handlers for the target
         setOnMouseDragEntered(e-> {
-
+            select();
             InventoryDragAndDropHandler.readyTargetedItem(row, col);
-
-            System.out.println("mouse drag entered at (" + row + "," + col + ")");
-        });
-
-        setOnMouseDragOver(e-> {
-            // System.out.println("mouse dragged over at (" + row + "," + col + ")");
-        });
-
-        setOnMouseDragReleased(e-> {
-            //targetFld.setText(sourceFld.getSelectedText());
-            System.out.println("mouse drag released at (" + row + "," + col + ")");
         });
 
         setOnMouseDragExited(e-> {
+            unSelect();
             InventoryDragAndDropHandler.unreadyTargetedItem();
             buildItemView();
-            System.out.println("mouse drag exited at (" + row + "," + col + ")");
         });
 
 

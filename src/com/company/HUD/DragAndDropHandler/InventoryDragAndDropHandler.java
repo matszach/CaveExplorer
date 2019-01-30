@@ -3,6 +3,14 @@ package com.company.HUD.DragAndDropHandler;
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
 import com.company.CaveExplorer;
 import com.company.Items.Item;
+import javafx.animation.AnimationTimer;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
+
+import java.awt.*;
+
+import static javafx.scene.paint.Color.BLUE;
+
 
 public class InventoryDragAndDropHandler {
 
@@ -21,10 +29,13 @@ public class InventoryDragAndDropHandler {
 
 
     // sets the location of the selected item
-    public static void readySelectedItem(int row, int col){
-        selectedItemRow = row;
-        selectedItemCol = col;
-        selectedItemPresent = true;
+    public static void readySelectedItem(int row, int col, ImageView imageViewToImitate){
+        if(CaveExplorer.getPlayerCharacter().getInventory().getItemsInInventory()[col][row] != null){
+            selectedItemRow = row;
+            selectedItemCol = col;
+            selectedItemPresent = true;
+            launchAnimation(imageViewToImitate);
+        }
     }
 
     public static void unreadySelectedItem(){
@@ -51,7 +62,40 @@ public class InventoryDragAndDropHandler {
             CaveExplorer.getPlayerCharacter().getInventory().putItemInSlot(selectedItem, targetedItemCol, targetedItemRow);
             CaveExplorer.getPlayerCharacter().getInventory().putItemInSlot(targetedItem, selectedItemCol, selectedItemRow);
         }
+        haltAnimation();
     }
+
+
+
+    // Drag Animation
+    private static ImageView animationImageView = new ImageView();
+
+    private static void launchAnimation(ImageView imageViewToImitate){
+
+        animationImageView.setViewport(imageViewToImitate.getViewport());
+        animationImageView.setImage(imageViewToImitate.getImage());
+        animationImageView.setFitWidth(imageViewToImitate.getFitWidth());
+        animationImageView.setFitHeight(imageViewToImitate.getFitHeight());
+        animationImageView.setOpacity(0.8);
+
+        CaveExplorer.getMainGameScene().getChildren().add(animationImageView);
+        dragAnimation.start();
+    }
+
+    private static void haltAnimation(){
+        CaveExplorer.getMainGameScene().getChildren().remove(animationImageView);
+        dragAnimation.stop();
+    }
+
+    private static AnimationTimer dragAnimation = new AnimationTimer() {
+        @Override
+        public void handle(long now) {
+            double xDirection = MouseInfo.getPointerInfo().getLocation().getX() - CaveExplorer.getMainGameScene().getWidth()/2 - 170;
+            double yDirection = MouseInfo.getPointerInfo().getLocation().getY() - CaveExplorer.getMainGameScene().getHeight()/2 + 210;
+            animationImageView.relocate(xDirection,yDirection);
+        }
+    };
+
 
 
 
