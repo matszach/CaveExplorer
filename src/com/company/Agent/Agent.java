@@ -234,7 +234,8 @@ abstract public class Agent extends ImageView {
     }
 
     // Agent places (and replaces) the tile in front of him
-    public void buildTile(Tile tile){
+    // returns true if tile successfully placed
+    public boolean buildTile(Tile tile){
         int x = roundTileX();
         int y = roundTileY();
         switch (getDirFacing()){
@@ -253,7 +254,9 @@ abstract public class Agent extends ImageView {
             MainGameScene.getBoard().getTiles()[x][y].isReplaceable()){
            // replaces the tile with a new one
             MainGameScene.getBoard().replaceTile(tile, x, y);
+            return true;
         }
+        return false;
     }
 
     // targeting a tile TODO

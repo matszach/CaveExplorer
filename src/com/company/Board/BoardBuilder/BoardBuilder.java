@@ -35,9 +35,9 @@ public class BoardBuilder {
 
         TerrainGenerator.generateCaverns(grid, 0.65*terAmtMod);
 
-        TerrainGenerator.generateBedrock(grid, GameValues.getBedrockWidth());
-
         StructureGenerator.generateMines(grid,0.4*strAmtMod);
+
+        TerrainGenerator.generateBedrock(grid, GameValues.getBedrockWidth());
 
         return grid;
     }

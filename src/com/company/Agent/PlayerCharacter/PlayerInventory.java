@@ -1,6 +1,10 @@
 package com.company.Agent.PlayerCharacter;
 
+import com.company.Items.BlockPlacers.Trowel;
+import com.company.Items.Drills.BloodRubyDrill;
+import com.company.Items.Drills.CobaltDrill;
 import com.company.Items.Drills.CopperDrill;
+import com.company.Items.Drills.IronDrill;
 import com.company.Items.Item;
 import com.company.Resources.Resource;
 
@@ -17,6 +21,24 @@ public class PlayerInventory {
     }
     public void removeItemInSlot(int rowX, int rowY){
         itemsInInventory[rowX][rowY] = null; // todo might need to make changes in inv. window
+    }
+
+    // adds item to a first possible slot, ignores action bar slots
+    public boolean addOneItemToInventory(Item item){
+        for (int row = 0; row < itemsInInventory.length-1; row++){
+            for (int col = 0; col < itemsInInventory[0].length; col++){
+                if(itemsInInventory[col][row] == null){
+                    itemsInInventory[col][row] = item;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public void addItemsToInventory(Item... item){
+        for(Item i : item){
+            addOneItemToInventory(i);
+        }
     }
 
     // Resource
@@ -49,10 +71,7 @@ public class PlayerInventory {
 
 
         // TODO TEST
-        putItemInSlot(new CopperDrill(), 0,0);
-        putItemInSlot(new CopperDrill(), 1,0);
-        putItemInSlot(new CopperDrill(), 0,3);
-        putItemInSlot(new CopperDrill(), 0,5);
+        addItemsToInventory(new CopperDrill(), new IronDrill(), new CobaltDrill(), new BloodRubyDrill(), new Trowel());
 
     }
 }

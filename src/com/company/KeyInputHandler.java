@@ -17,12 +17,6 @@ public final class KeyInputHandler {
     private final static KeyCombination MOVE_DOWN = new KeyCodeCombination(KeyCode.S);
     private static boolean movingLeft, movingUp, movingRight, movingDown;
 
-
-    // this might be changed later
-    // the space bar will be used for all player actions and keys 1-9 will be used for choosing the current player action on space bar press
-    private final static KeyCombination REPLACE_TILE = new KeyCodeCombination(KeyCode.E);
-    private static boolean targeting;
-
     // opens and closes inventory
     private final static KeyCombination INVENTORY_TOGGLE = new KeyCodeCombination(KeyCode.I);
     private static boolean inventoryOpen;
@@ -54,11 +48,6 @@ public final class KeyInputHandler {
                 if (movingDown){
                     CaveExplorer.getPlayerCharacter().walk(PlayerCharacter.MOVE_DIR.DOWN);
                 }
-                if (targeting){
-                    // TODO WIP
-                    CaveExplorer.getPlayerCharacter().targetTile();
-                    targeting = false;
-                }
 
             } // if inventory open
 
@@ -76,7 +65,6 @@ public final class KeyInputHandler {
         movingUp = false;
         movingRight = false;
         movingDown = false;
-        targeting = false;
         inventoryOpen = false;
         pauseOpen = false;
     }
@@ -98,10 +86,7 @@ public final class KeyInputHandler {
             if(MOVE_DOWN.match(ke)){
                 movingDown = true;
             }
-            if(REPLACE_TILE.match(ke)){
-                // TODO WIP
-                targeting = true;
-            }
+
             if(INVENTORY_TOGGLE.match(ke)){
                 if(!pauseOpen){
                     if(inventoryOpen){
@@ -142,10 +127,6 @@ public final class KeyInputHandler {
             }
             if(MOVE_DOWN.match(ke)){
                 movingDown = false;
-            }
-            if(REPLACE_TILE.match(ke)){
-                // TODO WIP
-                CaveExplorer.getPlayerCharacter().buildTile(new Tile_Const_StoneWall());
             }
         });
 
