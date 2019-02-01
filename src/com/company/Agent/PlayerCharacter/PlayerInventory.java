@@ -1,13 +1,17 @@
 package com.company.Agent.PlayerCharacter;
 
+import com.company.CaveExplorer;
+import com.company.HUD.InventoryWindow;
 import com.company.Items.BlockPlacers.Trowel;
 import com.company.Items.Drills.BloodRubyDrill;
 import com.company.Items.Drills.CobaltDrill;
 import com.company.Items.Drills.CopperDrill;
 import com.company.Items.Drills.IronDrill;
 import com.company.Items.Item;
+import com.company.Items.PlaceableObjects.WoodenSupport;
 import com.company.Resources.Resource;
 import com.company.Resources.ResourceType;
+import com.company.Scenes.MainGameScene;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,18 +25,20 @@ public class PlayerInventory {
         return itemsInInventory;
     }
 
-    public void putItemInSlot(Item item, int row, int col){
-        itemsInInventory[row][col] = item;
+    public void putItemInSlot(Item item, int col, int row){
+        itemsInInventory[col][row] = item;
+        MainGameScene.getInventoryWindow().updateItemPane(col,row);
     }
-    public void removeItemInSlot(int row, int col){
-        itemsInInventory[row][col] = null; // todo might need to make changes in inv. window
+    public void removeItemInSlot(int col,int row){
+        itemsInInventory[col][row] = null;
+        MainGameScene.getInventoryWindow().updateItemPane(col,row);
     }
 
     // checks for an empty item slot
     public boolean hasEmptyItemSlot(){
-        for (int col = 0; col < itemsInInventory[0].length; col++){
-            for (int row = 0; row < itemsInInventory.length; row++){
-                if(itemsInInventory[row][col] == null){
+        for (int row = 0; row < itemsInInventory[0].length; row++){
+            for (int col = 0; col < itemsInInventory.length; col++){
+                if(itemsInInventory[col][row] == null){
                     return true;
                 }
             }
@@ -43,10 +49,10 @@ public class PlayerInventory {
 
     // adds item to a first possible slot, ignores action bar slots
     private boolean addOneItemToInventory(Item item){
-        for (int col = 0; col < itemsInInventory[0].length; col++){
-            for (int row = 0; row < itemsInInventory.length; row++){
-                if(itemsInInventory[row][col] == null){
-                    itemsInInventory[row][col] = item;
+        for (int row = 0; row < itemsInInventory[0].length; row++){
+            for (int col = 0; col < itemsInInventory.length; col++){
+                if(itemsInInventory[col][row] == null){
+                    putItemInSlot(item, col, row);
                     return true;
                 }
             }
@@ -61,9 +67,9 @@ public class PlayerInventory {
 
     // checks if inventory contains an item of a given type
     public boolean containsItemOfType(Class<? extends Item> itemClass){
-        for (int col = 0; col < itemsInInventory[0].length; col++){
-            for (int row = 0; row < itemsInInventory.length-1; row++){
-                if(itemsInInventory[row][col] != null && itemsInInventory[row][col].getClass() == itemClass){
+        for (int row = 0; row < itemsInInventory[0].length; row++){
+            for (int col = 0; col < itemsInInventory.length-1; col++){
+                if(itemsInInventory[col][row] != null && itemsInInventory[col][row].getClass() == itemClass){
                     return true;
                 }
             }
@@ -73,10 +79,22 @@ public class PlayerInventory {
 
     // removes one instance of an item of a specific type
     public boolean removeOneItemOfType(Class<? extends Item> itemClass){
-        for (int col = 0; col < itemsInInventory[0].length; col++){
-            for (int row = 0; row < itemsInInventory.length-1; row++){
-                if(itemsInInventory[row][col] != null && itemsInInventory[row][col].getClass() == itemClass){
+        for (int row = 0; row < itemsInInventory[0].length; row++){
+            for (int col = 0; col < itemsInInventory.length-1; col++){
+                if(itemsInInventory[col][row] != null && itemsInInventory[row][col].getClass() == itemClass){
                     removeItemInSlot(row, col);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean removeSpecificItem(Item item){
+        for (int row = 0; row < itemsInInventory[0].length; row++){
+            for (int col = 0; col < itemsInInventory.length-1; col++){
+                if(itemsInInventory[col][row] == item){
+                    removeItemInSlot(col, row);
+                    return true;
                 }
             }
         }
@@ -113,7 +131,23 @@ public class PlayerInventory {
 
 
         // TODO TEST
+        /*
+        these would cause an exception (inventory window forced to update before it is created)
         addItemsToInventory(new CopperDrill(), new IronDrill(), new CobaltDrill(), new BloodRubyDrill(), new Trowel());
+        addItemsToInventory(new WoodenSupport(),new WoodenSupport(),new WoodenSupport(),new WoodenSupport(),new WoodenSupport());
+        */
+
+        itemsInInventory[0][0] = new CopperDrill();
+        itemsInInventory[1][0] = new IronDrill();
+        itemsInInventory[2][0] = new CobaltDrill();
+        itemsInInventory[3][0] = new BloodRubyDrill();
+        itemsInInventory[4][0] = new Trowel();
+        itemsInInventory[0][1] = new WoodenSupport();
+        itemsInInventory[1][1] = new WoodenSupport();
+        itemsInInventory[2][1] = new WoodenSupport();
+        itemsInInventory[3][1] = new WoodenSupport();
+        itemsInInventory[4][1] = new WoodenSupport();
+
 
     }
 }

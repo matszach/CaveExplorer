@@ -8,7 +8,7 @@ import com.company.Tiles.Tile;
 
 abstract public class TilePlacer extends Item implements IUsable {
 
-    private Class blockToPlace;
+    private Class<? extends Tile> blockToPlace;
     private int price;
 
 
@@ -16,7 +16,7 @@ abstract public class TilePlacer extends Item implements IUsable {
     public void usage(PlayerCharacter playerCharacter, int animationTime) {
         if(playerCharacter.getInventory().getResource(ResourceType.STONE).isEnough(price)){
             try{
-                if(playerCharacter.buildTile((Tile)blockToPlace.newInstance())){
+                if(playerCharacter.buildTile(blockToPlace.newInstance())){
                     playerCharacter.getInventory().getResource(ResourceType.STONE).lose(price);
                 }
             } catch (Exception e){//TODO

@@ -48,7 +48,6 @@ public class InventoryWindow extends Pane {
 
 
 
-
     // RESOURCE PANE
     private VBox resourcePane = new VBox();
 
@@ -118,6 +117,17 @@ public class InventoryWindow extends Pane {
         buildResourcePane();
         buildItemsPane();
         getChildren().addAll(craftPane,resourcePane, itemInventoryPane);
+    }
+
+
+    // updates imageView (for when item is removed / used)
+    public void updateItemPane(int col, int row){
+        if(row <= 4){
+            itemPanes[col][row].buildItemView();
+        } else {
+            ActionBar.getActionOptionPanes()[col].buildItemView();
+        }
+
     }
 
     public InventoryWindow(){

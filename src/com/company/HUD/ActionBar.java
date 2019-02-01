@@ -9,6 +9,9 @@ import javafx.scene.layout.HBox;
 public class ActionBar extends HBox {
 
     private static ActionBarItemPane[] actionOptionPanes = new ActionBarItemPane[10];
+    public static ActionBarItemPane[] getActionOptionPanes() {
+        return actionOptionPanes;
+    }
 
     private static ActionBarItemPane[] buildActonPanes() {
         for (int i = 0; i < actionOptionPanes.length; i++) {

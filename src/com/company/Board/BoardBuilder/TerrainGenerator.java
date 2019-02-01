@@ -7,14 +7,20 @@ import java.util.ArrayList;
 public class TerrainGenerator {
 
     // Generates Stone Wall and Stone Floor - the 2 most basic/default tiles
-    public static void generateStone(int [][] board, double density){
+    public static void generateStoneAndGravel(int [][] board, double density){
 
         int stoneNum = TileTypes.getNumFromTile(Tile_Stone.class);
+        int gravelNum = TileTypes.getNumFromTile(Tile_Gravel.class);
+        double stonePercentage = 0.8;
 
         for(int x = 0; x < board.length; x++){
             for (int y = 0; y < board[0].length; y++){
                 if(Math.random() < density) {
-                    board[x][y] = stoneNum;
+                    if(Math.random() < stonePercentage){
+                        board[x][y] = stoneNum;
+                    } else {
+                        board[x][y] = gravelNum;
+                    }
                 }
             }
         }

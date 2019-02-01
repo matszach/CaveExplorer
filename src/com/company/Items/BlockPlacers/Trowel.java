@@ -3,7 +3,7 @@ package com.company.Items.BlockPlacers;
 import com.company.ImageBank;
 import com.company.Tiles.Tile_Const_StoneWall;
 
-public class Trowel extends TilePlacer {
+final public class Trowel extends TilePlacer {
 
     public Trowel(){
         super(Tile_Const_StoneWall.class, 5);

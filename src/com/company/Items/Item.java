@@ -20,7 +20,7 @@ abstract public class Item {
     private int viewPortRow;
     private int viewPortCol;
 
-    public void setImage(Image image, int row, int col){
+    protected void setImage(Image image, int row, int col){
         this.image = image;
         viewPortRow = row;
         viewPortCol = col;

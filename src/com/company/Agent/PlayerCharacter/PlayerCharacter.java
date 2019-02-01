@@ -1,10 +1,12 @@
 package com.company.Agent.PlayerCharacter;
 
 import com.company.Agent.Agent;
+import com.company.Animations.ItemGainAnimation;
 import com.company.Animations.ResourceGainAnimation;
 import com.company.CaveExplorer;
 import com.company.GameValues;
 import com.company.ImageBank;
+import com.company.Items.Item;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -24,6 +26,13 @@ public class PlayerCharacter extends Agent {
         resAnim.play();
     }
 
+    public void gainItem(Item item){
+        if(playerInventory.hasEmptyItemSlot()){
+            playerInventory.addItemsToInventory(item);
+            ItemGainAnimation itemAnim = new ItemGainAnimation(item);
+            itemAnim.play();
+        }
+    }
 
     @Override
     public void buildDefaultAppearance() {

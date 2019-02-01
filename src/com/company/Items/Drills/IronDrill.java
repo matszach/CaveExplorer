@@ -2,7 +2,7 @@ package com.company.Items.Drills;
 
 import com.company.ImageBank;
 
-public class IronDrill extends Drill{
+final public class IronDrill extends Drill{
 
     public IronDrill(){
         super(0.5);

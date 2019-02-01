@@ -6,14 +6,14 @@ import java.util.Map;
 public final class TileTypes {
 
     // tile type map
-    private static Map<Integer, Class> tileTypeMap = new HashMap<>();
-    public static Map<Integer, Class> getTileTypeMap() {
+    private static Map<Integer, Class<? extends Tile>> tileTypeMap = new HashMap<>();
+    public static Map<Integer, Class<? extends Tile>> getTileTypeMap() {
         return tileTypeMap;
     }
 
     public static Tile getTileFromNum(int num){
         try {
-            return (Tile)getTileTypeMap().get(num).newInstance();
+            return getTileTypeMap().get(num).newInstance();
         } catch (Exception e){
             return null;
         }
@@ -47,6 +47,7 @@ public final class TileTypes {
         getTileTypeMap().put(14, Tile_Fluid_Water.class);
         getTileTypeMap().put(15, Tile_Fluid_Lava.class);
         getTileTypeMap().put(16, Tile_Obj_ResourceCrate.class);
+        getTileTypeMap().put(17, Tile_Gravel.class);
     }
 
 }

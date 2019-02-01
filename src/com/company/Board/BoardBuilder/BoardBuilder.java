@@ -21,7 +21,7 @@ public class BoardBuilder {
         double terAmtMod = terrainAmount/50;
         double strAmtMod = structureAmount/50;
 
-        TerrainGenerator.generateStone(grid, 0.985);
+        TerrainGenerator.generateStoneAndGravel(grid, 0.985);
 
         TerrainGenerator.generateCoalOre(grid,0.0004*oreAmtMod,10);
         TerrainGenerator.generateCopperOre(grid, 0.0004*oreAmtMod,10);
