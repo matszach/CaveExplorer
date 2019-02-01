@@ -44,7 +44,5 @@ public class PlayerCharacter extends Agent {
         buildDefaultAppearance();
         setMovementSpeed(0.0625);
 
-
-
     }
 }

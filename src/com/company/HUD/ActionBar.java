@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 
 public class ActionBar extends HBox {
 
-    private static ActionBarItemPane[] actionOptionPanes = new ActionBarItemPane[8];
+    private static ActionBarItemPane[] actionOptionPanes = new ActionBarItemPane[10];
 
     private static ActionBarItemPane[] buildActonPanes() {
         for (int i = 0; i < actionOptionPanes.length; i++) {
@@ -47,8 +47,8 @@ public class ActionBar extends HBox {
 
 
     public ActionBar(){
-        relocate(145,550);
-        setPrefSize(320,40);
+        relocate(115,550);
+        setPrefSize(380,40);
         setBackground(new Background(new BackgroundFill(GameValues.GUI_MAIN_BLUE, new CornerRadii(10),null)));
         getChildren().addAll(buildActonPanes());
         actionOptionPanes[0].select();

@@ -3,7 +3,7 @@ package com.company.Items.BlockPlacers;
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
 import com.company.Items.IUsable;
 import com.company.Items.Item;
-import com.company.Resources.Resource;
+import com.company.Resources.ResourceType;
 import com.company.Tiles.Tile;
 
 abstract public class TilePlacer extends Item implements IUsable {
@@ -14,10 +14,10 @@ abstract public class TilePlacer extends Item implements IUsable {
 
     @Override
     public void usage(PlayerCharacter playerCharacter, int animationTime) {
-        if(playerCharacter.getInventory().getResource(Resource.ResourceType.STONE).isEnough(price)){
+        if(playerCharacter.getInventory().getResource(ResourceType.STONE).isEnough(price)){
             try{
                 if(playerCharacter.buildTile((Tile)blockToPlace.newInstance())){
-                    playerCharacter.getInventory().getResource(Resource.ResourceType.STONE).lose(price);
+                    playerCharacter.getInventory().getResource(ResourceType.STONE).lose(price);
                 }
             } catch (Exception e){//TODO
             }

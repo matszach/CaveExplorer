@@ -7,28 +7,46 @@ import com.company.Items.Drills.CopperDrill;
 import com.company.Items.Drills.IronDrill;
 import com.company.Items.Item;
 import com.company.Resources.Resource;
+import com.company.Resources.ResourceType;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class PlayerInventory {
 
     // Items
-    private Item[][] itemsInInventory = new Item[10][6]; // 2 "slots" are left unused (5,8), (5,9)
+    private Item[][] itemsInInventory = new Item[10][6];
     public Item[][] getItemsInInventory() {
         return itemsInInventory;
     }
 
-    public void putItemInSlot(Item item, int rowX, int rowY){
-        itemsInInventory[rowX][rowY] = item;
+    public void putItemInSlot(Item item, int row, int col){
+        itemsInInventory[row][col] = item;
     }
-    public void removeItemInSlot(int rowX, int rowY){
-        itemsInInventory[rowX][rowY] = null; // todo might need to make changes in inv. window
+    public void removeItemInSlot(int row, int col){
+        itemsInInventory[row][col] = null; // todo might need to make changes in inv. window
     }
 
+    // checks for an empty item slot
+    public boolean hasEmptyItemSlot(){
+        for (int col = 0; col < itemsInInventory[0].length; col++){
+            for (int row = 0; row < itemsInInventory.length; row++){
+                if(itemsInInventory[row][col] == null){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
     // adds item to a first possible slot, ignores action bar slots
-    public boolean addOneItemToInventory(Item item){
-        for (int row = 0; row < itemsInInventory.length-1; row++){
-            for (int col = 0; col < itemsInInventory[0].length; col++){
-                if(itemsInInventory[col][row] == null){
-                    itemsInInventory[col][row] = item;
+    private boolean addOneItemToInventory(Item item){
+        for (int col = 0; col < itemsInInventory[0].length; col++){
+            for (int row = 0; row < itemsInInventory.length; row++){
+                if(itemsInInventory[row][col] == null){
+                    itemsInInventory[row][col] = item;
                     return true;
                 }
             }
@@ -41,9 +59,33 @@ public class PlayerInventory {
         }
     }
 
+    // checks if inventory contains an item of a given type
+    public boolean containsItemOfType(Class<? extends Item> itemClass){
+        for (int col = 0; col < itemsInInventory[0].length; col++){
+            for (int row = 0; row < itemsInInventory.length-1; row++){
+                if(itemsInInventory[row][col] != null && itemsInInventory[row][col].getClass() == itemClass){
+                    return true;
+                }
+            }
+        }
+       return false;
+    }
+
+    // removes one instance of an item of a specific type
+    public boolean removeOneItemOfType(Class<? extends Item> itemClass){
+        for (int col = 0; col < itemsInInventory[0].length; col++){
+            for (int row = 0; row < itemsInInventory.length-1; row++){
+                if(itemsInInventory[row][col] != null && itemsInInventory[row][col].getClass() == itemClass){
+                    removeItemInSlot(row, col);
+                }
+            }
+        }
+        return false;
+    }
+
     // Resource
     private Resource[] resources = new Resource[10];
-    public Resource getResource(Resource.ResourceType resourceType){
+    public Resource getResource(ResourceType resourceType){
         switch (resourceType){
             case STONE: return resources[0];
             case COAL: return resources[1];

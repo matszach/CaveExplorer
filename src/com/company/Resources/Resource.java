@@ -2,8 +2,6 @@ package com.company.Resources;
 
 public class Resource {
 
-    public enum ResourceType {STONE, COAL, COPPER, IRON, SULFUR, SILVER, GOLD, PLATINUM, COBALT, BLOOD_RUBY}
-
     private int amount;
     public int getAmount() {
         return amount;
