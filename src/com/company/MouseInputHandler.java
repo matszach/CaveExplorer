@@ -10,18 +10,18 @@ import javafx.stage.Stage;
 
 public final class MouseInputHandler {
 
+    public static double xMousePosition = 0;
+    public static double yMousePosition = 0;
+
     // player is useItem
     private static boolean useItem;
     private static int usePhase = 0;
     private static final int MAX_USE_PHASE = 8;
 
     private static void rotatePlayer(MouseEvent e){
-        double xDirection = e.getSceneX() - CaveExplorer.getMainGameScene().getWidth()/2;
-        double yDirection = e.getSceneY() - CaveExplorer.getMainGameScene().getHeight()/2;
 
-
-        if(Math.abs(xDirection/yDirection) > 2 || Math.abs(xDirection/yDirection) < 0.5){
-            if(Math.abs(xDirection) > Math.abs(yDirection)){
+        if(Math.abs(xMousePosition / yMousePosition) > 2 || Math.abs(xMousePosition / yMousePosition) < 0.5){
+            if(Math.abs(xMousePosition) > Math.abs(yMousePosition)){
                 if(e.getSceneX() > CaveExplorer.getMainGameScene().getWidth()/2){
                     CaveExplorer.getPlayerCharacter().face(Agent.MOVE_DIR.RIGHT);
                 } else {
@@ -35,14 +35,14 @@ public final class MouseInputHandler {
                 }
             }
         } else {
-            if(xDirection > 0){
-                if(yDirection > 0){
+            if(xMousePosition > 0){
+                if(yMousePosition > 0){
                     CaveExplorer.getPlayerCharacter().face(Agent.MOVE_DIR.RIGHT_DOWN);
                 } else {
                     CaveExplorer.getPlayerCharacter().face(Agent.MOVE_DIR.RIGHT_UP);
                 }
             } else {
-                if(yDirection > 0){
+                if(yMousePosition > 0){
                     CaveExplorer.getPlayerCharacter().face(Agent.MOVE_DIR.LEFT_DOWN);
                 } else {
                     CaveExplorer.getPlayerCharacter().face(Agent.MOVE_DIR.LEFT_UP);
@@ -102,11 +102,19 @@ public final class MouseInputHandler {
             }
         });
         primaryStage.getScene().setOnMouseMoved(e->{
+
+            xMousePosition = e.getSceneX() - CaveExplorer.getMainGameScene().getWidth()/2;
+            yMousePosition = e.getSceneY() - CaveExplorer.getMainGameScene().getHeight()/2;
+
             if(!KeyInputHandler.blockInputEvents()){
                 rotatePlayer(e);
             }
         });
         primaryStage.getScene().setOnMouseDragged(e->{
+
+            xMousePosition = e.getSceneX() - CaveExplorer.getMainGameScene().getWidth()/2;
+            yMousePosition = e.getSceneY() - CaveExplorer.getMainGameScene().getHeight()/2;
+
             if(!KeyInputHandler.blockInputEvents()){
                 rotatePlayer(e);
             }

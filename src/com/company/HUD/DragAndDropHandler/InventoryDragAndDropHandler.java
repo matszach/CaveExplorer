@@ -1,9 +1,19 @@
 package com.company.HUD.DragAndDropHandler;
 
+import com.company.Agent.Agent;
 import com.company.CaveExplorer;
+import com.company.GameValues;
 import com.company.Items.Item;
+import com.company.MouseInputHandler;
+import com.company.Scenes.MainGameScene;
+import com.company.StageResizeListener;
 import javafx.animation.AnimationTimer;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 import java.awt.*;
 
@@ -92,12 +102,15 @@ public class InventoryDragAndDropHandler {
         dragAnimation.stop();
     }
 
+
     private static AnimationTimer dragAnimation = new AnimationTimer() {
+        double x;
+        double y;
         @Override
         public void handle(long now) {
-            double xDirection = MouseInfo.getPointerInfo().getLocation().getX() - CaveExplorer.getMainGameScene().getWidth()/2 - 170;
-            double yDirection = MouseInfo.getPointerInfo().getLocation().getY() - CaveExplorer.getMainGameScene().getHeight()/2 + 210;
-            animationImageView.relocate(xDirection,yDirection);
+            x = (MouseInputHandler.xMousePosition + CaveExplorer.getMainGameScene().getWidth()/2)/StageResizeListener.getCurrentScaleX();
+            y = (MouseInputHandler.yMousePosition + CaveExplorer.getMainGameScene().getHeight()/2)/StageResizeListener.getCurrentScaleY();
+            animationImageView.relocate(x,y);
         }
     };
 
