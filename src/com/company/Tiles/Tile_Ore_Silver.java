@@ -2,9 +2,8 @@ package com.company.Tiles;
 
 import com.company.CaveExplorer;
 import com.company.ImageBank;
-import com.company.Resources.Resource;
 
-public class Tile_Ore_Silver extends Tile implements IResourceDropping {
+final public class Tile_Ore_Silver extends Tile implements IResourceDropping {
 
     @Override
     public void dropResource() {

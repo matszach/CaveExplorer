@@ -9,6 +9,10 @@ import com.company.Items.Drills.CopperDrill;
 import com.company.Items.Drills.IronDrill;
 import com.company.Items.Item;
 import com.company.Items.PlaceableObjects.WoodenSupport;
+import com.company.Items.Swords.BloodRubySword;
+import com.company.Items.Swords.CobaltSword;
+import com.company.Items.Swords.CopperSword;
+import com.company.Items.Swords.IronSword;
 import com.company.Resources.Resource;
 import com.company.Resources.ResourceType;
 import com.company.Scenes.MainGameScene;
@@ -147,6 +151,10 @@ public class PlayerInventory {
         itemsInInventory[2][1] = new WoodenSupport();
         itemsInInventory[3][1] = new WoodenSupport();
         itemsInInventory[4][1] = new WoodenSupport();
+        itemsInInventory[0][2] = new CopperSword();
+        itemsInInventory[1][2] = new IronSword();
+        itemsInInventory[2][2] = new CobaltSword();
+        itemsInInventory[3][2] = new BloodRubySword();
 
 
     }

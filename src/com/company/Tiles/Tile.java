@@ -1,21 +1,11 @@
 package com.company.Tiles;
 
 import com.company.CaveExplorer;
-import com.company.GameStates_GameSavingAndLoading.GameSaverAndLoader;
 import com.company.GameValues;
 import com.company.ImageBank;
-import com.company.Resources.Resource;
 import com.company.Scenes.MainGameScene;
-import javafx.animation.AnimationTimer;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.effect.Blend;
-import javafx.scene.effect.GaussianBlur;
-import javafx.scene.effect.Glow;
-import javafx.scene.effect.Shadow;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 abstract public class Tile extends ImageView {
 

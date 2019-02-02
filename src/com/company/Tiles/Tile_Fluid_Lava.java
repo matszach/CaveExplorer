@@ -2,7 +2,7 @@ package com.company.Tiles;
 
 import com.company.ImageBank;
 
-public class Tile_Fluid_Lava extends Tile{
+final public class Tile_Fluid_Lava extends Tile{
 
     @Override
     void buildBackGround() {

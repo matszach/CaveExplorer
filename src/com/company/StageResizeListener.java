@@ -23,14 +23,12 @@ public final class StageResizeListener {
             currentScaleX *= newVal.doubleValue()/oldVal.doubleValue();
             Scale scale = new Scale(newVal.doubleValue()/oldVal.doubleValue(),1);
             CaveExplorer.getMainGameScene().getTransforms().add(scale);
-            System.out.println(currentScaleX + " / " + currentScaleY);
         });
 
         primaryStage.heightProperty().addListener((obs, oldVal, newVal) -> {
             currentScaleY *= newVal.doubleValue()/oldVal.doubleValue();
             Scale scale = new Scale(1,newVal.doubleValue()/oldVal.doubleValue());
             CaveExplorer.getMainGameScene().getTransforms().add(scale);
-            System.out.println(currentScaleX + " / " + currentScaleY);
         });
 
     }

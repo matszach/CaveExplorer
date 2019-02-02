@@ -37,13 +37,18 @@ public class PlayerCharacter extends Agent {
     @Override
     public void buildDefaultAppearance() {
         setImage(ImageBank.getAgentTiles1());
-        setViewport(new Rectangle2D(1,1,30,30));
+        setViewByRowAndCol(0,0);
+    }
+
+    @Override
+    public void buildMeleeAttackAppearance(int i) {
+        //setImage(ImageBank.getAgentTiles1());
+        setViewByRowAndCol(1+i,0);
     }
 
     public void buildDrillingAppearance(int i) {
-        int x = (i+1)*32+1;
-        setImage(ImageBank.getAgentTiles1());
-        setViewport(new Rectangle2D(x,1,30,30));
+        //setImage(ImageBank.getAgentTiles1());
+        setViewByRowAndCol(4+i,0);
     }
 
 

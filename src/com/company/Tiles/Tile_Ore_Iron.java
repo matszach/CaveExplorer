@@ -1,13 +1,9 @@
 package com.company.Tiles;
 
-import com.company.Board.BoardBuilder.GeneratedStructures.OreVein;
 import com.company.CaveExplorer;
-import com.company.GameValues;
 import com.company.ImageBank;
-import com.company.Resources.Resource;
-import javafx.geometry.Rectangle2D;
 
-public class Tile_Ore_Iron extends Tile implements IResourceDropping {
+final public class Tile_Ore_Iron extends Tile implements IResourceDropping {
 
     @Override
     public void dropResource() {

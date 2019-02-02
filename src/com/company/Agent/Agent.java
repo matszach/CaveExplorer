@@ -6,6 +6,7 @@ import com.company.GameValues;
 import com.company.Scenes.MainGameScene;
 import com.company.Tiles.Tile;
 import javafx.animation.AnimationTimer;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.transform.Rotate;
 
@@ -229,7 +230,7 @@ abstract public class Agent extends ImageView {
            y >= 0 && y <= MainGameScene.getBoard().getTiles().length-1 &&
             MainGameScene.getBoard().getTiles()[x][y] != null ){
             // damages the tile, which, upon reaching 0> durability, will crumble
-            MainGameScene.getBoard().getTiles()[x][y].takeDamage(dmg); // todo 0.4 is a temp value and will depend on player inventory etc
+            MainGameScene.getBoard().getTiles()[x][y].takeDamage(dmg);
         }
     }
 
@@ -381,8 +382,16 @@ abstract public class Agent extends ImageView {
         return (int)getTileY();
     }
 
-    // Builds the appearance of the agent
+    // Builds the default appearance of the agent
     abstract public void buildDefaultAppearance();
+
+    // Builds the appearance of the agent while performing a melee attack
+    abstract public void buildMeleeAttackAppearance(int i);
+
+    // set viewport from tileset by row and column number
+    public void setViewByRowAndCol(int col, int row){
+        setViewport(new Rectangle2D(2 + col*33, 2 + row*33, 30,30));
+    }
 
 
     public Agent(){

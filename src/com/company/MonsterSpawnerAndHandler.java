@@ -3,11 +3,14 @@ package com.company;
 import com.company.Agent.Monster.Zombie;
 import com.company.Scenes.MainGameScene;
 
-public class MonsterSpawner {
+final public class MonsterSpawnerAndHandler {
 
-    private MonsterSpawner instance = new MonsterSpawner();
+    private MonsterSpawnerAndHandler instance = new MonsterSpawnerAndHandler();
 
-    private static final double MAX_DISTANCE_TO_PLAYER = 7;
+    // max distance in tiles for a monster to spawn (this prevents monsters spawning in player's visible range)
+    private static final double MAX_DISTANCE_TO_PLAYER = 8;
+
+
 
 
     public static void spawnAttepmt(int tileX, int tileY){
@@ -33,7 +36,7 @@ public class MonsterSpawner {
 
 
 
-    private MonsterSpawner(){
+    private MonsterSpawnerAndHandler(){
 
     }
 

@@ -4,9 +4,9 @@ import com.company.CaveExplorer;
 import com.company.ImageBank;
 import com.company.Items.PlaceableObjects.WoodenSupport;
 
-public class Tile_Const_WoodenSupport extends Tile implements IResourceDropping {
+final public class Tile_Const_WoodenSupport extends Tile implements IResourceDropping {
 
-    private final double RECLAIM_CHANCE = 0.3;
+    private final double RECLAIM_CHANCE = 0.4;
 
     @Override
     public void dropResource() {

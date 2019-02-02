@@ -2,8 +2,7 @@ package com.company.Tiles;
 
 import com.company.ImageBank;
 
-
-public class Tile_Bedrock extends Tile {
+final public class Tile_Bedrock extends Tile {
 
     @Override
     void buildBackGround() {

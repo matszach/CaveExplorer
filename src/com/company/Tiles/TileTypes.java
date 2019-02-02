@@ -3,7 +3,7 @@ package com.company.Tiles;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class TileTypes {
+final public class TileTypes {
 
     // tile type map
     private static Map<Integer, Class<? extends Tile>> tileTypeMap = new HashMap<>();
