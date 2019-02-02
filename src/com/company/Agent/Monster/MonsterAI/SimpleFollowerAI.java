@@ -45,6 +45,7 @@ public class SimpleFollowerAI extends MonsterAI{
 
         monster.walk(secondaryMoveDir);
         monster.walk(primaryMoveDir);
+        monster.attemptAttack();
         // might be moved somewhere else
         monster.toFront();
     }

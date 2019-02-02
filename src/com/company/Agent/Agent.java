@@ -29,34 +29,36 @@ abstract public class Agent extends ImageView {
     // Movement methods
     private boolean movementBlockedByAnAgent(Agent agent, MOVE_DIR move_dir){
 
+        double MAX_DIST = 0.75;
+
         if(this == agent){
             return false;
         }
 
 
-        if(Math.abs(getTileX() - agent.getTileX()) > 1 || Math.abs(getTileY() - agent.getTileY()) > 1 ){
+        if(Math.abs(getTileX() - agent.getTileX()) >= 1 || Math.abs(getTileY() - agent.getTileY()) >= 1 ){
             return false;
         }
 
 
         switch (move_dir){
             case LEFT:
-                if(getTileX() >= agent.getTileX() && getTileX() - agent.getTileX() < 0.75){
+                if(getTileX() > agent.getTileX() && getTileX() - agent.getTileX() < MAX_DIST && Math.abs(getTileY() - agent.getTileY()) <  MAX_DIST-0.1 ){ // the "-0.1" allows movement sideways to the blocking agent
                     return true;
                 }
                 break;
             case DOWN:
-                if(getTileY() <= agent.getTileY() && agent.getTileY() - getTileY() < 0.75){
+                if(getTileY() < agent.getTileY() && agent.getTileY() - getTileY() <  MAX_DIST && Math.abs(getTileX() - agent.getTileX()) <  MAX_DIST-0.1){
                     return true;
                 }
                 break;
             case RIGHT:
-                if(getTileX() <= agent.getTileX() && agent.getTileX() - agent.getTileX() < 0.75){
+                if(getTileX() < agent.getTileX() && agent.getTileX() - agent.getTileX() <  MAX_DIST && Math.abs(getTileY() - agent.getTileY()) <  MAX_DIST-0.1){
                     return true;
                 }
                 break;
             case UP:
-                if(getTileY() >= agent.getTileY() && getTileY() - agent.getTileY() < 0.75){
+                if(getTileY() > agent.getTileY() && getTileY() - agent.getTileY() <  MAX_DIST && Math.abs(getTileX() - agent.getTileX()) <  MAX_DIST-0.1){
                     return true;
                 }
                 break;
