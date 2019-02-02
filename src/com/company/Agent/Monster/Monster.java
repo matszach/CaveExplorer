@@ -2,6 +2,7 @@ package com.company.Agent.Monster;
 
 import com.company.Agent.Agent;
 import com.company.Agent.Monster.MonsterAI.MonsterAI;
+import com.company.Scenes.MainGameScene;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
@@ -22,8 +23,18 @@ abstract public class Monster extends Agent {
         return monsterAI;
     }
 
+    public void despawn(){
+        sleep();
+        MainGameScene.getBoard().getChildren().remove(this);
+
+    }
+
     // The monster begins taking actions
     public void awaken(){
         getMonsterAI().start();
+    }
+
+    public void sleep(){
+        getMonsterAI().stop();
     }
 }

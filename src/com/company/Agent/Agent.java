@@ -1,8 +1,10 @@
 package com.company.Agent;
 
+import com.company.Agent.Monster.Monster;
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
 import com.company.CaveExplorer;
 import com.company.GameValues;
+import com.company.MonsterSpawnerAndHandler;
 import com.company.Scenes.MainGameScene;
 import com.company.Tiles.Tile;
 import javafx.animation.AnimationTimer;
@@ -25,8 +27,64 @@ abstract public class Agent extends ImageView {
     }
 
     // Movement methods
+    private boolean movementBlockedByAnAgent(Agent agent, MOVE_DIR move_dir){
+
+        if(this == agent){
+            return false;
+        }
+
+
+        if(Math.abs(getTileX() - agent.getTileX()) > 1 || Math.abs(getTileY() - agent.getTileY()) > 1 ){
+            return false;
+        }
+
+
+        switch (move_dir){
+            case LEFT:
+                if(getTileX() >= agent.getTileX() && getTileX() - agent.getTileX() < 0.75){
+                    return true;
+                }
+                break;
+            case DOWN:
+                if(getTileY() <= agent.getTileY() && agent.getTileY() - getTileY() < 0.75){
+                    return true;
+                }
+                break;
+            case RIGHT:
+                if(getTileX() <= agent.getTileX() && agent.getTileX() - agent.getTileX() < 0.75){
+                    return true;
+                }
+                break;
+            case UP:
+                if(getTileY() >= agent.getTileY() && getTileY() - agent.getTileY() < 0.75){
+                    return true;
+                }
+                break;
+        }
+        return false;
+
+    }
+    private boolean movementBlockedByAgents(MOVE_DIR move_dir){
+
+        // checks collision against active monsters
+        for(Monster monster : MonsterSpawnerAndHandler.getActiveMonsters()){
+            if(movementBlockedByAnAgent(monster, move_dir)){
+                return true;
+            }
+        }
+        // if agent s a monster -> check collision against player (player doest check collision against itself)
+        if(this instanceof Monster){
+            return movementBlockedByAnAgent(CaveExplorer.getPlayerCharacter(), move_dir);
+        }
+        return false;
+    }
     public boolean movePossibleInDirection(MOVE_DIR move_dir){
-        // TODO expand this and Tile class when updating the game (Possibly tle database etc.)
+
+        if(movementBlockedByAgents(move_dir)){
+            return false;
+        }
+
+
         switch (move_dir){
             case LEFT:
                 // blocks movement at th edge of the map

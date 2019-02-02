@@ -13,7 +13,8 @@ public final class Renderer {
         public void handle(long now) {
             if(mapRenderTimer > RENDER_TIME){
                 MainGameScene.getBoard().drawNearbyTiles(9);
-                MainGameScene.getBoard().cullDistantTiles(16, 5); // TODO may be needed : worked well with 11 , 2
+                MainGameScene.getBoard().cullDistantTiles(16, 5);
+                MonsterSpawnerAndHandler.despawnDistantMonsters();
                 mapRenderTimer=0;
             } else {
                 mapRenderTimer++;
