@@ -43,14 +43,22 @@ abstract public class Monster extends Agent {
 
 
     // attacking methods
-    private boolean playerInMeleeRange(){
-        return Math.abs(getTileX() - CaveExplorer.getPlayerCharacter().getTileX()) <= 1 && Math.abs(getTileY() - CaveExplorer.getPlayerCharacter().getTileY()) <= 1;
+    private double attackDamage;
+    public void setAttackDamage(double attackDamage) {
+        this.attackDamage = attackDamage;
+    }
+    public double getAttackDamage() {
+        return attackDamage;
+    }
+
+    private boolean playerInRange(double range){
+        return Math.abs(getTileX() - CaveExplorer.getPlayerCharacter().getTileX()) <= range && Math.abs(getTileY() - CaveExplorer.getPlayerCharacter().getTileY()) <= range;
     }
 
     private boolean attackInProgress = false; // prevents multiple attackAnimations in progress at once
     public void attemptAttack(){
 
-        if(!playerInMeleeRange() || attackInProgress){
+        if(!playerInRange(1) || attackInProgress){
             return;
         }
 
@@ -78,8 +86,10 @@ abstract public class Monster extends Agent {
                         attackInProgress = false;
                         stop();
 
-                        // TODO
-                        // damage player if still close enough (~1.25 tiles or so)
+                        // damages player if still in range (range slightly increased)
+                        if(playerInRange(2)){
+                            CaveExplorer.getPlayerCharacter().takeDamage(getAttackDamage());
+                        }
                     }
                 }
                 animationTime++;
@@ -88,5 +98,9 @@ abstract public class Monster extends Agent {
         attack.start();
     }
 
+    public Monster(double attackDamage, double speed){
+        this.attackDamage = attackDamage;
+        setMovementSpeed(speed);
+    }
 
 }

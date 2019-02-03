@@ -49,6 +49,7 @@ abstract public class Sword extends Item implements IUsableOnButtonPressed {
 
                         // TODO
                         // damage any (single?) enemy if still close enough (~1.25 tiles or so)
+                        
                     }
                 }
                 animationTime++;

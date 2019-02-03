@@ -16,7 +16,7 @@ abstract public class Agent extends ImageView {
 
 
     // Health and damage
-    private final double MAX_HEALTH = 100;
+    public static final double MAX_HEALTH = 100;
 
     private double currentHealth = MAX_HEALTH;
     public void setCurrentHealth(double currentHealth) {
@@ -27,6 +27,7 @@ abstract public class Agent extends ImageView {
     }
 
     public void takeDamage(double damage){
+        damage = damage > defence ? damage - defence : 0;
         currentHealth -= damage;
         if(currentHealth < 0){
             currentHealth = 0;
@@ -42,6 +43,15 @@ abstract public class Agent extends ImageView {
     public boolean isAlive(){
         return currentHealth > 0;
     }
+
+    private double defence = 0;
+    public double getDefence() {
+        return defence;
+    }
+    public void setDefence(double defence) {
+        this.defence = defence;
+    }
+
 
 
     // Used for direction stating

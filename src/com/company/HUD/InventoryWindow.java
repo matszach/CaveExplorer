@@ -132,13 +132,9 @@ public class InventoryWindow extends Pane {
 
     public InventoryWindow(){
 
-        relocate(95,100);
+        relocate(95,90);
         setPrefSize(420,430);
         setBackground(new Background(new BackgroundFill(GameValues.GUI_MAIN_BLUE, new CornerRadii(10),null)));
-
-
-
-
 
     }
 }

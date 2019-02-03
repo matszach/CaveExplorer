@@ -36,15 +36,8 @@ public final class GameValues {
 
 
     // agent colors
-    public static final Color COL_ZOMBIE_GREEN_1 = new Color(0.1,0.6,0.1,1);
-    public static final Color COL_ZOMBIE_GREEN_2 = new Color(0.1,0.45,0.1,1);
-    public static final Color COL_ZOMBIE_GREEN_3 = new Color(0.1,0.4,0.1,1);
-    public static final Color COL_PLAYER_RED_1 = new Color(0.6,0.1,0.1,1);
-    public static final Color COL_PLAYER_RED_2 = new Color(0.45,0.1,0.1,1);
-    public static final Color COL_PLAYER_RED_3 = new Color(0.3,0.1,0.1,1);
-    public static final Color COL_PLAYER_BLUE_1 = new Color(0.1,0.1,0.6,1);
-    public static final Color COL_PLAYER_BLUE_2 = new Color(0.1,0.1,0.45,1);
-    public static final Color COL_PLAYER_BLUE_3 = new Color(0.1,0.1,0.3,1);
+    public static final Color HP_BAR_FRONT = new Color(0.6,0.1,0.1,1);
+    public static final Color HP_BAR_BASE = new Color(0.3,0.1,0.1,1);
 
 
     // gui colors

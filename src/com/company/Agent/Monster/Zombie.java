@@ -20,9 +20,8 @@ public class Zombie extends Monster{
     }
 
     public Zombie(){
-        super();
+        super(5, 0.02);
         buildDefaultAppearance();
-        setMovementSpeed(0.02);
         setMonsterAI(new SimpleFollowerAI(this, 8));
         awaken();
     }
