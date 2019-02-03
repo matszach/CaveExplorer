@@ -29,6 +29,10 @@ final public class MonsterSpawnerAndHandler {
                 monster.despawn();
                 iterator.remove();
             }
+            if( !monster.isAlive()){
+                monster.despawn();
+                iterator.remove();
+            }
         }
     }
     // max amount of monsters spawned at once
@@ -41,7 +45,7 @@ final public class MonsterSpawnerAndHandler {
     private static final double MIN_DISTANCE_TO_DESPAWN = 15;
 
     // monster spawn chance (the chance that the monster will spawn if a suitable tile is drawn)
-    private static final double MONSTER_SPAWN_CHANCE = 0.1;
+    private static final double MONSTER_SPAWN_CHANCE = 0.06;
 
 
     public static void spawnAttepmt(int tileX, int tileY){

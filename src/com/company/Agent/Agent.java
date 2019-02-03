@@ -2,6 +2,7 @@ package com.company.Agent;
 
 import com.company.Agent.Monster.Monster;
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
+import com.company.Animations.DamageTakenByAgentAnimation;
 import com.company.CaveExplorer;
 import com.company.GameValues;
 import com.company.MonsterSpawnerAndHandler;
@@ -27,11 +28,17 @@ abstract public class Agent extends ImageView {
     }
 
     public void takeDamage(double damage){
+
         damage = damage > defence ? damage - defence : 0;
         currentHealth -= damage;
+
+        DamageTakenByAgentAnimation animation = new DamageTakenByAgentAnimation((int)damage);
+        animation.play(this);
+
         if(currentHealth < 0){
             currentHealth = 0;
         }
+
     }
     public void healDamage(double healing){
         currentHealth += healing;
@@ -59,7 +66,7 @@ abstract public class Agent extends ImageView {
 
     // Direction the character currently is facing
     private MOVE_DIR dirFacing = MOVE_DIR.DOWN;
-    private MOVE_DIR getDirFacing() {
+    public MOVE_DIR getDirFacing() {
         return dirFacing;
     }
     private void setDirFacing(MOVE_DIR dirFacing) {
@@ -493,11 +500,23 @@ abstract public class Agent extends ImageView {
     public void setViewByRowAndCol(int col, int row){
         setViewport(new Rectangle2D(2 + col*33, 2 + row*33, 30,30));
     }
+    public void setLongViewByRowAndCol(int col, int row){
+        setViewport(new Rectangle2D(2 + col*33, 2 + row*33, 30,61));
+    }
 
-
-    public Agent(){
+    // set default view (1x1)
+    public void setDefaultViewSize(){
         setFitHeight(GameValues.getTileSideLength());
         setFitWidth(GameValues.getTileSideLength());
+    }
+
+    // set long view (1x2) (still considered a 1x1 for hit-box purposes, but allows longer animation
+    public void setLongViewSize(){
+        setFitHeight(2*GameValues.getTileSideLength()+1);
+        setFitWidth(GameValues.getTileSideLength());
+    }
+    public Agent(){
+        setDefaultViewSize();
     }
 
 

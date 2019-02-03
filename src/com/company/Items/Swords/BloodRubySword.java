@@ -5,7 +5,7 @@ import com.company.ImageBank;
 final public class BloodRubySword extends Sword{
 
     public BloodRubySword(){
-        super(18);
+        super(25,0.9);
         setName("Blood Ruby Sword");
         setImage(ImageBank.getItemTiles1(),3,3);
     }

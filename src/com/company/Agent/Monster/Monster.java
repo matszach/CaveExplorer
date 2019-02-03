@@ -4,6 +4,7 @@ import com.company.Agent.Agent;
 import com.company.Agent.Monster.MonsterAI.MonsterAI;
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
 import com.company.CaveExplorer;
+import com.company.MonsterSpawnerAndHandler;
 import com.company.Scenes.MainGameScene;
 import javafx.animation.AnimationTimer;
 import javafx.collections.ObservableList;
@@ -29,7 +30,6 @@ abstract public class Monster extends Agent {
     public void despawn(){
         sleep();
         MainGameScene.getBoard().getChildren().remove(this);
-
     }
 
     // The monster begins taking actions
@@ -88,7 +88,8 @@ abstract public class Monster extends Agent {
 
                         // damages player if still in range (range slightly increased)
                         if(playerInRange(2)){
-                            CaveExplorer.getPlayerCharacter().takeDamage(getAttackDamage());
+                            double damageToDeal = getAttackDamage()/2 + Math.random()*(getAttackDamage());
+                            CaveExplorer.getPlayerCharacter().takeDamage(damageToDeal);
                         }
                     }
                 }

@@ -27,9 +27,18 @@ public class PlayerHealthBar extends StackPane {
 
 
     // health bar resizer
+    private final double MIN_DIFFERENCE_TO_UPDATE_BAR = 0.001;
     private AnimationTimer healthBarResizer = new AnimationTimer() {
         @Override
         public void handle(long now) {
+
+            // this prevents the bar from oin back and forth rapidly when only a minor difference between
+            // display and actual player heath is the case
+            if((Math.abs(frontHealthBar.getWidth()/baseHealthBar.getWidth() -
+                CaveExplorer.getPlayerCharacter().getCurrentHealth()/Agent.MAX_HEALTH) < MIN_DIFFERENCE_TO_UPDATE_BAR)){
+                return;
+            }
+
             if(frontHealthBar.getWidth()/baseHealthBar.getWidth() < CaveExplorer.getPlayerCharacter().getCurrentHealth()/Agent.MAX_HEALTH){
                 frontHealthBar.setMaxWidth(frontHealthBar.getMaxWidth() + 1);
                 displayedHealthNumber += Agent.MAX_HEALTH/MAX_HEALTHBAR_WIDTH;
@@ -38,7 +47,7 @@ public class PlayerHealthBar extends StackPane {
                 displayedHealthNumber -= Agent.MAX_HEALTH/MAX_HEALTHBAR_WIDTH;
             }
 
-            healthText.setText((int)(displayedHealthNumber+0.1) + " / " + (int)Agent.MAX_HEALTH); // the +0.1 prevent the text from stopping at 99/100
+            healthText.setText(Math.round(displayedHealthNumber) + " / " + (int)Agent.MAX_HEALTH);
         }
     };
 

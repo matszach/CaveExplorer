@@ -9,7 +9,9 @@ import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.SepiaTone;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -39,8 +41,7 @@ public class StartMenuScene extends StackPane {
         logo.setFitHeight(60);
         logo.setPreserveRatio(true);
         logo.setTranslateY(-GameValues.getWindowSideLength()/20*7);
-        logo.setEffect(new DropShadow(50,0,0, GameValues.GUI_MAIN_BLUE));
-
+        logo.setEffect(new DropShadow(10,0,0, GameValues.GUI_MAIN_BLUE));
     }
 
     private AnimationTimer logoAnimation = new AnimationTimer() {
@@ -207,6 +208,7 @@ public class StartMenuScene extends StackPane {
         loadGameMenu.getChildren().add(loadGameTitle);
         loadGameMenu.getChildren().addAll(gameStateButtons);
         loadGameMenu.getChildren().add(returnButton_2);
+
 
     }
     private static void updateSaveFileButtons(){
