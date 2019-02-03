@@ -2,7 +2,8 @@ package com.company;
 
 import com.company.Agent.Agent;
 import com.company.HUD.ActionBar;
-import com.company.Items.IUsable;
+import com.company.Items.IUsableOnButtonHeld;
+import com.company.Items.IUsableOnButtonPressed;
 import com.company.Items.Item;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.MouseEvent;
@@ -63,11 +64,15 @@ public final class MouseInputHandler {
 
                 // is active item is usable -> runs it through is usage animation (if any)
                 Item activeItem = CaveExplorer.getPlayerCharacter().getInventory().getItemsInInventory()[ActionBar.getSelectedPaneNum()][5];
-                if(activeItem instanceof IUsable){
-                    ((IUsable) activeItem).usage(CaveExplorer.getPlayerCharacter(), usePhase);
+                if(activeItem instanceof IUsableOnButtonHeld){
+                    ((IUsableOnButtonHeld) activeItem).usage(CaveExplorer.getPlayerCharacter(), usePhase);
                     usePhase++;
-                    if(usePhase > ((IUsable) activeItem).getUsageRotationLimit()){
+                    if(usePhase > ((IUsableOnButtonHeld) activeItem).getUsageRotationLimit()){
                         usePhase=0;
+                    }
+                }else if(activeItem instanceof IUsableOnButtonPressed){
+                    if(!((IUsableOnButtonPressed) activeItem).usageInProgress()){
+                        ((IUsableOnButtonPressed) activeItem).usage(CaveExplorer.getPlayerCharacter());
                     }
                 }
 

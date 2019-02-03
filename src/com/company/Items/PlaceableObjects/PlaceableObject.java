@@ -1,11 +1,11 @@
 package com.company.Items.PlaceableObjects;
 
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
-import com.company.Items.IUsable;
+import com.company.Items.IUsableOnButtonHeld;
 import com.company.Items.Item;
 import com.company.Tiles.Tile;
 
-abstract public class PlaceableObject extends Item implements IUsable {
+abstract public class PlaceableObject extends Item implements IUsableOnButtonHeld {
 
     private Class<? extends Tile> blockToPlace;
 

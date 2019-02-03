@@ -42,12 +42,12 @@ abstract public class Monster extends Agent {
     }
 
 
+    // attacking methods
     private boolean playerInMeleeRange(){
         return Math.abs(getTileX() - CaveExplorer.getPlayerCharacter().getTileX()) <= 1 && Math.abs(getTileY() - CaveExplorer.getPlayerCharacter().getTileY()) <= 1;
     }
 
-    private boolean attackInProgress = false;
-
+    private boolean attackInProgress = false; // prevents multiple attackAnimations in progress at once
     public void attemptAttack(){
 
         if(!playerInMeleeRange() || attackInProgress){
@@ -58,7 +58,7 @@ abstract public class Monster extends Agent {
 
         AnimationTimer attack = new AnimationTimer() {
 
-            int USE_PHASES[] = new int[]{4,26,40};
+            int USE_PHASES[] = new int[]{10,30,50};
             int animationTime = 0;
 
             @Override
@@ -87,4 +87,6 @@ abstract public class Monster extends Agent {
         };
         attack.start();
     }
+
+
 }

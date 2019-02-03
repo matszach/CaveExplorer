@@ -14,6 +14,36 @@ import javafx.scene.transform.Rotate;
 
 abstract public class Agent extends ImageView {
 
+
+    // Health and damage
+    private final double MAX_HEALTH = 100;
+
+    private double currentHealth = MAX_HEALTH;
+    public void setCurrentHealth(double currentHealth) {
+        this.currentHealth = currentHealth;
+    }
+    public double getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public void takeDamage(double damage){
+        currentHealth -= damage;
+        if(currentHealth < 0){
+            currentHealth = 0;
+        }
+    }
+    public void healDamage(double healing){
+        currentHealth += healing;
+        if(currentHealth > MAX_HEALTH){
+            currentHealth = MAX_HEALTH;
+        }
+    }
+
+    public boolean isAlive(){
+        return currentHealth > 0;
+    }
+
+
     // Used for direction stating
     public enum MOVE_DIR { LEFT, LEFT_UP, UP, RIGHT_UP, RIGHT, RIGHT_DOWN, DOWN, LEFT_DOWN}
 
@@ -378,7 +408,8 @@ abstract public class Agent extends ImageView {
     // Returns X and Y (of the center) of the Agent, in pixels or in Tiles
     public double getPositionX(){
         return getLayoutX() + GameValues.getTileSideLength()/2;
-    } // FIXME: 2019-01-15 the "-1" os the to counteract the "+1" pixel at initial placement
+    }
+    // FIXME: 2019-01-15 the "-1" os the to counteract the "+1" pixel at initial placement
     // FIXME -> it removes the weird white borders when the agent is placed EXACTLY in  the middle of a tile
     // FIXME -> the face methods will have to be fixed for the very same reason
     public double getPositionY(){

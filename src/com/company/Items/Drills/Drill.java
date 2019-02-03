@@ -2,10 +2,10 @@ package com.company.Items.Drills;
 
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
 import com.company.CaveExplorer;
-import com.company.Items.IUsable;
+import com.company.Items.IUsableOnButtonHeld;
 import com.company.Items.Item;
 
-abstract public class Drill extends Item implements IUsable {
+abstract public class Drill extends Item implements IUsableOnButtonHeld {
 
     // todo will be used to decide the damage dealt to drilled tiles
     // drilling power

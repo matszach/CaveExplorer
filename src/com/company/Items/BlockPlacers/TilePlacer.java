@@ -1,12 +1,12 @@
 package com.company.Items.BlockPlacers;
 
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
-import com.company.Items.IUsable;
+import com.company.Items.IUsableOnButtonHeld;
 import com.company.Items.Item;
 import com.company.Resources.ResourceType;
 import com.company.Tiles.Tile;
 
-abstract public class TilePlacer extends Item implements IUsable {
+abstract public class TilePlacer extends Item implements IUsableOnButtonHeld {
 
     private Class<? extends Tile> blockToPlace;
     private int price;

@@ -2,7 +2,7 @@ package com.company.Items.Swords;
 
 import com.company.ImageBank;
 
-public class CobaltSword extends Sword{
+final public class CobaltSword extends Sword{
 
     public CobaltSword(){
         super(15);
