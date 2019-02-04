@@ -1,4 +1,4 @@
-package com.company.Items.Swords;
+package com.company.Items.Spears;
 
 import com.company.Agent.Monster.Monster;
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
@@ -7,7 +7,7 @@ import com.company.Items.Item;
 import com.company.MonsterSpawnerAndHandler;
 import javafx.animation.AnimationTimer;
 
-abstract public class Sword extends Item implements IUsableOnButtonPressed {
+abstract public class Spear  extends Item implements IUsableOnButtonPressed {
 
 
     // attack power
@@ -34,12 +34,14 @@ abstract public class Sword extends Item implements IUsableOnButtonPressed {
             @Override
             public void handle(long now) {
 
+                playerCharacter.setLongViewSize();
+
                 if(animationTime <= USE_PHASES[0]){
-                    playerCharacter.buildMeleeAttackAppearance(0);
+                    playerCharacter.buildSpearAttackAppearance(0);
                 } else if(animationTime <= USE_PHASES[1]){
-                    playerCharacter.buildMeleeAttackAppearance(1);
+                    playerCharacter.buildSpearAttackAppearance(1);
                 } else if(animationTime <= USE_PHASES[2]) {
-                    playerCharacter.buildMeleeAttackAppearance(2);
+                    playerCharacter.buildSpearAttackAppearance(2);
 
                     if(animationTime == USE_PHASES[2]){
 
@@ -50,14 +52,14 @@ abstract public class Sword extends Item implements IUsableOnButtonPressed {
 
 
                         switch (playerCharacter.getDirFacing()){
-                            case LEFT: x-=sweepRange; break;
-                            case LEFT_UP: x-=sweepRange; y-=sweepRange; break;
-                            case UP: y-=sweepRange; break;
-                            case RIGHT_UP: x+=sweepRange; y-=sweepRange; break;
-                            case RIGHT: x+=sweepRange; break;
-                            case RIGHT_DOWN: x+=sweepRange; y+=sweepRange; break;
-                            case DOWN: y+=sweepRange; break;
-                            case LEFT_DOWN: x-=sweepRange; y+=sweepRange; break;
+                            case LEFT: x-=2*sweepRange; break;
+                            case LEFT_UP: x-=2*sweepRange; y-=2*sweepRange; break;
+                            case UP: y-=2*sweepRange; break;
+                            case RIGHT_UP: x+=2*sweepRange; y-=2*sweepRange; break;
+                            case RIGHT: x+=2*sweepRange; break;
+                            case RIGHT_DOWN: x+=2*sweepRange; y+=2*sweepRange; break;
+                            case DOWN: y+=2*sweepRange; break;
+                            case LEFT_DOWN: x-=2*sweepRange; y+=2*sweepRange; break;
                             default: break;
                         }
 
@@ -72,10 +74,12 @@ abstract public class Sword extends Item implements IUsableOnButtonPressed {
                             }
                             double damageToBeDealt = attackPower/2 + Math.random()*attackPower;
                             monster.takeDamage(damageToBeDealt);
+                            break; // spears only hit one target
 
                         }
 
                         // resets animation , permits another attack
+                        playerCharacter.setDefaultViewSize();
                         playerCharacter.buildDefaultAppearance();
                         animationTime = 0;
                         attackInProgress = false;
@@ -94,7 +98,7 @@ abstract public class Sword extends Item implements IUsableOnButtonPressed {
         return attackInProgress;
     }
 
-    public Sword(double attackPower, double sweepRange){
+    public Spear(double attackPower, double sweepRange){
         this.attackPower = attackPower;
         this.sweepRange = sweepRange;
     }

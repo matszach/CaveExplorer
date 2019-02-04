@@ -3,12 +3,20 @@ package com.company.Agent.PlayerCharacter;
 import com.company.CaveExplorer;
 import com.company.HUD.InventoryWindow;
 import com.company.Items.BlockPlacers.Trowel;
+import com.company.Items.Daggers.BloodRubyDagger;
+import com.company.Items.Daggers.CobaltDagger;
+import com.company.Items.Daggers.CopperDagger;
+import com.company.Items.Daggers.IronDagger;
 import com.company.Items.Drills.BloodRubyDrill;
 import com.company.Items.Drills.CobaltDrill;
 import com.company.Items.Drills.CopperDrill;
 import com.company.Items.Drills.IronDrill;
 import com.company.Items.Item;
 import com.company.Items.PlaceableObjects.WoodenSupport;
+import com.company.Items.Spears.BloodRubySpear;
+import com.company.Items.Spears.CobaltSpear;
+import com.company.Items.Spears.CopperSpear;
+import com.company.Items.Spears.IronSpear;
 import com.company.Items.Swords.BloodRubySword;
 import com.company.Items.Swords.CobaltSword;
 import com.company.Items.Swords.CopperSword;
@@ -155,7 +163,13 @@ public class PlayerInventory {
         itemsInInventory[1][2] = new IronSword();
         itemsInInventory[2][2] = new CobaltSword();
         itemsInInventory[3][2] = new BloodRubySword();
-
-
+        itemsInInventory[0][3] = new CopperDagger();
+        itemsInInventory[1][3] = new IronDagger();
+        itemsInInventory[2][3] = new CobaltDagger();
+        itemsInInventory[3][3] = new BloodRubyDagger();
+        itemsInInventory[0][4] = new CopperSpear();
+        itemsInInventory[1][4] = new IronSpear();
+        itemsInInventory[2][4] = new CobaltSpear();
+        itemsInInventory[3][4] = new BloodRubySpear();
     }
 }

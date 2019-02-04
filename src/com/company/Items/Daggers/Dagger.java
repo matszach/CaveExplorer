@@ -1,4 +1,4 @@
-package com.company.Items.Swords;
+package com.company.Items.Daggers;
 
 import com.company.Agent.Monster.Monster;
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
@@ -7,7 +7,7 @@ import com.company.Items.Item;
 import com.company.MonsterSpawnerAndHandler;
 import javafx.animation.AnimationTimer;
 
-abstract public class Sword extends Item implements IUsableOnButtonPressed {
+abstract public class Dagger extends Item implements IUsableOnButtonPressed {
 
 
     // attack power
@@ -27,7 +27,7 @@ abstract public class Sword extends Item implements IUsableOnButtonPressed {
 
         AnimationTimer attack = new AnimationTimer() {
 
-            int USE_PHASES[] = new int[]{10,30,50};
+            int USE_PHASES[] = new int[]{8,24,40};
             int animationTime = 0;
 
 
@@ -35,11 +35,11 @@ abstract public class Sword extends Item implements IUsableOnButtonPressed {
             public void handle(long now) {
 
                 if(animationTime <= USE_PHASES[0]){
-                    playerCharacter.buildMeleeAttackAppearance(0);
+                    playerCharacter.buildDaggerAttackAppearance(0);
                 } else if(animationTime <= USE_PHASES[1]){
-                    playerCharacter.buildMeleeAttackAppearance(1);
+                    playerCharacter.buildDaggerAttackAppearance(1);
                 } else if(animationTime <= USE_PHASES[2]) {
-                    playerCharacter.buildMeleeAttackAppearance(2);
+                    playerCharacter.buildDaggerAttackAppearance(2);
 
                     if(animationTime == USE_PHASES[2]){
 
@@ -72,6 +72,7 @@ abstract public class Sword extends Item implements IUsableOnButtonPressed {
                             }
                             double damageToBeDealt = attackPower/2 + Math.random()*attackPower;
                             monster.takeDamage(damageToBeDealt);
+                            break; // daggers only hit one target
 
                         }
 
@@ -94,7 +95,7 @@ abstract public class Sword extends Item implements IUsableOnButtonPressed {
         return attackInProgress;
     }
 
-    public Sword(double attackPower, double sweepRange){
+    public Dagger(double attackPower, double sweepRange){
         this.attackPower = attackPower;
         this.sweepRange = sweepRange;
     }

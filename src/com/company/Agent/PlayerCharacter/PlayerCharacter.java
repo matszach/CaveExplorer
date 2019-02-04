@@ -45,6 +45,14 @@ public class PlayerCharacter extends Agent {
         setViewByRowAndCol(1+i,0);
     }
 
+    public void buildDaggerAttackAppearance(int i){
+        setViewByRowAndCol(7+i,0);
+    }
+
+    public void buildSpearAttackAppearance(int i){
+        setLongViewByRowAndCol(10+i,0);
+    }
+
     public void buildDrillingAppearance(int i) {
         setViewByRowAndCol(4+i,0);
     }
