@@ -1,17 +1,11 @@
 package com.company.HUD.InventoryWindow;
 
-import com.company.CaveExplorer;
 import com.company.GameValues;
-
 import com.company.HUD.ActionBar;
-import com.company.ImageBank;
-import javafx.animation.AnimationTimer;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.scene.text.Text;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
 
 public class InventoryWindow extends Pane {
 
@@ -38,7 +32,6 @@ public class InventoryWindow extends Pane {
         } else {
             ActionBar.getActionOptionPanes()[col].buildItemView();
         }
-
     }
 
     public InventoryWindow(){
