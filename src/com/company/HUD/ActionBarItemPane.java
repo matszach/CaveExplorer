@@ -2,6 +2,7 @@ package com.company.HUD;
 
 import com.company.GameValues;
 import com.company.HUD.DragAndDropHandler.InventoryDragAndDropHandler;
+import com.company.HUD.InventoryWindow.ItemPane;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;

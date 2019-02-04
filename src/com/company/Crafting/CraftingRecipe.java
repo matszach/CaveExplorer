@@ -1,6 +1,5 @@
 package com.company.Crafting;
 
-import com.company.Agent.PlayerCharacter.PlayerInventory;
 import com.company.CaveExplorer;
 import com.company.Items.Item;
 import com.company.Resources.ResourceType;
@@ -11,7 +10,7 @@ abstract public class CraftingRecipe {
 
     protected static Class<? extends Item> craftedItemClass;
 
-    protected static ArrayList<Item> requiredItems = new ArrayList<>(); // should not require more than one of each item type
+    protected static ArrayList<Class<? extends Item>> requiredItems = new ArrayList<>(); // should not require more than one of each item type
 
     private static int[] requiredResources = new int[10];
     protected static void setRequiredResource(ResourceType resourceType, int amt){
@@ -47,8 +46,8 @@ abstract public class CraftingRecipe {
     public static boolean ingredientsPresent(){
 
         // checks if items required are present
-        for(Item i : requiredItems){
-            if(!CaveExplorer.getPlayerCharacter().getInventory().containsItemOfType(i.getClass())){
+        for(Class<? extends Item> itemClass : requiredItems){
+            if(!CaveExplorer.getPlayerCharacter().getInventory().containsItemOfType(itemClass)){
                 return false;
             }
         }
@@ -62,12 +61,45 @@ abstract public class CraftingRecipe {
         return true;
     }
 
-    public static void execute(){
-        if (CaveExplorer.getPlayerCharacter().getInventory().hasEmptyItemSlot()){
+    private static void payCost(){
 
+        for(int i = 0; i < requiredResources.length; i++){
+           CaveExplorer.getPlayerCharacter().getInventory().getResource(i).lose(requiredResources[i]);
+        }
 
+        for(Class<? extends Item> itemClass : requiredItems){
+            CaveExplorer.getPlayerCharacter().getInventory().removeOneItemOfType(itemClass);
+        }
 
+    }
+    private static void createdAndAddItem(){
+
+        try {
+            Item itemToBeCreated;
+            itemToBeCreated = craftedItemClass.newInstance();
+            CaveExplorer.getPlayerCharacter().gainItem(itemToBeCreated);
+        } catch (Exception e){
 
         }
+
+    }
+
+    public static void execute(){
+
+        // TODO  ??
+        // stops the method if either the player doesn't have necessary ingredients
+        // or has no empty inventory slots - both of those should already be impossible if this methods
+        // was allowed to be executed
+
+        if (!ingredientsPresent() || !CaveExplorer.getPlayerCharacter().getInventory().hasEmptyItemSlot()){
+            return;
+        }
+
+        payCost();
+        createdAndAddItem();
+    }
+
+    public CraftingRecipe(Class<? extends Item> craftedItemClass){
+        this.craftedItemClass = craftedItemClass;
     }
 }

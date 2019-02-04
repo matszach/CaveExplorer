@@ -2,9 +2,8 @@ package com.company.Scenes;
 
 import com.company.Board.Board;
 import com.company.Board.BoardBuilder.BoardBuilder;
-import com.company.GameValues;
 import com.company.HUD.HUD;
-import com.company.HUD.InventoryWindow;
+import com.company.HUD.InventoryWindow.InventoryWindow;
 import com.company.HUD.PauseWindow;
 import com.company.HUD.SaveWindow;
 import javafx.scene.layout.Pane;

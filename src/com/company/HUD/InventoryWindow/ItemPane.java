@@ -1,4 +1,4 @@
-package com.company.HUD;
+package com.company.HUD.InventoryWindow;
 
 import com.company.CaveExplorer;
 import com.company.GameValues;

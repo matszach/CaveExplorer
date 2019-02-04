@@ -1,7 +1,5 @@
 package com.company.Agent.PlayerCharacter;
 
-import com.company.CaveExplorer;
-import com.company.HUD.InventoryWindow;
 import com.company.Items.BlockPlacers.Trowel;
 import com.company.Items.Daggers.BloodRubyDagger;
 import com.company.Items.Daggers.CobaltDagger;
@@ -25,9 +23,6 @@ import com.company.Resources.Resource;
 import com.company.Resources.ResourceType;
 import com.company.Scenes.MainGameScene;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class PlayerInventory {
 
