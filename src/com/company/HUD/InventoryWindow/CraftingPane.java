@@ -1,11 +1,14 @@
 package com.company.HUD.InventoryWindow;
 
+import com.company.Crafting.CraftingRecipe;
+import com.company.Crafting.Weapons.Recipe_CopperSpear;
 import com.company.GameValues;
+import com.company.Items.Item;
+import com.company.Items.Swords.IronSword;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 ;
 
@@ -15,65 +18,78 @@ public class CraftingPane extends ScrollPane {
     private final double PREF_HEIGHT = 200;
 
 
-
-
     // inner class : single crafting recipe pane
     private class CraftingRecipePane extends Pane{
 
 
-        public CraftingRecipePane(){
+
+
+        private void hoverOn(){
+            setBackground(new Background(new BackgroundFill(GameValues.GUI_FULL_BLUE, new CornerRadii(5), null)));
+        }
+
+        private void hoverOff(){
+            setBackground(new Background(new BackgroundFill(GameValues.GUI_FLASH_BLUE, new CornerRadii(5), null)));
+        }
+
+
+        private CraftingRecipePane(CraftingRecipe craftingRecipe){
             setPrefSize(PREF_WIDTH-9, 30);
             setBackground(new Background(new BackgroundFill(GameValues.GUI_FLASH_BLUE, new CornerRadii(5), null)));
 
+            setOnMouseClicked(e->craftingRecipe.execute());
 
-            Text t = new Text("a crafting recipe");
-            t.relocate(5,5);
-            getChildren().add(t);
+            setOnMouseEntered(e->hoverOn());
+            setOnMouseDragEntered(e->hoverOn());
+            setOnMouseExited(e->hoverOff());
+            setOnMouseDragExited(e->hoverOff());
 
         }
-
     }
 
 
     // inner class : craft recipe pane holder
+    private RecipePaneHolder recipePaneHolder = new RecipePaneHolder();
+
     private class RecipePaneHolder extends VBox{
 
         private final double SPACING = 5;
 
-        public void addARecipes(CraftingRecipePane... recipePanes){
+        private void addRecipes(CraftingRecipePane... recipePanes){
             for(CraftingRecipePane crp : recipePanes){
                 getChildren().add(crp);
-                setHeight(getHeight()+crp.getHeight()+SPACING);
             }
+        }
 
+        private void adjustHeight(){
+            double newHeight = getChildren().size()*35+5 > PREF_HEIGHT-10 ? getChildren().size()*35+5 : PREF_HEIGHT-10;
+            setMinHeight(newHeight);
         }
 
 
-        public RecipePaneHolder(){
+        private RecipePaneHolder(){
             setMinWidth(PREF_WIDTH-9);
             setAlignment(Pos.CENTER);
             setSpacing(SPACING);
             // color recreated manually because of scroll-pane opacity problems
             setBackground(new Background(new BackgroundFill(new Color(0.1,0.6, 1, 1), new CornerRadii(5), null)));
 
-            addARecipes(
-                    new CraftingRecipePane(),
-                    new CraftingRecipePane(),
-                    new CraftingRecipePane(),
-                    new CraftingRecipePane(),
-                    new CraftingRecipePane(),
-                    new CraftingRecipePane(),
-                    new CraftingRecipePane(),
-                    new CraftingRecipePane(),
-                    new CraftingRecipePane(),
-                    new CraftingRecipePane(),
-                    new CraftingRecipePane());
-
         }
     }
 
 
 
+    public void addRecipesToDisplay(CraftingRecipe... recipes){
+        for(CraftingRecipe rec : recipes){
+            recipePaneHolder.addRecipes(new CraftingRecipePane(rec));
+        }
+        recipePaneHolder.adjustHeight();
+    }
+
+    public void resetDisplay(){
+        recipePaneHolder.getChildren().clear();
+        recipePaneHolder.adjustHeight();
+    }
 
 
     public CraftingPane(){
@@ -86,8 +102,12 @@ public class CraftingPane extends ScrollPane {
         setHbarPolicy(ScrollBarPolicy.NEVER);
         setVbarPolicy(ScrollBarPolicy.NEVER);
 
+        setContent(recipePaneHolder);
+        recipePaneHolder.adjustHeight();
 
-        setContent(new RecipePaneHolder());
+
+        // todo temp
+        addRecipesToDisplay(new Recipe_CopperSpear(),new Recipe_CopperSpear(),new Recipe_CopperSpear(),new Recipe_CopperSpear() );
 
     }
 }

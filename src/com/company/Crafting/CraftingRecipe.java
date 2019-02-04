@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 abstract public class CraftingRecipe {
 
-    protected static Class<? extends Item> craftedItemClass;
+    protected Class<? extends Item> craftedItemClass;
 
-    protected static ArrayList<Class<? extends Item>> requiredItems = new ArrayList<>(); // should not require more than one of each item type
+    protected ArrayList<Class<? extends Item>> requiredItems = new ArrayList<>(); // should not require more than one of each item type
 
-    private static int[] requiredResources = new int[10];
-    protected static void setRequiredResource(ResourceType resourceType, int amt){
+    private int[] requiredResources = new int[10];
+    protected void setRequiredResource(ResourceType resourceType, int amt){
         switch (resourceType){
             case STONE: requiredResources[0]=amt; break;
             case COAL: requiredResources[1]=amt; break;
@@ -27,7 +27,7 @@ abstract public class CraftingRecipe {
             case BLOOD_RUBY: requiredResources[9]=amt; break;
         }
     }
-    protected static int getRequiredResource(ResourceType resourceType){
+    protected int getRequiredResource(ResourceType resourceType){
         switch (resourceType){
             case STONE: return requiredResources[0];
             case COAL: return requiredResources[1];
@@ -43,7 +43,7 @@ abstract public class CraftingRecipe {
         }
     }
 
-    public static boolean ingredientsPresent(){
+    public boolean ingredientsPresent(){
 
         // checks if items required are present
         for(Class<? extends Item> itemClass : requiredItems){
@@ -61,7 +61,7 @@ abstract public class CraftingRecipe {
         return true;
     }
 
-    private static void payCost(){
+    private void payCost(){
 
         for(int i = 0; i < requiredResources.length; i++){
            CaveExplorer.getPlayerCharacter().getInventory().getResource(i).lose(requiredResources[i]);
@@ -72,7 +72,7 @@ abstract public class CraftingRecipe {
         }
 
     }
-    private static void createdAndAddItem(){
+    private void createdAndAddItem(){
 
         try {
             Item itemToBeCreated;
@@ -84,7 +84,7 @@ abstract public class CraftingRecipe {
 
     }
 
-    public static void execute(){
+    public void execute(){
 
         // TODO  ??
         // stops the method if either the player doesn't have necessary ingredients

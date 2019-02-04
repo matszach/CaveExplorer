@@ -1,6 +1,8 @@
 package com.company;
 
+import com.company.Agent.Monster.ArmoredZombie;
 import com.company.Agent.Monster.Monster;
+import com.company.Agent.Monster.MonsterAI.EnragedZombie;
 import com.company.Agent.Monster.Zombie;
 import com.company.Scenes.MainGameScene;
 
@@ -57,11 +59,22 @@ final public class MonsterSpawnerAndHandler {
            Math.abs(CaveExplorer.getPlayerCharacter().getTileX() - tileX) > MAX_DISTANCE_TO_PLAYER &&
            Math.abs(CaveExplorer.getPlayerCharacter().getTileY() - tileY) > MAX_DISTANCE_TO_PLAYER) {
 
-                Zombie zombie = new Zombie();
-                zombie.relocate(GameValues.getTileSideLength()*tileX,GameValues.getTileSideLength()*tileY+1);
-                MainGameScene.getBoard().getChildren().add(zombie);
+                Monster monster;
 
-                activeMonsters.add(zombie);
+                double monsterRoll = Math.random();
+
+                if(monsterRoll > 0.4){
+                    monster = new Zombie();
+                } else if (monsterRoll > 0.2){
+                    monster = new ArmoredZombie();
+                } else {
+                    monster = new EnragedZombie();
+                }
+
+                monster.relocate(GameValues.getTileSideLength()*tileX,GameValues.getTileSideLength()*tileY+1);
+                MainGameScene.getBoard().getChildren().add(monster);
+
+                activeMonsters.add(monster);
         }
 
     }

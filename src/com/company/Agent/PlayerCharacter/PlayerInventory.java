@@ -88,8 +88,8 @@ public class PlayerInventory {
     public boolean removeOneItemOfType(Class<? extends Item> itemClass){
         for (int row = 0; row < itemsInInventory[0].length; row++){
             for (int col = 0; col < itemsInInventory.length-1; col++){
-                if(itemsInInventory[col][row] != null && itemsInInventory[row][col].getClass() == itemClass){
-                    removeItemInSlot(row, col);
+                if(itemsInInventory[col][row] != null && itemsInInventory[col][row].getClass() == itemClass){
+                    removeItemInSlot(col,row);
                     return true;
                 }
             }

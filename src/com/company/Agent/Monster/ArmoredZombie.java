@@ -2,25 +2,25 @@ package com.company.Agent.Monster;
 
 import com.company.Agent.Monster.MonsterAI.SimpleFollowerAI;
 import com.company.ImageBank;
-import javafx.geometry.Rectangle2D;
 
-final public class Zombie extends Monster{
+final public class ArmoredZombie extends Monster{
 
 
     @Override
     public void buildDefaultAppearance() {
         setImage(ImageBank.getAgentTiles1());
-        setViewByRowAndCol(0,1);
+        setViewByRowAndCol(0,2);
     }
 
     @Override
     public void buildMeleeAttackAppearance(int i) {
         //setImage(ImageBank.getAgentTiles1());
-        setViewByRowAndCol(1+i,1);
+        setViewByRowAndCol(1+i,2);
     }
 
-    public Zombie(){
-        super(5, 0.02);
+    public ArmoredZombie(){
+        super(8, 0.02);
+        setDefence(5);
         buildDefaultAppearance();
         setMonsterAI(new SimpleFollowerAI(this, 8));
         awaken();
