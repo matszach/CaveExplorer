@@ -8,11 +8,22 @@ import java.util.ArrayList;
 
 abstract public class CraftingRecipe {
 
-    protected Class<? extends Item> craftedItemClass;
+    private Class<? extends Item> craftedItemClass;
+    public Class<? extends Item> getCraftedItemClass() {
+        return craftedItemClass;
+    }
 
-    protected ArrayList<Class<? extends Item>> requiredItems = new ArrayList<>(); // should not require more than one of each item type
+    // todo
+    // checking for required items doesn't yet work when multiple item sof the same class are required
+    // for now : should not require more than one of each item type
+    private ArrayList<Class<? extends Item>> requiredItems = new ArrayList<>();  public ArrayList<Class<? extends Item>> getRequiredItems() {
+        return requiredItems;
+    }
 
     private int[] requiredResources = new int[10];
+    public int[] getRequiredResources() {
+        return requiredResources;
+    }
     protected void setRequiredResource(ResourceType resourceType, int amt){
         switch (resourceType){
             case STONE: requiredResources[0]=amt; break;

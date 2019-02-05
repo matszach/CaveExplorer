@@ -87,7 +87,8 @@ abstract public class Monster extends Agent {
                         stop();
 
                         // damages player if still in range (range slightly increased)
-                        if(playerInRange(2)){
+                        // isAlive() prevents player taking damage from a monster that died during its attack animation
+                        if(playerInRange(2) && isAlive()){
                             double damageToDeal = getAttackDamage()/2 + Math.random()*(getAttackDamage());
                             CaveExplorer.getPlayerCharacter().takeDamage(damageToDeal);
                         }
