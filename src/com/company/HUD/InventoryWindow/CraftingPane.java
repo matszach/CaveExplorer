@@ -83,7 +83,6 @@ public class CraftingPane extends ScrollPane {
                     }
                 }
 
-
             }catch (Exception e){
 
             }
@@ -111,14 +110,12 @@ public class CraftingPane extends ScrollPane {
 
             buildPaneContents(craftingRecipe);
 
-
         }
     }
 
 
     // inner class : craft recipe pane holder
     private RecipePaneHolder recipePaneHolder = new RecipePaneHolder();
-
     private class RecipePaneHolder extends VBox{
 
         private final double SPACING = 5;
@@ -194,6 +191,5 @@ public class CraftingPane extends ScrollPane {
                 new Recipe_CobaltSword(),
                 new Recipe_BloodRubySword()
         );
-
     }
 }

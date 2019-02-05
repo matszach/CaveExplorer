@@ -5,7 +5,7 @@ import com.company.Items.Swords.BloodRubySword;
 import com.company.Items.Swords.CobaltSword;
 import com.company.Resources.ResourceType;
 
-public class Recipe_BloodRubySword extends CraftingRecipe {
+final public class Recipe_BloodRubySword extends CraftingRecipe {
     public Recipe_BloodRubySword(){
         super(BloodRubySword.class);
         setRequiredResource(ResourceType.BLOOD_RUBY, 15);

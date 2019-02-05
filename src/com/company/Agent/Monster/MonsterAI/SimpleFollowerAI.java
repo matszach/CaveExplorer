@@ -8,7 +8,7 @@ public class SimpleFollowerAI extends MonsterAI{
 
     @Override
     public void handle(long now) {
-
+        
         double x = monster.getTileX() - CaveExplorer.getPlayerCharacter().getTileX();
         double y = monster.getTileY() - CaveExplorer.getPlayerCharacter().getTileY();
 
@@ -48,6 +48,7 @@ public class SimpleFollowerAI extends MonsterAI{
         monster.attemptAttack();
         // might be moved somewhere else
         monster.toFront();
+
     }
 
     public SimpleFollowerAI(Monster monster, int searchRange){

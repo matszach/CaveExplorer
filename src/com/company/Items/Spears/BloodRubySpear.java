@@ -2,7 +2,7 @@ package com.company.Items.Spears;
 
 import com.company.ImageBank;
 
-public class BloodRubySpear extends Spear {
+final public class BloodRubySpear extends Spear {
 
     public BloodRubySpear(){
         super(20,0.9);

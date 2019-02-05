@@ -97,12 +97,12 @@ public final class MouseInputHandler {
     public MouseInputHandler(Stage primaryStage){
 
         primaryStage.getScene().setOnMousePressed(e->{
-            if(!KeyInputHandler.blockInputEvents()) {
+            if(!KeyInputHandler.blockInputEvents() && e.isPrimaryButtonDown()) {
                 useItem = true;
             }
         });
         primaryStage.getScene().setOnMouseReleased(e->{
-            if(!KeyInputHandler.blockInputEvents()){
+            if(!KeyInputHandler.blockInputEvents() && !e.isPrimaryButtonDown()){
                 useItem = false;
             }
         });

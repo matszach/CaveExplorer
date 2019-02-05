@@ -7,7 +7,7 @@ final public class WoodenSupport extends PlaceableObject {
 
     public WoodenSupport(){
         super(Tile_Const_WoodenSupport.class);
-        setName("WoodenSupport");
+        setName("Wooden Support");
         setImage(ImageBank.getItemTiles1(),2,0);
     }
 }

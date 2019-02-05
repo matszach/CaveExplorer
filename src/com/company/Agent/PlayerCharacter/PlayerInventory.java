@@ -11,6 +11,7 @@ import com.company.Items.Drills.CopperDrill;
 import com.company.Items.Drills.IronDrill;
 import com.company.Items.Item;
 import com.company.Items.PlaceableObjects.WoodenSupport;
+import com.company.Items.PotionsAndElixirs.PotionOfHealing;
 import com.company.Items.Spears.BloodRubySpear;
 import com.company.Items.Spears.CobaltSpear;
 import com.company.Items.Spears.CopperSpear;
@@ -82,6 +83,19 @@ public class PlayerInventory {
             }
         }
        return false;
+    }
+    public boolean containsItemsOfType(Class<? extends Item> itemClass, int quantity){
+
+        int itemsOfTypeFound = 0;
+
+        for (int row = 0; row < itemsInInventory[0].length; row++){
+            for (int col = 0; col < itemsInInventory.length-1; col++){
+                if(itemsInInventory[col][row] != null && itemsInInventory[col][row].getClass() == itemClass){
+                    itemsOfTypeFound++;
+                }
+            }
+        }
+        return itemsOfTypeFound >= quantity;
     }
 
     // removes one instance of an item of a specific type
@@ -166,5 +180,8 @@ public class PlayerInventory {
         itemsInInventory[1][4] = new IronSpear();
         itemsInInventory[2][4] = new CobaltSpear();
         itemsInInventory[3][4] = new BloodRubySpear();
+        itemsInInventory[0][5] = new PotionOfHealing();
+        itemsInInventory[1][5] = new PotionOfHealing();
+        itemsInInventory[2][5] = new PotionOfHealing();
     }
 }

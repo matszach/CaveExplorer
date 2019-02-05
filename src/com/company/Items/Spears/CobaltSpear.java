@@ -2,7 +2,7 @@ package com.company.Items.Spears;
 
 import com.company.ImageBank;
 
-public class CobaltSpear extends Spear {
+final public class CobaltSpear extends Spear {
 
     public CobaltSpear(){
         super(17, 0.85);

@@ -14,9 +14,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 
-public class
-
-ItemPane extends StackPane {
+public class ItemPane extends StackPane {
 
     //position in grid
     private int col;
@@ -70,13 +68,17 @@ ItemPane extends StackPane {
 
         // Mouse event handlers for the source
         setOnMousePressed(e->{
-            setMouseTransparent(true);
+            if(!e.isPrimaryButtonDown()){
+                return;
+            }
             e.setDragDetect(true);
             InventoryDragAndDropHandler.readySelectedItem(row,col,itemImageView);
         });
 
         setOnMouseReleased(e->{
-            setMouseTransparent(false);
+            if(e.isPrimaryButtonDown()){
+                return;
+            }
             InventoryDragAndDropHandler.swapIfReady();
             InventoryDragAndDropHandler.unreadySelectedItem();
             buildItemView();
@@ -93,18 +95,20 @@ ItemPane extends StackPane {
         // Mouse event handlers for the target
         setOnMouseDragEntered(e-> {
             select();
+            if(!e.isPrimaryButtonDown()){
+                return;
+            }
             InventoryDragAndDropHandler.readyTargetedItem(row, col);
         });
 
         setOnMouseDragExited(e-> {
             unSelect();
+            if(!e.isPrimaryButtonDown()){
+                return;
+            }
             InventoryDragAndDropHandler.unreadyTargetedItem();
             buildItemView();
         });
-
-
-
-
 
     }
 

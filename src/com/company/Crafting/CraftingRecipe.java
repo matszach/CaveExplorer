@@ -58,7 +58,16 @@ abstract public class CraftingRecipe {
 
         // checks if items required are present
         for(Class<? extends Item> itemClass : requiredItems){
-            if(!CaveExplorer.getPlayerCharacter().getInventory().containsItemOfType(itemClass)){
+
+            int amountOfItemsOfThisTypeRequired = 0;
+
+            for(Object o : requiredItems){
+                if(o.equals(itemClass)){
+                    amountOfItemsOfThisTypeRequired++;
+                }
+            }
+
+            if(!CaveExplorer.getPlayerCharacter().getInventory().containsItemsOfType(itemClass,amountOfItemsOfThisTypeRequired)){
                 return false;
             }
         }

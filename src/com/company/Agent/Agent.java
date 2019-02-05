@@ -3,6 +3,7 @@ package com.company.Agent;
 import com.company.Agent.Monster.Monster;
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
 import com.company.Animations.DamageTakenByAgentAnimation;
+import com.company.Animations.HealthRestoredToAgentAnimation;
 import com.company.CaveExplorer;
 import com.company.GameValues;
 import com.company.MonsterSpawnerAndHandler;
@@ -41,6 +42,10 @@ abstract public class Agent extends ImageView {
 
     }
     public void healDamage(double healing){
+
+        HealthRestoredToAgentAnimation animation = new HealthRestoredToAgentAnimation((int)healing);
+        animation.play(this);
+
         currentHealth += healing;
         if(currentHealth > MAX_HEALTH){
             currentHealth = MAX_HEALTH;
