@@ -26,8 +26,15 @@ public final class KeyInputHandler {
     private final static  KeyCombination PAUSE_TOGGLE_2 = new KeyCodeCombination(KeyCode.P);
     private static boolean pauseOpen;
 
+    // game over open
+    private static boolean gameOverOpen;
+    public static void setGameOverOpen(boolean newState) {
+        gameOverOpen = newState;
+    }
+
+
     public static boolean blockInputEvents(){
-        return inventoryOpen || pauseOpen ;
+        return inventoryOpen || pauseOpen || gameOverOpen;
     }
 
 
