@@ -9,7 +9,9 @@ import com.company.Items.Drills.BloodRubyDrill;
 import com.company.Items.Drills.CobaltDrill;
 import com.company.Items.Drills.CopperDrill;
 import com.company.Items.Drills.IronDrill;
+import com.company.Items.PlaceableObjects.AlchemyLab;
 import com.company.Items.PlaceableObjects.WoodenSupport;
+import com.company.Items.PlaceableObjects.Workshop;
 import com.company.Items.PotionsAndElixirs.*;
 import com.company.Items.Spears.BloodRubySpear;
 import com.company.Items.Spears.CobaltSpear;
@@ -76,6 +78,9 @@ final public class ItemTypes {
         getItemTypeMap().put(22, ElixirOfSpeed.class);
         getItemTypeMap().put(23, ElixirOfRegeneration.class);
         getItemTypeMap().put(24, ElixirOfStoneSkin.class);
+        getItemTypeMap().put(25, Workshop.class);
+        getItemTypeMap().put(26, AlchemyLab.class);
+
 
     }
 }

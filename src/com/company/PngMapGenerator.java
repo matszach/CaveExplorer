@@ -43,8 +43,9 @@ public final class PngMapGenerator {
                     case 13 : g2d.setColor(new Color(200,200, 0)); break; // sulfur
                     case 14 : g2d.setColor(new Color(0,0,80)); break; // water
                     case 15 : g2d.setColor(new Color(250,20,0)); break; // lava
-                    case 16:  g2d.setColor(new Color(80,40,0)); break; // crate
-
+                    case 16 : g2d.setColor(new Color(80,40,0)); break; // crate
+                    case 17 : g2d.setColor(new Color(40,40,30)); break; // workshop
+                    case 18 : g2d.setColor(new Color(90,40,30)); break; // alchemy lab
                 }
                 g2d.drawLine(x, y, x, y);
             }

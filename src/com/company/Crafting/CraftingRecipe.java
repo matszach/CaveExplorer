@@ -83,29 +83,6 @@ abstract public class CraftingRecipe {
         return true;
     }
 
-    // overridable
-    public boolean otherRequirementsMet(){
-        return true;
-    }
-
-    // for recipes that require certain crafting stations nearby, etc
-    public boolean tileOfTypeInRange(Class<? extends Tile> classTile, int range){
-
-        int xMin = CaveExplorer.getPlayerCharacter().roundTileX() - range;
-        int yMin = CaveExplorer.getPlayerCharacter().roundTileY() - range;
-        int xMax = CaveExplorer.getPlayerCharacter().roundTileX() + range;
-        int yMax = CaveExplorer.getPlayerCharacter().roundTileY() + range;
-
-        for(int x = xMin; x <= xMax; x++){
-            for(int y = yMin; y <= yMax; y++){
-                if(MainGameScene.getBoard().getTiles()[x][y].getClass() == classTile){
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
 
     private void payCost(){
 
@@ -137,7 +114,7 @@ abstract public class CraftingRecipe {
         // or has no empty inventory slots - both of those should already be impossible if this methods
         // was allowed to be executed
 
-        if (!ingredientsPresent() || !CaveExplorer.getPlayerCharacter().getInventory().hasEmptyItemSlot() || !otherRequirementsMet()){
+        if (!ingredientsPresent() || !CaveExplorer.getPlayerCharacter().getInventory().hasEmptyItemSlot()){
             return;
         }
 

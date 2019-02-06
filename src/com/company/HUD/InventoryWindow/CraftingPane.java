@@ -1,12 +1,19 @@
 package com.company.HUD.InventoryWindow;
 
+import com.company.CaveExplorer;
 import com.company.Crafting.CraftingRecipe;
+import com.company.Crafting.PlaceableObjects.Recipe_Workshop;
+import com.company.Crafting.PotionsAndElixirs.*;
 import com.company.Crafting.Tools.*;
 import com.company.Crafting.Weapons.*;
 import com.company.GameValues;
 import com.company.ImageBank;
 import com.company.Items.Item;
-import com.company.Items.Swords.IronSword;
+import com.company.Scenes.MainGameScene;
+import com.company.Tiles.Tile;
+import com.company.Tiles.Tile_Const_AlchemyLab;
+import com.company.Tiles.Tile_Const_Workshop;
+import com.company.Tiles.Tile_Fluid_Water;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.ScrollPane;
@@ -19,12 +26,11 @@ import javafx.scene.text.Text;
 
 public class CraftingPane extends ScrollPane {
 
-    private final double PREF_WIDTH = 250;
-    private final double PREF_HEIGHT = 200;
-
+    private final static double PREF_WIDTH = 250;
+    private final static double PREF_HEIGHT = 200;
 
     // inner class : single crafting recipe pane
-    private class CraftingRecipePane extends Pane{
+    private static class CraftingRecipePane extends Pane{
 
 
         private void buildPaneContents(CraftingRecipe craftingRecipe){
@@ -101,12 +107,22 @@ public class CraftingPane extends ScrollPane {
             setPrefSize(PREF_WIDTH-9, 30);
             setBackground(new Background(new BackgroundFill(GameValues.GUI_FLASH_BLUE, new CornerRadii(5), null)));
 
-            setOnMouseClicked(e->craftingRecipe.execute());
 
-            setOnMouseEntered(e->hoverOn());
-            setOnMouseDragEntered(e->hoverOn());
-            setOnMouseExited(e->hoverOff());
-            setOnMouseDragExited(e->hoverOff());
+
+            if(craftingRecipe.ingredientsPresent()){
+                setOnMouseClicked(e->{
+                    craftingRecipe.execute();
+                    CraftingPane.resetDisplay();
+                    CraftingPane.addAllAvailableRecipes();
+                });
+                setOnMouseEntered(e->hoverOn());
+                setOnMouseDragEntered(e->hoverOn());
+                setOnMouseExited(e->hoverOff());
+                setOnMouseDragExited(e->hoverOff());
+            } else {
+                setOpacity(0.5);
+            }
+
 
             buildPaneContents(craftingRecipe);
 
@@ -115,8 +131,8 @@ public class CraftingPane extends ScrollPane {
 
 
     // inner class : craft recipe pane holder
-    private RecipePaneHolder recipePaneHolder = new RecipePaneHolder();
-    private class RecipePaneHolder extends VBox{
+    private  static RecipePaneHolder recipePaneHolder = new RecipePaneHolder();
+    private static class RecipePaneHolder extends VBox{
 
         private final double SPACING = 5;
 
@@ -144,35 +160,36 @@ public class CraftingPane extends ScrollPane {
 
 
 
-    public void addRecipesToDisplay(CraftingRecipe... recipes){
+    private static void addRecipesToDisplay(CraftingRecipe... recipes){
         for(CraftingRecipe rec : recipes){
             recipePaneHolder.addRecipes(new CraftingRecipePane(rec));
         }
         recipePaneHolder.adjustHeight();
     }
 
-    public void resetDisplay(){
+
+    public static void resetDisplay(){
         recipePaneHolder.getChildren().clear();
         recipePaneHolder.adjustHeight();
     }
 
+    public static void addAllAvailableRecipes(){
 
-    public CraftingPane(){
-        setPrefSize(PREF_WIDTH, PREF_HEIGHT);
-        relocate(10,10);
-        setStyle("-fx-padding: 5 5 5 5;");
-        setBackground(new Background(new BackgroundFill(GameValues.GUI_MAIN_BLUE, new CornerRadii(10), null)));
-
-        // makes scroll bar invisible (but doesn't disable mouse scroll wheel)
-        setHbarPolicy(ScrollBarPolicy.NEVER);
-        setVbarPolicy(ScrollBarPolicy.NEVER);
-
-        setContent(recipePaneHolder);
-        recipePaneHolder.adjustHeight();
-
-
-        // todo temp
+        // available always
         addRecipesToDisplay(
+            new Recipe_Workshop()
+        );
+
+        // available near water
+        if(tileOfTypeInRange(Tile_Fluid_Water.class, 2)) {
+            addRecipesToDisplay(
+                new Recipe_FlaskOfWater()
+            );
+        }
+
+        // available near workshop
+        if(tileOfTypeInRange(Tile_Const_Workshop.class, 2)){
+            addRecipesToDisplay(
                 new Recipe_CopperDrill(),
                 new Recipe_IronDrill(),
                 new Recipe_CobaltDrill(),
@@ -189,7 +206,89 @@ public class CraftingPane extends ScrollPane {
                 new Recipe_CopperSword(),
                 new Recipe_IronSword(),
                 new Recipe_CobaltSword(),
-                new Recipe_BloodRubySword()
+                new Recipe_BloodRubySword(),
+                new Recipe_SilverFlask()
+            );
+        }
+
+        // available near alchemy lab
+        if(tileOfTypeInRange(Tile_Const_AlchemyLab.class, 2)) {
+            addRecipesToDisplay(
+                new Recipe_PotionOfHealing(),
+                new Recipe_ElixirOfRegeneration(),
+                new Recipe_ElixirOfSpeed(),
+                new Recipe_ElixirOfStoneSkin()
+            );
+        }
+
+    }
+
+
+    // TODO REMOVE THIS LATER
+    public static void DEV_ADD_ALL_RECIPES(){
+        addRecipesToDisplay(
+                new Recipe_Workshop(),
+                new Recipe_FlaskOfWater(),
+                new Recipe_CopperDrill(),
+                new Recipe_IronDrill(),
+                new Recipe_CobaltDrill(),
+                new Recipe_BloodRubyDrill(),
+                new Recipe_Trowel(),
+                new Recipe_CopperSpear(),
+                new Recipe_IronSpear(),
+                new Recipe_CobaltSpear(),
+                new Recipe_BloodRubySpear(),
+                new Recipe_CopperDagger(),
+                new Recipe_IronDagger(),
+                new Recipe_CobaltDagger(),
+                new Recipe_BloodRubyDagger(),
+                new Recipe_CopperSword(),
+                new Recipe_IronSword(),
+                new Recipe_CobaltSword(),
+                new Recipe_BloodRubySword(),
+                new Recipe_SilverFlask(),
+                new Recipe_PotionOfHealing(),
+                new Recipe_ElixirOfRegeneration(),
+                new Recipe_ElixirOfSpeed(),
+                new Recipe_ElixirOfStoneSkin()
         );
+
+
+        recipePaneHolder.adjustHeight();
+    }
+
+    // for recipes that require certain crafting stations nearby, etc
+    private static boolean tileOfTypeInRange(Class<? extends Tile> classTile, int range){
+
+        int xMin = CaveExplorer.getPlayerCharacter().roundTileX() - range;
+        int yMin = CaveExplorer.getPlayerCharacter().roundTileY() - range;
+        int xMax = CaveExplorer.getPlayerCharacter().roundTileX() + range;
+        int yMax = CaveExplorer.getPlayerCharacter().roundTileY() + range;
+
+        for(int x = xMin; x <= xMax; x++){
+            for(int y = yMin; y <= yMax; y++){
+                if(MainGameScene.getBoard().getTiles()[x][y].getClass() == classTile){
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
+    public CraftingPane(){
+        setPrefSize(PREF_WIDTH, PREF_HEIGHT);
+        relocate(10,10);
+        setStyle("-fx-padding: 5 5 5 5;");
+        setBackground(new Background(new BackgroundFill(GameValues.GUI_MAIN_BLUE, new CornerRadii(10), null)));
+
+        // makes scroll bar invisible (but doesn't disable mouse scroll wheel)
+        setHbarPolicy(ScrollBarPolicy.NEVER);
+        setVbarPolicy(ScrollBarPolicy.NEVER);
+
+        setContent(recipePaneHolder);
+        recipePaneHolder.adjustHeight();
+
     }
 }

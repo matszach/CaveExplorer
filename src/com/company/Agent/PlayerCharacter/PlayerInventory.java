@@ -10,7 +10,9 @@ import com.company.Items.Drills.CobaltDrill;
 import com.company.Items.Drills.CopperDrill;
 import com.company.Items.Drills.IronDrill;
 import com.company.Items.Item;
+import com.company.Items.PlaceableObjects.AlchemyLab;
 import com.company.Items.PlaceableObjects.WoodenSupport;
+import com.company.Items.PlaceableObjects.Workshop;
 import com.company.Items.PotionsAndElixirs.*;
 import com.company.Items.Spears.BloodRubySpear;
 import com.company.Items.Spears.CobaltSpear;
@@ -130,6 +132,17 @@ public class PlayerInventory {
         return false;
     }
 
+
+    // adds starting items ( those are written over when a game is loaded instead of
+    // a new one getting started, this might be moved later
+    private void addStartingItems(){
+        itemsInInventory[0][5] = new CopperDrill();
+        itemsInInventory[1][5] = new CopperDagger();
+        itemsInInventory[0][0] = new PotionOfHealing();
+    }
+
+
+
     // Resource
     private Resource[] resources = new Resource[10];
     public Resource getResource(ResourceType resourceType){
@@ -151,6 +164,7 @@ public class PlayerInventory {
         return resources[resourceType];
     }
 
+
     public PlayerInventory(){
 
         // FOR EACH DOESN'T WORK FOR NULL_FILLED ARRAY
@@ -158,6 +172,7 @@ public class PlayerInventory {
             resources[i] = new Resource();
         }
 
+        addStartingItems();
 
         // TODO TEST
         /*
@@ -166,6 +181,7 @@ public class PlayerInventory {
         addItemsToInventory(new WoodenSupport(),new WoodenSupport(),new WoodenSupport(),new WoodenSupport(),new WoodenSupport());
         */
 
+        /* ALL items
         itemsInInventory[0][0] = new CopperDrill();
         itemsInInventory[1][0] = new IronDrill();
         itemsInInventory[2][0] = new CobaltDrill();
@@ -203,7 +219,9 @@ public class PlayerInventory {
         itemsInInventory[5][4] = new ElixirOfStoneSkin();
         itemsInInventory[6][4] = new ElixirOfStoneSkin();
         itemsInInventory[7][4] = new ElixirOfStoneSkin();
-
+        itemsInInventory[8][0] = new Workshop();
+        itemsInInventory[9][0] = new AlchemyLab();
+        */
 
     }
 }

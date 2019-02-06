@@ -2,8 +2,10 @@ package com.company;
 
 import com.company.Agent.Agent;
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
+import com.company.Crafting.CraftingRecipe;
 import com.company.GameStates_GameSavingAndLoading.GameState;
 import com.company.HUD.DragAndDropHandler.InventoryDragAndDropHandler;
+import com.company.HUD.InventoryWindow.CraftingPane;
 import com.company.HUD.SaveWindow;
 import com.company.Items.ItemTypes;
 import com.company.Scenes.MainGameScene;
@@ -80,11 +82,13 @@ public final class CaveExplorer extends Application {
     // Window invokers <- those will be moved TODO
     public static void openInventory(){
         mainGameScene.getChildren().add(MainGameScene.getInventoryWindow());
+        CraftingPane.addAllAvailableRecipes();
         InventoryDragAndDropHandler.setActive(true);
         MainGameScene.getBoard().setEffect(new GaussianBlur());
     }
     public static void closeInventory(){
         mainGameScene.getChildren().remove(MainGameScene.getInventoryWindow());
+        CraftingPane.resetDisplay();
         InventoryDragAndDropHandler.setActive(false);
         MainGameScene.getBoard().setEffect(null);
     }

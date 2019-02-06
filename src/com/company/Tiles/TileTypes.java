@@ -48,6 +48,8 @@ final public class TileTypes {
         getTileTypeMap().put(15, Tile_Fluid_Lava.class);
         getTileTypeMap().put(16, Tile_Obj_ResourceCrate.class);
         getTileTypeMap().put(17, Tile_Gravel.class);
+        getTileTypeMap().put(18, Tile_Const_Workshop.class);
+        getTileTypeMap().put(19, Tile_Const_AlchemyLab.class);
     }
 
 }
