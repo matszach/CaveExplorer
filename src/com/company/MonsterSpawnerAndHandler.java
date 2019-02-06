@@ -80,6 +80,12 @@ final public class MonsterSpawnerAndHandler {
     }
 
 
+    public static void despawnAll(){
+        for(Monster monster : getActiveMonsters()){
+           monster.despawn();
+        }
+        getActiveMonsters().clear();
+    }
 
 
 

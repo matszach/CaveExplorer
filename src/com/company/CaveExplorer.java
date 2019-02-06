@@ -112,6 +112,17 @@ public final class CaveExplorer extends Application {
         mainGameScene.getChildren().add(MainGameScene.getPauseWindow());
     }
 
+    public static void openGameOverWindow(){
+        mainGameScene.getChildren().add(MainGameScene.getGameOverWindow());
+        MonsterSpawnerAndHandler.despawnAll();
+        MainGameScene.getBoard().setEffect(new GaussianBlur());
+        MainGameScene.getHud().setEffect(new GaussianBlur());
+    }
+    public static void closeGameOverWindow(){
+        mainGameScene.getChildren().remove(MainGameScene.getGameOverWindow());
+        MainGameScene.getBoard().setEffect(null);
+        MainGameScene.getHud().setEffect(null);
+    }
 
 
 

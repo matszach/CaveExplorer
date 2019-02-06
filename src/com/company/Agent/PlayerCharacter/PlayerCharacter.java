@@ -13,6 +13,13 @@ import javafx.scene.shape.Rectangle;
 
 public class PlayerCharacter extends Agent {
 
+    @Override
+    public void takeDamage(double damage) {
+        super.takeDamage(damage);
+        if(!isAlive()){
+            CaveExplorer.openGameOverWindow(); // player's death ends the game
+        }
+    }
 
     private PlayerInventory playerInventory;
     public PlayerInventory getInventory() {

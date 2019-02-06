@@ -2,6 +2,7 @@ package com.company.Scenes;
 
 import com.company.Board.Board;
 import com.company.Board.BoardBuilder.BoardBuilder;
+import com.company.HUD.GameOverWindow;
 import com.company.HUD.HUD;
 import com.company.HUD.InventoryWindow.InventoryWindow;
 import com.company.HUD.PauseWindow;
@@ -41,6 +42,12 @@ public class MainGameScene extends Pane {
     private static SaveWindow saveWindow = new SaveWindow();
     public static SaveWindow getSaveWindow() {
         return saveWindow;
+    }
+
+    // The Game Over Window
+    private static GameOverWindow gameOverWindow = new GameOverWindow();
+    public static GameOverWindow getGameOverWindow() {
+        return gameOverWindow;
     }
 
     public MainGameScene(int sideLengthInTiles, double oreAmount, double terrainAmount, double structureAmount){

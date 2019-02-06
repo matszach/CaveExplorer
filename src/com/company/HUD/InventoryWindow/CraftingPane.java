@@ -2,6 +2,7 @@ package com.company.HUD.InventoryWindow;
 
 import com.company.CaveExplorer;
 import com.company.Crafting.CraftingRecipe;
+import com.company.Crafting.PlaceableObjects.Recipe_AlchemyLab;
 import com.company.Crafting.PlaceableObjects.Recipe_Workshop;
 import com.company.Crafting.PotionsAndElixirs.*;
 import com.company.Crafting.Tools.*;
@@ -207,7 +208,8 @@ public class CraftingPane extends ScrollPane {
                 new Recipe_IronSword(),
                 new Recipe_CobaltSword(),
                 new Recipe_BloodRubySword(),
-                new Recipe_SilverFlask()
+                new Recipe_SilverFlask(),
+                new Recipe_AlchemyLab()
             );
         }
 
