@@ -5,6 +5,7 @@ import com.company.Agent.PlayerCharacter.PlayerCharacter;
 import com.company.GameStates_GameSavingAndLoading.GameState;
 import com.company.HUD.DragAndDropHandler.InventoryDragAndDropHandler;
 import com.company.HUD.SaveWindow;
+import com.company.Items.ItemTypes;
 import com.company.Scenes.MainGameScene;
 import com.company.Scenes.StartMenuScene;
 import com.company.Tiles.TileTypes;
@@ -18,6 +19,7 @@ public final class CaveExplorer extends Application {
 
     // The Databases
     private static TileTypes tileTypes = new TileTypes();
+    private static ItemTypes itemTypes = new ItemTypes();
     private static ImageBank imageBank = new ImageBank();
 
 

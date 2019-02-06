@@ -41,39 +41,41 @@ final public class ItemTypes {
 
 
     public static int getNumFromItem(Class c){
-        for(int i : getItemTypeMap().keySet()){
+
+        for(Integer i : getItemTypeMap().keySet()){
             if(getItemTypeMap().get(i).equals(c)){
                 return i;
             }
         }
+
         return 0;
     }
 
     public ItemTypes(){
-        getItemTypeMap().put(0, CopperDrill.class);
-        getItemTypeMap().put(1, CopperDagger.class);
-        getItemTypeMap().put(2, CopperSword.class);
-        getItemTypeMap().put(3, CopperSpear.class);
-        getItemTypeMap().put(4, IronDrill.class);
-        getItemTypeMap().put(5, IronDagger.class);
-        getItemTypeMap().put(6, IronSword.class);
-        getItemTypeMap().put(7, IronSpear.class);
-        getItemTypeMap().put(8, CobaltDrill.class);
-        getItemTypeMap().put(9, CobaltDagger.class);
-        getItemTypeMap().put(10, CobaltSword.class);
-        getItemTypeMap().put(11, CobaltSpear.class);
-        getItemTypeMap().put(12, BloodRubyDrill.class);
-        getItemTypeMap().put(13, BloodRubyDagger.class);
-        getItemTypeMap().put(14, BloodRubySword.class);
-        getItemTypeMap().put(15, BloodRubySpear.class);
-        getItemTypeMap().put(16, Trowel.class);
-        getItemTypeMap().put(17, WoodenSupport.class);
-        getItemTypeMap().put(18, SilverFlask.class);
-        getItemTypeMap().put(19, FlaskOfWater.class);
-        getItemTypeMap().put(20, PotionOfHealing.class);
-        getItemTypeMap().put(21, ElixirOfSpeed.class);
-        getItemTypeMap().put(22, ElixirOfRegeneration.class);
-        getItemTypeMap().put(23, ElixirOfStoneSkin.class);
+        getItemTypeMap().put(1, CopperDrill.class);
+        getItemTypeMap().put(2, CopperDagger.class);
+        getItemTypeMap().put(3, CopperSword.class);
+        getItemTypeMap().put(4, CopperSpear.class);
+        getItemTypeMap().put(5, IronDrill.class);
+        getItemTypeMap().put(6, IronDagger.class);
+        getItemTypeMap().put(7, IronSword.class);
+        getItemTypeMap().put(8, IronSpear.class);
+        getItemTypeMap().put(9, CobaltDrill.class);
+        getItemTypeMap().put(10, CobaltDagger.class);
+        getItemTypeMap().put(11, CobaltSword.class);
+        getItemTypeMap().put(12, CobaltSpear.class);
+        getItemTypeMap().put(13, BloodRubyDrill.class);
+        getItemTypeMap().put(14, BloodRubyDagger.class);
+        getItemTypeMap().put(15, BloodRubySword.class);
+        getItemTypeMap().put(16, BloodRubySpear.class);
+        getItemTypeMap().put(17, Trowel.class);
+        getItemTypeMap().put(18, WoodenSupport.class);
+        getItemTypeMap().put(19, SilverFlask.class);
+        getItemTypeMap().put(20, FlaskOfWater.class);
+        getItemTypeMap().put(21, PotionOfHealing.class);
+        getItemTypeMap().put(22, ElixirOfSpeed.class);
+        getItemTypeMap().put(23, ElixirOfRegeneration.class);
+        getItemTypeMap().put(24, ElixirOfStoneSkin.class);
 
     }
 }

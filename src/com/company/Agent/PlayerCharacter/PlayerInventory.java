@@ -33,6 +33,7 @@ public class PlayerInventory {
         return itemsInInventory;
     }
 
+    // in-game-method
     public void putItemInSlot(Item item, int col, int row){
         itemsInInventory[col][row] = item;
         MainGameScene.getInventoryWindow().updateItemPane(col,row);
@@ -41,6 +42,13 @@ public class PlayerInventory {
         itemsInInventory[col][row] = null;
         MainGameScene.getInventoryWindow().updateItemPane(col,row);
     }
+
+    // load game-state method
+    // in-game-method
+    public void loadItemIntoSlot(Item item, int col, int row){
+        itemsInInventory[col][row] = item;
+    }
+
 
     // checks for an empty item slot
     public boolean hasEmptyItemSlot(){

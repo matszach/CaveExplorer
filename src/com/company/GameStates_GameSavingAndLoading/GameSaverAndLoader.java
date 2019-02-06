@@ -1,6 +1,8 @@
 package com.company.GameStates_GameSavingAndLoading;
 
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
+import com.company.Items.Item;
+import com.company.Items.ItemTypes;
 
 import java.io.FileInputStream;
 import java.io.PrintWriter;
@@ -15,32 +17,55 @@ public class GameSaverAndLoader {
     private static Scanner scanner;
 
 
-    private static DecimalFormat tileNumber = new DecimalFormat("000");
-    private static DecimalFormat playerLocationNumber = new DecimalFormat("00000");
-    private static DecimalFormat resourceAmountNumber = new DecimalFormat("000000");
+    private static DecimalFormat shortNum = new DecimalFormat("000");
+    private static DecimalFormat mediumNum = new DecimalFormat("00000");
+    private static DecimalFormat longNum = new DecimalFormat("000000");
 
     public static void saveToFile(GameState gameState, int saveNum){
         try{
             writer = new PrintWriter("GameStates\\gameState"+saveNum+".save", "UTF-8");
         } catch (Exception e){ }
 
-        // player location
-        writer.println(playerLocationNumber.format(gameState.getPlayerPosX()));
-        writer.println(playerLocationNumber.format(gameState.getPlayerPosY()));
+        // board sideLengths
+        writer.println(mediumNum.format(gameState.getBoardTileInfo().length));
+        writer.println(mediumNum.format(gameState.getBoardTileInfo()[0].length));
 
-        // players resources
+        // player's location
+        writer.println(mediumNum.format(gameState.getPlayerPosX()));
+        writer.println(mediumNum.format(gameState.getPlayerPosY()));
+
+        // player's health
+        writer.println(shortNum.format(gameState.getPlayerCharacter().getCurrentHealth()));
+
+        // player's resources
         for(int i = 0; i < 10; i++){
-            writer.println(resourceAmountNumber.format(gameState.getPlayerCharacter().getInventory().getResource(i).getAmount()));
+            writer.println(longNum.format(gameState.getPlayerCharacter().getInventory().getResource(i).getAmount()));
         }
 
-        // board sideLengths
-        writer.println(playerLocationNumber.format(gameState.getBoardTileInfo().length));
-        writer.println(playerLocationNumber.format(gameState.getBoardTileInfo()[0].length));
+        // player's items
+        for(int row = 0; row < 6; row++){
+            for(int col = 0; col < 10; col++){
+
+                int itemNum;
+
+                if(gameState.getPlayerCharacter().getInventory().getItemsInInventory()[col][row] == null){
+                    itemNum = 0;
+                } else {
+                    itemNum = ItemTypes.getNumFromItem(gameState.getPlayerCharacter().getInventory().getItemsInInventory()[col][row].getClass());
+                }
+
+                String itemNumString = shortNum.format(itemNum);
+                writer.print(itemNumString + " ");
+            }
+            writer.println();
+        }
+
+
 
         // board itself
         for(int x = 0; x < gameState.getBoardTileInfo().length; x++){
             for(int y = 0; y < gameState.getBoardTileInfo()[0].length; y++){
-                String fieldNum = tileNumber.format(gameState.getBoardTileInfo()[x][y]);
+                String fieldNum = shortNum.format(gameState.getBoardTileInfo()[x][y]);
                 writer.print(fieldNum+" ");
             }
             writer.println();
@@ -58,20 +83,45 @@ public class GameSaverAndLoader {
 
         GameState gameState = new GameState();
 
-        // player location
-        gameState.setPlayerPosX(Integer.parseInt(scanner.nextLine()));
-        gameState.setPlayerPosY(Integer.parseInt(scanner.nextLine()));
-
-        // players resources
-        gameState.setPlayerCharacter(new PlayerCharacter());
-        for(int i = 0; i < 10; i++){
-            gameState.getPlayerCharacter().getInventory().getResource(i).gain(Integer.parseInt(scanner.nextLine()));
-        }
-
         // board sideLengths
         int xLength = Integer.parseInt(scanner.nextLine());
         int yLength = Integer.parseInt(scanner.nextLine());
         gameState.setBoardTileInfo(new int[xLength][yLength]);
+
+        // player's location
+        gameState.setPlayerPosX(Integer.parseInt(scanner.nextLine()));
+        gameState.setPlayerPosY(Integer.parseInt(scanner.nextLine()));
+
+
+        // player's health
+        gameState.setPlayerCharacter(new PlayerCharacter());
+        gameState.getPlayerCharacter().setCurrentHealth(Integer.parseInt(scanner.nextLine()));
+
+        // player's resources
+        for(int i = 0; i < 10; i++){
+            gameState.getPlayerCharacter().getInventory().getResource(i).gain(Integer.parseInt(scanner.nextLine()));
+        }
+
+        // player's items
+        for(int row = 0; row < 6; row++){
+            for(int col = 0; col < 10; col++){
+
+                String itemNumString = scanner.next();
+                int itemNum = Integer.parseInt(itemNumString);
+
+                Item item;
+                if(itemNum == 0){
+                    item = null;
+                } else {
+                    item = ItemTypes.getItemFromNum(Integer.parseInt(itemNumString));
+                }
+
+                gameState.getPlayerCharacter().getInventory().loadItemIntoSlot(item,col,row);
+        }
+        }
+
+
+
 
         // board itself
         for(int x = 0; x < gameState.getBoardTileInfo().length; x++){
