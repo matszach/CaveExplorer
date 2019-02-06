@@ -56,7 +56,6 @@ public final class CaveExplorer extends Application {
 
 
 
-
     // Move View methods
     public static void moveView(double x, double y){
         MainGameScene.getBoard().relocate(MainGameScene.getBoard().getLayoutX()+x, MainGameScene.getBoard().getLayoutY()+y);
@@ -202,7 +201,7 @@ public final class CaveExplorer extends Application {
     }
 
 
-        // other actions
+    // other actions
     public static void closeGame(){
         System.exit(0);
     }

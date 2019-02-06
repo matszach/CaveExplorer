@@ -122,7 +122,7 @@ public class PlayerInventory {
     }
     public boolean removeSpecificItem(Item item){
         for (int row = 0; row < itemsInInventory[0].length; row++){
-            for (int col = 0; col < itemsInInventory.length-1; col++){
+            for (int col = 0; col < itemsInInventory.length; col++){
                 if(itemsInInventory[col][row] == item){
                     removeItemInSlot(col, row);
                     return true;
