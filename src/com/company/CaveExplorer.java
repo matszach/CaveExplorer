@@ -2,7 +2,6 @@ package com.company;
 
 import com.company.Agent.Agent;
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
-import com.company.Crafting.CraftingRecipe;
 import com.company.GameStates_GameSavingAndLoading.GameState;
 import com.company.HUD.DragAndDropHandler.InventoryDragAndDropHandler;
 import com.company.HUD.InventoryWindow.CraftingPane;
@@ -173,11 +172,22 @@ public final class CaveExplorer extends Application {
         return gameState;
     }
 
+    public static void findStartigPosition(int sideLengthInTiles){
+        while (true){
+            int x = (int)(Math.random()*sideLengthInTiles+1);
+            int y = (int)(Math.random()*sideLengthInTiles+1);
+            if(MainGameScene.getBoard().getBoardTileTypes()[x][y] == 0){
+                playerCharacter.relocate(GameValues.getTileSideLength()*x,GameValues.getTileSideLength()*y+1);
+               return;
+            }
+        }
+    }
     public static void startNewGame(int sideLengthInTiles, double oreAmount, double terrainAmount, double structureAmount){
         playerCharacter = new PlayerCharacter();
         mainGameScene = new MainGameScene(sideLengthInTiles, oreAmount, terrainAmount, structureAmount);
         gameScene = new Scene(mainGameScene, GameValues.getWindowSideLength(),GameValues.getWindowSideLength());
-        playerCharacter.relocate(GameValues.getTileSideLength()*sideLengthInTiles/2,GameValues.getTileSideLength()*sideLengthInTiles/2+1);
+        //playerCharacter.relocate(GameValues.getTileSideLength()*sideLengthInTiles/2,GameValues.getTileSideLength()*sideLengthInTiles/2+1);
+        findStartigPosition(sideLengthInTiles);
         MainGameScene.getBoard().getChildren().add(playerCharacter);
         updateView();
     }
