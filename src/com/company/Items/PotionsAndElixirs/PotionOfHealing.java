@@ -3,7 +3,7 @@ package com.company.Items.PotionsAndElixirs;
 import com.company.CaveExplorer;
 import com.company.ImageBank;
 
-public class PotionOfHealing extends Potion{
+final public class PotionOfHealing extends Potion{
 
     @Override
     void takeEffect() {

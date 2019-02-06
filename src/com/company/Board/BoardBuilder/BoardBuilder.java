@@ -9,7 +9,7 @@ public class BoardBuilder {
     private static TerrainGenerator terrainGenerator = new TerrainGenerator();
     private static StructureGenerator structureGenerator = new StructureGenerator();
 
-    // "true" value will prevent a structure spawning too close to another structure
+    // "true" value will prevent a structure spawning too close to another structure todo
     private static boolean[][] occupied;
 
     public static int[][] generateGrid(int sideLengthInTiles, double oreAmount, double terrainAmount, double structureAmount){

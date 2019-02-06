@@ -11,7 +11,7 @@ import com.company.Items.Drills.CopperDrill;
 import com.company.Items.Drills.IronDrill;
 import com.company.Items.Item;
 import com.company.Items.PlaceableObjects.WoodenSupport;
-import com.company.Items.PotionsAndElixirs.PotionOfHealing;
+import com.company.Items.PotionsAndElixirs.*;
 import com.company.Items.Spears.BloodRubySpear;
 import com.company.Items.Spears.CobaltSpear;
 import com.company.Items.Spears.CopperSpear;
@@ -180,8 +180,22 @@ public class PlayerInventory {
         itemsInInventory[1][4] = new IronSpear();
         itemsInInventory[2][4] = new CobaltSpear();
         itemsInInventory[3][4] = new BloodRubySpear();
-        itemsInInventory[0][5] = new PotionOfHealing();
-        itemsInInventory[1][5] = new PotionOfHealing();
-        itemsInInventory[2][5] = new PotionOfHealing();
+        itemsInInventory[5][0] = new PotionOfHealing();
+        itemsInInventory[6][0] = new PotionOfHealing();
+        itemsInInventory[7][0] = new PotionOfHealing();
+        itemsInInventory[5][1] = new ElixirOfRegeneration();
+        itemsInInventory[6][1] = new ElixirOfRegeneration();
+        itemsInInventory[7][1] = new ElixirOfRegeneration();
+        itemsInInventory[5][2] = new ElixirOfSpeed();
+        itemsInInventory[6][2] = new ElixirOfSpeed();
+        itemsInInventory[7][2] = new ElixirOfSpeed();
+        itemsInInventory[5][3] = new FlaskOfWater();
+        itemsInInventory[6][3] = new FlaskOfWater();
+        itemsInInventory[7][3] = new FlaskOfWater();
+        itemsInInventory[5][4] = new ElixirOfStoneSkin();
+        itemsInInventory[6][4] = new ElixirOfStoneSkin();
+        itemsInInventory[7][4] = new ElixirOfStoneSkin();
+
+
     }
 }

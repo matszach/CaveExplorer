@@ -1,6 +1,7 @@
 package com.company.Tiles;
 
 import com.company.ImageBank;
+import javafx.scene.effect.ColorAdjust;
 
 final public class Tile_Floor extends Tile{
 

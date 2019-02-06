@@ -10,7 +10,7 @@ import com.company.Items.Drills.CobaltDrill;
 import com.company.Items.Drills.CopperDrill;
 import com.company.Items.Drills.IronDrill;
 import com.company.Items.PlaceableObjects.WoodenSupport;
-import com.company.Items.PotionsAndElixirs.PotionOfHealing;
+import com.company.Items.PotionsAndElixirs.*;
 import com.company.Items.Spears.BloodRubySpear;
 import com.company.Items.Spears.CobaltSpear;
 import com.company.Items.Spears.CopperSpear;
@@ -68,9 +68,12 @@ final public class ItemTypes {
         getItemTypeMap().put(15, BloodRubySpear.class);
         getItemTypeMap().put(16, Trowel.class);
         getItemTypeMap().put(17, WoodenSupport.class);
-
-
+        getItemTypeMap().put(18, SilverFlask.class);
+        getItemTypeMap().put(19, FlaskOfWater.class);
         getItemTypeMap().put(20, PotionOfHealing.class);
+        getItemTypeMap().put(21, ElixirOfSpeed.class);
+        getItemTypeMap().put(22, ElixirOfRegeneration.class);
+        getItemTypeMap().put(23, ElixirOfStoneSkin.class);
 
     }
 }
