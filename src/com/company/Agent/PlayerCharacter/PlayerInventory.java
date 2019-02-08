@@ -4,6 +4,9 @@ import com.company.Items.Daggers.CopperDagger;
 import com.company.Items.Drills.CopperDrill;
 import com.company.Items.Item;
 import com.company.Items.PotionsAndElixirs.PotionOfHealing;
+import com.company.Items.Staves.GoldStaff;
+import com.company.Items.Staves.PlatinumStaff;
+import com.company.Items.Staves.SilverStaff;
 import com.company.Resources.Resource;
 import com.company.Resources.ResourceType;
 import com.company.Scenes.MainGameScene;
@@ -121,6 +124,9 @@ public class PlayerInventory {
         itemsInInventory[0][5] = new CopperDrill();
         itemsInInventory[1][5] = new CopperDagger();
         itemsInInventory[0][0] = new PotionOfHealing();
+        itemsInInventory[1][0] = new SilverStaff();
+        itemsInInventory[2][0] = new GoldStaff();
+        itemsInInventory[3][0] = new PlatinumStaff();
     }
 
 

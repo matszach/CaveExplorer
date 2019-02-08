@@ -60,6 +60,10 @@ public class PlayerCharacter extends Agent {
         setLongViewByRowAndCol(10+i,0);
     }
 
+    public void buildStaffCastAppearance(int i){
+        setLongViewByRowAndCol(13+i,0);
+    }
+
     public void buildDrillingAppearance(int i) {
         setViewByRowAndCol(4+i,0);
     }

@@ -2,7 +2,6 @@ package com.company.Items.Daggers;
 
 import com.company.Agent.Monster.Monster;
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
-import com.company.ImageBank;
 import com.company.Items.IUsableOnButtonPressed;
 import com.company.Items.Item;
 import com.company.MonsterSpawnerAndHandler;
@@ -44,7 +43,6 @@ abstract public class Dagger extends Item implements IUsableOnButtonPressed {
                     playerCharacter.buildDaggerAttackAppearance(2);
 
                     if(animationTime == USE_PHASES[2]){
-
 
                         // damage EVERY enemy within effective range
                         double x = playerCharacter.getTileX();

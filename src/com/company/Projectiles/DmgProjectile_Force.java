@@ -4,7 +4,7 @@ import com.company.Agent.Agent;
 import com.company.ImageBank;
 import com.company.Tiles.Tile;
 
-final public class DmgProjectile_PlatinumStaff extends DamagingProjectile {
+final public class DmgProjectile_Force extends DamagingProjectile {
 
     @Override
     void setProjectileAppearance() {
@@ -21,8 +21,8 @@ final public class DmgProjectile_PlatinumStaff extends DamagingProjectile {
         tile.takeDamage(0.05); // constant damage as the projectile passes through tiles
     }
 
-    public DmgProjectile_PlatinumStaff(Agent.MOVE_DIR move_dir){
-        super(move_dir, 0.10, 8, 25);
+    public DmgProjectile_Force(double averageDamage){
+        super(0.10, 8, averageDamage);
         ignoresPlayer = true;
     }
 

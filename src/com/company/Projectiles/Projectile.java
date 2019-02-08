@@ -4,19 +4,17 @@ import com.company.Agent.Agent;
 import com.company.Agent.Monster.Monster;
 import com.company.CaveExplorer;
 import com.company.GameValues;
-import com.company.HUD.GameOverWindow;
 import com.company.MonsterSpawnerAndHandler;
 import com.company.Scenes.MainGameScene;
 import com.company.Tiles.Tile;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 abstract public class Projectile extends ImageView {
 
-    // unchangeable direction
-    private final Agent.MOVE_DIR PROJECTILE_DIR;
+    // direction of travel
+    private Agent.MOVE_DIR projectileDir;
 
     // projectile's speed in tiles/animation
     private double travelSpeed;
@@ -66,6 +64,9 @@ abstract public class Projectile extends ImageView {
     protected boolean ignoresMonsters;
     private Agent originAgent = null;
     private boolean collisionWithAgentDetected(){
+
+        // needs to be updated to a ~roundTile comparison, otherwise a projectile can pass through
+        // legal target when meeting it near the edge of a tile TODO
         if(!ignoresMonsters){
             for(Monster monster : MonsterSpawnerAndHandler.getActiveMonsters()){
                 if(roundTileY() == monster.roundTileY() && roundTileX() == monster.roundTileX()){
@@ -122,7 +123,7 @@ abstract public class Projectile extends ImageView {
             }
 
             // travel (if not finalized)
-            travel(PROJECTILE_DIR);
+            travel(projectileDir);
 
 
             // appearance
@@ -144,7 +145,8 @@ abstract public class Projectile extends ImageView {
     };
 
 
-    public void initiateTravel(Agent origin){
+    public void initiateTravel(Agent origin, Agent.MOVE_DIR move_dir){
+        projectileDir = move_dir;
         double x = GameValues.getTileSideLength()*(origin.getTileX()+0.5)-getFitWidth()/2;
         double y = GameValues.getTileSideLength()*(origin.getTileY()+0.5)-getFitHeight()/2;
         relocate(x,y);
@@ -179,8 +181,7 @@ abstract public class Projectile extends ImageView {
 
 
     // constructor
-    public Projectile(Agent.MOVE_DIR move_dir, double travelSpeed, double maxTravelDistance){
-        PROJECTILE_DIR = move_dir;
+    public Projectile(double travelSpeed, double maxTravelDistance){
         this.travelSpeed = travelSpeed;
         this.maxTravelDistance = maxTravelDistance;
         setProjectileAppearance();

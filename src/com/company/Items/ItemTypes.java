@@ -1,5 +1,6 @@
 package com.company.Items;
 
+import com.company.HUD.GameOverWindow;
 import com.company.Items.BlockPlacers.Trowel;
 import com.company.Items.Daggers.BloodRubyDagger;
 import com.company.Items.Daggers.CobaltDagger;
@@ -17,6 +18,9 @@ import com.company.Items.Spears.BloodRubySpear;
 import com.company.Items.Spears.CobaltSpear;
 import com.company.Items.Spears.CopperSpear;
 import com.company.Items.Spears.IronSpear;
+import com.company.Items.Staves.GoldStaff;
+import com.company.Items.Staves.PlatinumStaff;
+import com.company.Items.Staves.SilverStaff;
 import com.company.Items.Swords.BloodRubySword;
 import com.company.Items.Swords.CobaltSword;
 import com.company.Items.Swords.CopperSword;
@@ -80,6 +84,9 @@ final public class ItemTypes {
         getItemTypeMap().put(24, ElixirOfStoneSkin.class);
         getItemTypeMap().put(25, Workshop.class);
         getItemTypeMap().put(26, AlchemyLab.class);
+        getItemTypeMap().put(27, SilverStaff.class);
+        getItemTypeMap().put(28, GoldStaff.class);
+        getItemTypeMap().put(29, PlatinumStaff.class);
 
 
     }

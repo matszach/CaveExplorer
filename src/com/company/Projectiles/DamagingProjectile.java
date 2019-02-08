@@ -20,8 +20,8 @@ abstract public class DamagingProjectile extends Projectile {
 
 
 
-    public DamagingProjectile(Agent.MOVE_DIR move_dir, double travelSpeed, double maxTravelDistance, double averageDamage){
-        super(move_dir, travelSpeed, maxTravelDistance);
+    public DamagingProjectile(double travelSpeed, double maxTravelDistance, double averageDamage){
+        super(travelSpeed, maxTravelDistance);
         this.averageDamage = averageDamage;
     }
 }
