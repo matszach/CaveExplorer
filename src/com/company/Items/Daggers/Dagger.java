@@ -51,9 +51,6 @@ abstract public class Dagger extends Item implements IUsableOnButtonPressed {
                         double y = playerCharacter.getTileY();
 
 
-                        Projectile p = new DmgProjectile_PlatinumStaff(playerCharacter.getDirFacing());
-                        p.initiateTravel(playerCharacter);
-
                         switch (playerCharacter.getDirFacing()){
                             case LEFT: x-=sweepRange; break;
                             case LEFT_UP: x-=sweepRange; y-=sweepRange; break;
