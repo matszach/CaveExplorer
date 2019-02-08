@@ -1,27 +1,9 @@
 package com.company.Agent.PlayerCharacter;
 
-import com.company.Items.BlockPlacers.Trowel;
-import com.company.Items.Daggers.BloodRubyDagger;
-import com.company.Items.Daggers.CobaltDagger;
 import com.company.Items.Daggers.CopperDagger;
-import com.company.Items.Daggers.IronDagger;
-import com.company.Items.Drills.BloodRubyDrill;
-import com.company.Items.Drills.CobaltDrill;
 import com.company.Items.Drills.CopperDrill;
-import com.company.Items.Drills.IronDrill;
 import com.company.Items.Item;
-import com.company.Items.PlaceableObjects.AlchemyLab;
-import com.company.Items.PlaceableObjects.WoodenSupport;
-import com.company.Items.PlaceableObjects.Workshop;
-import com.company.Items.PotionsAndElixirs.*;
-import com.company.Items.Spears.BloodRubySpear;
-import com.company.Items.Spears.CobaltSpear;
-import com.company.Items.Spears.CopperSpear;
-import com.company.Items.Spears.IronSpear;
-import com.company.Items.Swords.BloodRubySword;
-import com.company.Items.Swords.CobaltSword;
-import com.company.Items.Swords.CopperSword;
-import com.company.Items.Swords.IronSword;
+import com.company.Items.PotionsAndElixirs.PotionOfHealing;
 import com.company.Resources.Resource;
 import com.company.Resources.ResourceType;
 import com.company.Scenes.MainGameScene;
@@ -167,61 +149,11 @@ public class PlayerInventory {
 
     public PlayerInventory(){
 
-        // FOR EACH DOESN'T WORK FOR NULL_FILLED ARRAY
         for(int i = 0; i < resources.length; i++){
             resources[i] = new Resource();
         }
 
         addStartingItems();
-
-        // TODO TEST
-        /*
-        these would cause an exception (inventory window forced to update before it is created)
-        addItemsToInventory(new CopperDrill(), new IronDrill(), new CobaltDrill(), new BloodRubyDrill(), new Trowel());
-        addItemsToInventory(new WoodenSupport(),new WoodenSupport(),new WoodenSupport(),new WoodenSupport(),new WoodenSupport());
-        */
-
-        /* ALL items
-        itemsInInventory[0][0] = new CopperDrill();
-        itemsInInventory[1][0] = new IronDrill();
-        itemsInInventory[2][0] = new CobaltDrill();
-        itemsInInventory[3][0] = new BloodRubyDrill();
-        itemsInInventory[4][0] = new Trowel();
-        itemsInInventory[0][1] = new WoodenSupport();
-        itemsInInventory[1][1] = new WoodenSupport();
-        itemsInInventory[2][1] = new WoodenSupport();
-        itemsInInventory[3][1] = new WoodenSupport();
-        itemsInInventory[4][1] = new WoodenSupport();
-        itemsInInventory[0][2] = new CopperSword();
-        itemsInInventory[1][2] = new IronSword();
-        itemsInInventory[2][2] = new CobaltSword();
-        itemsInInventory[3][2] = new BloodRubySword();
-        itemsInInventory[0][3] = new CopperDagger();
-        itemsInInventory[1][3] = new IronDagger();
-        itemsInInventory[2][3] = new CobaltDagger();
-        itemsInInventory[3][3] = new BloodRubyDagger();
-        itemsInInventory[0][4] = new CopperSpear();
-        itemsInInventory[1][4] = new IronSpear();
-        itemsInInventory[2][4] = new CobaltSpear();
-        itemsInInventory[3][4] = new BloodRubySpear();
-        itemsInInventory[5][0] = new PotionOfHealing();
-        itemsInInventory[6][0] = new PotionOfHealing();
-        itemsInInventory[7][0] = new PotionOfHealing();
-        itemsInInventory[5][1] = new ElixirOfRegeneration();
-        itemsInInventory[6][1] = new ElixirOfRegeneration();
-        itemsInInventory[7][1] = new ElixirOfRegeneration();
-        itemsInInventory[5][2] = new ElixirOfSpeed();
-        itemsInInventory[6][2] = new ElixirOfSpeed();
-        itemsInInventory[7][2] = new ElixirOfSpeed();
-        itemsInInventory[5][3] = new FlaskOfWater();
-        itemsInInventory[6][3] = new FlaskOfWater();
-        itemsInInventory[7][3] = new FlaskOfWater();
-        itemsInInventory[5][4] = new ElixirOfStoneSkin();
-        itemsInInventory[6][4] = new ElixirOfStoneSkin();
-        itemsInInventory[7][4] = new ElixirOfStoneSkin();
-        itemsInInventory[8][0] = new Workshop();
-        itemsInInventory[9][0] = new AlchemyLab();
-        */
 
     }
 }

@@ -26,6 +26,11 @@ public final class ImageBank {
         return agentTiles1;
     }
 
+    private static Image projectileTiles1;
+    public static Image getProjectileTiles1() {
+        return projectileTiles1;
+    }
+
     private static Image resourceIcons;
     public static Image getResourceIcons() {
         return resourceIcons;
@@ -48,6 +53,7 @@ public final class ImageBank {
             tileDamage = new Image(new FileInputStream("Images\\tileDamage.png"));
             itemTiles1 = new Image(new FileInputStream("Images\\items_1.png"));
             agentTiles1 = new Image(new FileInputStream("Images\\agentTiles_1.png"));
+            projectileTiles1 = new Image(new FileInputStream("Images\\projectileTiles_1.png"));
             resourceIcons = new Image(new FileInputStream("Images\\resourceIcons.png"));
             menuBackground = new Image(new FileInputStream("Images\\menuBackground.png"));
             logo = new Image(new FileInputStream("Images\\logo.png"));

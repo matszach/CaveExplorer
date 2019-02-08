@@ -44,13 +44,13 @@ final public class MonsterSpawnerAndHandler {
     private static final double MAX_DISTANCE_TO_PLAYER = 8;
 
     // max distance in tiles for a monster to spawn (this prevents monsters spawning in player's visible range)
-    private static final double MIN_DISTANCE_TO_DESPAWN = 15;
+    private static final double MIN_DISTANCE_TO_DESPAWN = 25;
 
     // monster spawn chance (the chance that the monster will spawn if a suitable tile is drawn)
     private static final double MONSTER_SPAWN_CHANCE = 0.06;
 
 
-    public static void spawnAttepmt(int tileX, int tileY){
+    public static void spawnAttempt(int tileX, int tileY){
 
         // TODO very wip
         if(Math.random() < MONSTER_SPAWN_CHANCE &&

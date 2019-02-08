@@ -66,7 +66,7 @@ public class Board extends Pane {
             tile.x = x;
             tile.y = y;
 
-            MonsterSpawnerAndHandler.spawnAttepmt(x, y);
+            MonsterSpawnerAndHandler.spawnAttempt(x, y);
         }
     }
 

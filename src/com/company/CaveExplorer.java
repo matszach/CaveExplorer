@@ -171,13 +171,13 @@ public final class CaveExplorer extends Application {
         return gameState;
     }
 
-    public static void findStartigPosition(int sideLengthInTiles){
+    private static void findStartingPosition(int sideLengthInTiles){
         while (true){
             int x = (int)(Math.random()*sideLengthInTiles+1);
             int y = (int)(Math.random()*sideLengthInTiles+1);
             if(MainGameScene.getBoard().getBoardTileTypes()[x][y] == 0){
                 playerCharacter.relocate(GameValues.getTileSideLength()*x,GameValues.getTileSideLength()*y+1);
-               return;
+                return;
             }
         }
     }
@@ -186,7 +186,7 @@ public final class CaveExplorer extends Application {
         mainGameScene = new MainGameScene(sideLengthInTiles, oreAmount, terrainAmount, structureAmount);
         gameScene = new Scene(mainGameScene, GameValues.getWindowSideLength(),GameValues.getWindowSideLength());
         //playerCharacter.relocate(GameValues.getTileSideLength()*sideLengthInTiles/2,GameValues.getTileSideLength()*sideLengthInTiles/2+1);
-        findStartigPosition(sideLengthInTiles);
+        findStartingPosition(sideLengthInTiles);
         MainGameScene.getBoard().getChildren().add(playerCharacter);
         updateView();
     }

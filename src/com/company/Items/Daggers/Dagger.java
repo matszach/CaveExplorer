@@ -2,9 +2,11 @@ package com.company.Items.Daggers;
 
 import com.company.Agent.Monster.Monster;
 import com.company.Agent.PlayerCharacter.PlayerCharacter;
+import com.company.ImageBank;
 import com.company.Items.IUsableOnButtonPressed;
 import com.company.Items.Item;
 import com.company.MonsterSpawnerAndHandler;
+import com.company.Projectiles.*;
 import javafx.animation.AnimationTimer;
 
 abstract public class Dagger extends Item implements IUsableOnButtonPressed {
@@ -49,6 +51,9 @@ abstract public class Dagger extends Item implements IUsableOnButtonPressed {
                         double y = playerCharacter.getTileY();
 
 
+                        Projectile p = new DmgProjectile_PlatinumStaff(playerCharacter.getDirFacing());
+                        p.initiateTravel(playerCharacter);
+
                         switch (playerCharacter.getDirFacing()){
                             case LEFT: x-=sweepRange; break;
                             case LEFT_UP: x-=sweepRange; y-=sweepRange; break;
@@ -61,7 +66,6 @@ abstract public class Dagger extends Item implements IUsableOnButtonPressed {
                             default: break;
                         }
 
-
                         // deals damage to ALL enemies withing area
                         for(Monster monster : MonsterSpawnerAndHandler.getActiveMonsters()){
                             if(Math.abs(monster.getTileX() - x) > sweepRange){
@@ -73,7 +77,6 @@ abstract public class Dagger extends Item implements IUsableOnButtonPressed {
                             double damageToBeDealt = attackPower/2 + Math.random()*attackPower;
                             monster.takeDamage(damageToBeDealt);
                             break; // daggers only hit one target
-
                         }
 
                         // resets animation , permits another attack
