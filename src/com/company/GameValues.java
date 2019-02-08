@@ -29,9 +29,11 @@ public final class GameValues {
 
     // gui colors
     public static final Color GUI_FULL_BLUE = new Color(0.1,0.3,0.6,0.8);
+    public static final Color GUI_FULL_BLUE_OPAQUE = new Color(0.1,0.3,0.6,0.8);
     public static final Color GUI_FLASH_BLUE = new Color(0.2,0.7,0.8,0.8);
     public static final Color GUI_MAIN_BLUE = new Color(0.1,0.6,0.9,0.7);
     public static final Color GUI_OVERLAY_BLUE = new Color(0.1,0.7,1,0.4);
+    public static final Color GUI_OVERLAY_BLUE_OPAQUE = new Color(0.1,0.7,1,1);
     public static final Color HP_BAR_FRONT = new Color(0.6,0.1,0.1,1);
     public static final Color HP_BAR_BASE = new Color(0.3,0.1,0.1,1);
 

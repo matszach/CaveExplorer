@@ -4,6 +4,7 @@ import com.company.CaveExplorer;
 import com.company.GameValues;
 import com.company.MonsterSpawnerAndHandler;
 import com.company.Scenes.MainGameScene;
+import com.company.Tiles.DynamicTile;
 import com.company.Tiles.Tile;
 import com.company.Tiles.TileTypes;
 import javafx.scene.effect.ColorAdjust;
@@ -103,6 +104,13 @@ public class Board extends Pane {
     }
 
     // culls distant tiles
+    private void cullTile(int x, int y){
+        getChildren().remove(getTiles()[x][y]);
+        if(getTiles()[x][y] instanceof DynamicTile){
+            ((DynamicTile)getTiles()[x][y]).getChanges().stop();
+        }
+        getTiles()[x][y] = null;
+    }
     public void cullDistantTiles(int range, int cullWidth) {
 
         int xMin = CaveExplorer.getPlayerCharacter().roundTileX() - range >= 0 ? CaveExplorer.getPlayerCharacter().roundTileX() - range : 0;
@@ -113,8 +121,7 @@ public class Board extends Pane {
         if (xMin > cullWidth) {
             for (int x = xMin; x < xMin + cullWidth; x++) {
                 for (int y = yMin; y < yMax; y++) {
-                    getChildren().remove(getTiles()[x][y]);
-                    getTiles()[x][y] = null;
+                   cullTile(x,y);
                 }
             }
         }
@@ -122,8 +129,7 @@ public class Board extends Pane {
         if (yMax < MainGameScene.getBoard().getBoardTileTypes()[0].length - cullWidth) {
             for (int x = xMax - cullWidth; x < xMax; x++) {
                 for (int y = yMin; y < yMax; y++) {
-                    getChildren().remove(getTiles()[x][y]);
-                    getTiles()[x][y] = null;
+                    cullTile(x,y);
                 }
             }
         }
@@ -131,8 +137,7 @@ public class Board extends Pane {
         if (yMin > cullWidth) {
             for (int x = xMin; x < xMax; x++) {
                 for (int y = yMin; y < yMin + cullWidth; y++) {
-                    getChildren().remove(getTiles()[x][y]);
-                    getTiles()[x][y] = null;
+                    cullTile(x,y);
                 }
             }
         }
@@ -140,8 +145,7 @@ public class Board extends Pane {
         if (xMax < MainGameScene.getBoard().getBoardTileTypes().length - cullWidth) {
             for (int x = xMin; x < xMax; x++) {
                 for (int y = yMax - cullWidth; y < yMax; y++) {
-                    getChildren().remove(getTiles()[x][y]);
-                    getTiles()[x][y] = null;
+                    cullTile(x,y);
                 }
             }
         }

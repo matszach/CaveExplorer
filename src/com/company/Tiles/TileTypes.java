@@ -50,6 +50,7 @@ final public class TileTypes {
         getTileTypeMap().put(17, Tile_Gravel.class);
         getTileTypeMap().put(18, Tile_Const_Workshop.class);
         getTileTypeMap().put(19, Tile_Const_AlchemyLab.class);
+        getTileTypeMap().put(20, Tile_Const_Fireplace.class);
     }
 
 }

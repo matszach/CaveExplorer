@@ -63,7 +63,7 @@ abstract public class Tile extends ImageView {
     }
 
     // tile crumbles
-    private void crumble(){
+    protected void crumble(){
         MainGameScene.getBoard().replaceTile(new Tile_Floor(), x, y);
         MainGameScene.getBoard().getChildren().remove(dmgEffect);
         if(this instanceof  IResourceDropping && playerNearby(2)){

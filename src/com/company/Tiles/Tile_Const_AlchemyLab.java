@@ -1,8 +1,15 @@
 package com.company.Tiles;
 
+import com.company.CaveExplorer;
 import com.company.ImageBank;
+import com.company.Items.PlaceableObjects.AlchemyLab;
 
-final public class Tile_Const_AlchemyLab extends Tile {
+final public class Tile_Const_AlchemyLab extends Tile implements IResourceDropping {
+
+    @Override
+    public void dropResource() {
+        CaveExplorer.getPlayerCharacter().gainItem(new AlchemyLab());
+    }
 
     @Override
     void buildBackGround() {

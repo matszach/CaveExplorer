@@ -42,13 +42,13 @@ public class ItemPane extends StackPane {
 
 
     public void select(){
-        setBackground(new Background(new BackgroundFill(GameValues.GUI_FULL_BLUE, new CornerRadii(10), new Insets(5,5,5,5))));
+        setBackground(new Background(new BackgroundFill(GameValues.GUI_FULL_BLUE_OPAQUE, new CornerRadii(10), new Insets(5,5,5,5))));
         setScaleX(1.05);
         setScaleX(1.05);
     }
 
     public void unSelect(){
-        setBackground(new Background(new BackgroundFill(GameValues.GUI_OVERLAY_BLUE, new CornerRadii(10), new Insets(5,5,5,5))));
+        setBackground(new Background(new BackgroundFill(GameValues.GUI_OVERLAY_BLUE_OPAQUE, new CornerRadii(10), new Insets(5,5,5,5))));
         setScaleX(1.00);
         setScaleX(1.00);
     }
@@ -58,7 +58,7 @@ public class ItemPane extends StackPane {
         this.col = col;
         this.row = row;
         setPrefSize(40,40);
-        setBackground(new Background(new BackgroundFill(GameValues.GUI_OVERLAY_BLUE, new CornerRadii(10), new Insets(5,5,5,5))));
+        setBackground(new Background(new BackgroundFill(GameValues.GUI_OVERLAY_BLUE_OPAQUE, new CornerRadii(10), new Insets(5,5,5,5))));
         setAlignment(Pos.CENTER);
         buildItemView();
 

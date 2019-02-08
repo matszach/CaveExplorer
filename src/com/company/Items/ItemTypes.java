@@ -11,6 +11,7 @@ import com.company.Items.Drills.CobaltDrill;
 import com.company.Items.Drills.CopperDrill;
 import com.company.Items.Drills.IronDrill;
 import com.company.Items.PlaceableObjects.AlchemyLab;
+import com.company.Items.PlaceableObjects.Fireplace;
 import com.company.Items.PlaceableObjects.WoodenSupport;
 import com.company.Items.PlaceableObjects.Workshop;
 import com.company.Items.PotionsAndElixirs.*;
@@ -87,6 +88,7 @@ final public class ItemTypes {
         getItemTypeMap().put(27, SilverStaff.class);
         getItemTypeMap().put(28, GoldStaff.class);
         getItemTypeMap().put(29, PlatinumStaff.class);
+        getItemTypeMap().put(30, Fireplace.class);
 
 
     }

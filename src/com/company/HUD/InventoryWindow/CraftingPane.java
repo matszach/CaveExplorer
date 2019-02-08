@@ -3,6 +3,7 @@ package com.company.HUD.InventoryWindow;
 import com.company.CaveExplorer;
 import com.company.Crafting.CraftingRecipe;
 import com.company.Crafting.PlaceableObjects.Recipe_AlchemyLab;
+import com.company.Crafting.PlaceableObjects.Recipe_Fireplace;
 import com.company.Crafting.PlaceableObjects.Recipe_Workshop;
 import com.company.Crafting.PotionsAndElixirs.*;
 import com.company.Crafting.Tools.*;
@@ -97,16 +98,16 @@ public class CraftingPane extends ScrollPane {
 
 
         private void hoverOn(){
-            setBackground(new Background(new BackgroundFill(GameValues.GUI_FULL_BLUE, new CornerRadii(5), null)));
+            setBackground(new Background(new BackgroundFill(GameValues.GUI_FULL_BLUE_OPAQUE, new CornerRadii(5), null)));
         }
 
         private void hoverOff(){
-            setBackground(new Background(new BackgroundFill(GameValues.GUI_FLASH_BLUE, new CornerRadii(5), null)));
+            setBackground(new Background(new BackgroundFill(GameValues.GUI_OVERLAY_BLUE_OPAQUE, new CornerRadii(5), null)));
         }
 
         private CraftingRecipePane(CraftingRecipe craftingRecipe){
             setPrefSize(PREF_WIDTH-9, 30);
-            setBackground(new Background(new BackgroundFill(GameValues.GUI_FLASH_BLUE, new CornerRadii(5), null)));
+            setBackground(new Background(new BackgroundFill(GameValues.GUI_OVERLAY_BLUE_OPAQUE, new CornerRadii(5), null)));
 
 
 
@@ -121,7 +122,7 @@ public class CraftingPane extends ScrollPane {
                 setOnMouseExited(e->hoverOff());
                 setOnMouseDragExited(e->hoverOff());
             } else {
-                setOpacity(0.5);
+                setOpacity(0.6);
             }
 
 
@@ -178,7 +179,8 @@ public class CraftingPane extends ScrollPane {
 
         // available always
         addRecipesToDisplay(
-            new Recipe_Workshop()
+            new Recipe_Workshop(),
+            new Recipe_Fireplace()
         );
 
         // available near water
