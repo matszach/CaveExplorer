@@ -10,10 +10,7 @@ import com.company.Items.Drills.BloodRubyDrill;
 import com.company.Items.Drills.CobaltDrill;
 import com.company.Items.Drills.CopperDrill;
 import com.company.Items.Drills.IronDrill;
-import com.company.Items.PlaceableObjects.AlchemyLab;
-import com.company.Items.PlaceableObjects.Fireplace;
-import com.company.Items.PlaceableObjects.WoodenSupport;
-import com.company.Items.PlaceableObjects.Workshop;
+import com.company.Items.PlaceableObjects.*;
 import com.company.Items.PotionsAndElixirs.*;
 import com.company.Items.Spears.BloodRubySpear;
 import com.company.Items.Spears.CobaltSpear;
@@ -89,6 +86,7 @@ final public class ItemTypes {
         getItemTypeMap().put(28, GoldStaff.class);
         getItemTypeMap().put(29, PlatinumStaff.class);
         getItemTypeMap().put(30, Fireplace.class);
+        getItemTypeMap().put(31, EnchantingStation.class);
 
 
     }

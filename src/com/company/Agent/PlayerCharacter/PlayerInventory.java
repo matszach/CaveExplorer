@@ -3,6 +3,7 @@ package com.company.Agent.PlayerCharacter;
 import com.company.Items.Daggers.CopperDagger;
 import com.company.Items.Drills.CopperDrill;
 import com.company.Items.Item;
+import com.company.Items.PlaceableObjects.EnchantingStation;
 import com.company.Items.PlaceableObjects.Fireplace;
 import com.company.Items.PotionsAndElixirs.PotionOfHealing;
 import com.company.Resources.Resource;

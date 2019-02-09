@@ -51,6 +51,7 @@ final public class TileTypes {
         getTileTypeMap().put(18, Tile_Const_Workshop.class);
         getTileTypeMap().put(19, Tile_Const_AlchemyLab.class);
         getTileTypeMap().put(20, Tile_Const_Fireplace.class);
+        getTileTypeMap().put(21, Tile_Const_EnchantingStation.class);
     }
 
 }

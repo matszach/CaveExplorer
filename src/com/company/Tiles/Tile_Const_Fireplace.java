@@ -4,7 +4,7 @@ import com.company.CaveExplorer;
 import com.company.ImageBank;
 import javafx.animation.AnimationTimer;
 
-public class Tile_Const_Fireplace extends DynamicTile {
+final public class Tile_Const_Fireplace extends DynamicTile {
 
     @Override
     void buildBackGround() {

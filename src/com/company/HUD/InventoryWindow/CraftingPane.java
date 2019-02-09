@@ -3,6 +3,7 @@ package com.company.HUD.InventoryWindow;
 import com.company.CaveExplorer;
 import com.company.Crafting.CraftingRecipe;
 import com.company.Crafting.PlaceableObjects.Recipe_AlchemyLab;
+import com.company.Crafting.PlaceableObjects.Recipe_EnchantingStation;
 import com.company.Crafting.PlaceableObjects.Recipe_Fireplace;
 import com.company.Crafting.PlaceableObjects.Recipe_Workshop;
 import com.company.Crafting.PotionsAndElixirs.*;
@@ -11,11 +12,9 @@ import com.company.Crafting.Weapons.*;
 import com.company.GameValues;
 import com.company.ImageBank;
 import com.company.Items.Item;
+import com.company.Items.PlaceableObjects.EnchantingStation;
 import com.company.Scenes.MainGameScene;
-import com.company.Tiles.Tile;
-import com.company.Tiles.Tile_Const_AlchemyLab;
-import com.company.Tiles.Tile_Const_Workshop;
-import com.company.Tiles.Tile_Fluid_Water;
+import com.company.Tiles.*;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.ScrollPane;
@@ -211,7 +210,8 @@ public class CraftingPane extends ScrollPane {
                 new Recipe_CobaltSword(),
                 new Recipe_BloodRubySword(),
                 new Recipe_SilverFlask(),
-                new Recipe_AlchemyLab()
+                new Recipe_AlchemyLab(),
+                new Recipe_EnchantingStation()
             );
         }
 
@@ -222,6 +222,22 @@ public class CraftingPane extends ScrollPane {
                 new Recipe_ElixirOfRegeneration(),
                 new Recipe_ElixirOfSpeed(),
                 new Recipe_ElixirOfStoneSkin()
+            );
+        }
+
+        // available near fireplace
+        if(tileOfTypeInRange(Tile_Const_Fireplace.class, 2)) {
+            addRecipesToDisplay(
+
+            );
+        }
+
+        // available near enchanting station
+        if(tileOfTypeInRange(Tile_Const_EnchantingStation.class, 2)) {
+            addRecipesToDisplay(
+                new Recipe_SilverStaff(),
+                new Recipe_GoldStaff(),
+                new Recipe_PlatinumStaff()
             );
         }
 

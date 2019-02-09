@@ -48,6 +48,7 @@ public final class PngMapGenerator {
                     case 18 : g2d.setColor(new Color(40,40,30)); break; // workshop
                     case 19 : g2d.setColor(new Color(90,40,30)); break; // alchemy lab
                     case 20 : g2d.setColor(new Color(20,20,20)); break; // fireplace
+                    case 21 : g2d.setColor(new Color(100,120,250)); break; // enchanting station
                 }
                 g2d.drawLine(x, y, x, y);
             }
