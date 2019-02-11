@@ -1,8 +1,7 @@
 package com.company.Agent.Monster;
 
-import com.company.Agent.Monster.MonsterAI.SimpleFollowerAI;
+import com.company.Agent.Monster.MonsterAI.ZombieAI;
 import com.company.ImageBank;
-import javafx.geometry.Rectangle2D;
 
 final public class Zombie extends Monster{
 
@@ -22,7 +21,7 @@ final public class Zombie extends Monster{
     public Zombie(){
         super(5, 0.02);
         buildDefaultAppearance();
-        setMonsterAI(new SimpleFollowerAI(this, 8));
+        setMonsterAI(new ZombieAI(this, 8));
         awaken();
     }
 }

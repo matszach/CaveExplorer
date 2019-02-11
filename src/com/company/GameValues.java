@@ -11,11 +11,6 @@ public final class GameValues {
         return TILE_SIDE_LENGTH;
     }
 
-    public static final int[] BOARD_SIDE_LENGTH_IN_TILES = new int[]{2000,5000,10000};
-    public static int[] getBoardSideLengthInTiles(){
-        return BOARD_SIDE_LENGTH_IN_TILES;
-    }
-
     public static final int BEDROCK_WIDTH = 6;
     public static int getBedrockWidth(){
         return BEDROCK_WIDTH;

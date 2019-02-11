@@ -23,7 +23,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-;
+
 
 public class CraftingPane extends ScrollPane {
 

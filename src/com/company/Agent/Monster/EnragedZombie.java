@@ -1,9 +1,9 @@
-package com.company.Agent.Monster.MonsterAI;
+package com.company.Agent.Monster;
 
-import com.company.Agent.Monster.Monster;
+import com.company.Agent.Monster.MonsterAI.ZombieAI;
 import com.company.ImageBank;
 
-public class EnragedZombie extends Monster {
+final public class EnragedZombie extends Monster {
 
 
     @Override
@@ -21,7 +21,7 @@ public class EnragedZombie extends Monster {
     public EnragedZombie(){
         super(7, 0.04);
         buildDefaultAppearance();
-        setMonsterAI(new SimpleFollowerAI(this, 8));
+        setMonsterAI(new ZombieAI(this, 8));
         awaken();
     }
 }

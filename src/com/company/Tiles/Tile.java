@@ -114,6 +114,38 @@ abstract public class Tile extends ImageView {
 
     abstract void buildBackGround();
 
+
+    // methods used in A* path-finding
+    public double getH(Tile targetTile){
+        double xSq = (targetTile.x - x) * (targetTile.x - x);
+        double ySq = (targetTile.y - y) * (targetTile.y - y);
+        return Math.sqrt(xSq+ySq);
+    }
+    private double g;
+    public void setG(double g) {
+        this.g = g;
+    }
+    public double getG(){
+        return g;
+    }
+    public double getF(Tile targetTile){
+        return getH(targetTile) + getG();
+    }
+    private Tile parentTile;
+    public boolean hasParent(){
+        return parentTile != null;
+    }
+    public void setParentTile(Tile parentTile) {
+        this.parentTile = parentTile;
+    }
+    public Tile getParentTile() {
+        return parentTile;
+    }
+
+    public boolean isEqualTo(Tile anotherTile){
+        return x == anotherTile.x && y == anotherTile.y;
+    }
+
     public Tile(){
         setFitHeight(GameValues.getTileSideLength());
         setFitWidth(GameValues.getTileSideLength());

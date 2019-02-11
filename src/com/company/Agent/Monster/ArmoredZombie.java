@@ -1,6 +1,6 @@
 package com.company.Agent.Monster;
 
-import com.company.Agent.Monster.MonsterAI.SimpleFollowerAI;
+import com.company.Agent.Monster.MonsterAI.ZombieAI;
 import com.company.ImageBank;
 
 final public class ArmoredZombie extends Monster{
@@ -22,7 +22,7 @@ final public class ArmoredZombie extends Monster{
         super(8, 0.02);
         setDefence(5);
         buildDefaultAppearance();
-        setMonsterAI(new SimpleFollowerAI(this, 8));
+        setMonsterAI(new ZombieAI(this, 8));
         awaken();
     }
 }
