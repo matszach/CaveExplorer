@@ -1,0 +1,124 @@
+ private void addNeighboursToOpenList(ArrayList<Tile> openList, ArrayList<Tile> closedList, Tile centreTile){
+
+
+        for (int x = centreTile.x-1 ; x <= centreTile.x+1; x++){
+            for (int y = centreTile.y-1 ; y <= centreTile.y+1; y++){
+                // skip origin tile
+                if(x==centreTile.x && y==centreTile.y){
+                    continue;
+                }
+                // skip if null
+                if(MainGameScene.getBoard().getTiles()[x][y] == null){
+                    continue;
+                }
+                // skip if non traversable
+                if(MainGameScene.getBoard().getTiles()[x][y].isMovementBlocking()){
+                    continue;
+                }
+                // skip if in closed list
+                if(closedList.contains(MainGameScene.getBoard().getTiles()[x][y])){
+                    continue;
+                }
+                // update G value and parent tile
+                if(MainGameScene.getBoard().getTiles()[x][y].getG() != 0 && MainGameScene.getBoard().getTiles()[x][y].getG() > centreTile.getG()+1 ){
+                    MainGameScene.getBoard().getTiles()[x][y].setG(centreTile.getG()+1);
+
+                }
+                MainGameScene.getBoard().getTiles()[x][y].setParentTile(centreTile);
+                // add to open
+                if(!openList.contains(MainGameScene.getBoard().getTiles()[x][y])){
+                      openList.add(MainGameScene.getBoard().getTiles()[x][y]);
+                }
+            }
+        }
+
+    }
+    private Tile getTileWithLowestFValueFromList(ArrayList<Tile> tiles, Tile targetTile){
+
+        Tile tileWithLowestFValue = null;
+
+        for(Tile t : tiles){
+
+            if(tileWithLowestFValue == null){
+                tileWithLowestFValue = t;
+            } else {
+                if(t.getF(targetTile) > tileWithLowestFValue.getF(targetTile)){
+                    tileWithLowestFValue = t;
+                }
+            }
+
+        }
+
+        return tileWithLowestFValue;
+
+    }
+    private void stepOnPath(Tile targetTile, Tile startingTile){
+        Tile directTile = targetTile;
+
+        while (!directTile.getParentTile().isEqualTo(startingTile)) {
+                  directTile = directTile.getParentTile();
+        }
+
+        double x = directTile.x - monster.getTileX();
+        double y = directTile.y - monster.getTileY();
+
+        System.out.println(monster.getTileX()+"/"+monster.getTileY() + " -> " + directTile.x +"/"+ directTile.y); // FIXME: 2019-02-10
+
+        if(x < 0){
+             monster.walk(Agent.MOVE_DIR.RIGHT);
+        } else if(x > 0) {
+             monster.walk(Agent.MOVE_DIR.LEFT);
+        }
+
+        if(y < 0){
+            monster.walk(Agent.MOVE_DIR.DOWN);
+        } else if(y > 0) {
+            monster.walk(Agent.MOVE_DIR.UP);
+        }
+
+    }
+    public void walkOnShortestPath(){
+
+        // Open list
+        ArrayList<Tile> openList = new ArrayList<>();
+
+        // Closed list
+        ArrayList<Tile> closedList = new ArrayList<>();
+
+        // Target Tile (Tile on which the player stands)
+        Tile targetTile = MainGameScene.getBoard().getTiles()[CaveExplorer.getPlayerCharacter().roundTileX()][CaveExplorer.getPlayerCharacter().roundTileY()];
+
+        // Starting Tile (Tile on which the monster dwells)
+        Tile startingTile = MainGameScene.getBoard().getTiles()[monster.roundTileX()][monster.roundTileY()];
+        openList.add(startingTile);
+        startingTile.setG(0);
+        startingTile.setParentTile(null);
+
+        // searching loop
+        while (true){
+
+            Tile current = getTileWithLowestFValueFromList(openList, targetTile);
+            System.out.println("current: x=" + current.x + " y=" + current.y); // FIXME: 2019-02-10
+            openList.remove(current);
+            closedList.add(current);
+
+            if(current.isEqualTo(targetTile)){
+                stepOnPath(targetTile,startingTile);
+                break;
+            }
+
+            addNeighboursToOpenList(openList,closedList,current);
+
+        }
+
+        for(Tile t : openList){
+            t.setParentTile(null);
+            t.setG(0);
+        }
+
+        for(Tile t : closedList){
+            t.setParentTile(null);
+            t.setG(0);
+        }
+
+    }

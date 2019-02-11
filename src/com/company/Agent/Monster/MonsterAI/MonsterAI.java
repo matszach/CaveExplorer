@@ -223,6 +223,7 @@ abstract public class MonsterAI extends AnimationTimer {
                 double x = currentTile.x - neighbour.x;
                 double y = currentTile.y - neighbour.y;
                 double addedGCost = Math.sqrt(x*x+y*y);
+
                 if(!openTiles.contains(neighbour) || neighbour.getF(targetTile) > currentTile.getF(targetTile)+addedGCost){
                     neighbour.setG(addedGCost);
                     neighbour.setParentTile(currentTile);

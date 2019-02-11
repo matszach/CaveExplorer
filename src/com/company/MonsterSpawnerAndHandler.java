@@ -1,9 +1,6 @@
 package com.company;
 
-import com.company.Agent.Monster.ArmoredZombie;
-import com.company.Agent.Monster.EnragedZombie;
-import com.company.Agent.Monster.Monster;
-import com.company.Agent.Monster.Zombie;
+import com.company.Agent.Monster.*;
 import com.company.Scenes.MainGameScene;
 
 import java.util.ArrayList;
@@ -47,7 +44,7 @@ final public class MonsterSpawnerAndHandler {
     private static final double MIN_DISTANCE_TO_DESPAWN = 25;
 
     // monster spawn chance (the chance that the monster will spawn if a suitable tile is drawn)
-    private static final double MONSTER_SPAWN_CHANCE = 0.46;
+    private static final double MONSTER_SPAWN_CHANCE = 0.06;
 
 
     public static void spawnAttempt(int tileX, int tileY){
@@ -59,17 +56,21 @@ final public class MonsterSpawnerAndHandler {
            Math.abs(CaveExplorer.getPlayerCharacter().getTileX() - tileX) > MAX_DISTANCE_TO_PLAYER &&
            Math.abs(CaveExplorer.getPlayerCharacter().getTileY() - tileY) > MAX_DISTANCE_TO_PLAYER) {
 
-                Monster monster;
+                Monster monster = new SporeCarrier();
 
                 double monsterRoll = Math.random();
 
-                if(monsterRoll > 0.4){
-                    monster = new Zombie();
-                } else if (monsterRoll > 0.2){
+                /*
+                if(monsterRoll > 0.5){
+                    monster = new RegularZombie();
+                } else if (monsterRoll > 0.35){
                     monster = new ArmoredZombie();
-                } else {
+                } else if (monsterRoll > 0.15){
                     monster = new EnragedZombie();
+                } else {
+                    monster = new SporeCarrier();
                 }
+                */
 
                 monster.relocate(GameValues.getTileSideLength()*tileX,GameValues.getTileSideLength()*tileY+1);
                 MainGameScene.getBoard().getChildren().add(monster);
