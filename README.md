@@ -2,6 +2,8 @@
 JavaFX-based 2D game, based around exploring randomly generated caverns, collecting resources, crafting items and fighting monsters. 
 // Work In Progress
 
+Main Meny buttons "Options" and "About" are not active yet.
+
 The game features so far:
 
 - customisable random world generation,
